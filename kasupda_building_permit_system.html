@@ -1,0 +1,1127 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:#f0f2f5;min-height:100vh;color:#1a1a2e}
+  :root{
+    --primary:#1B4F8A;--primary-light:#2563EB;--primary-dark:#0F2D50;
+    --accent:#F59E0B;--accent-light:#FCD34D;
+    --success:#059669;--warning:#D97706;--danger:#DC2626;--info:#0284C7;
+    --surface:#fff;--surface2:#f8fafc;--border:#e2e8f0;
+    --text:#1e293b;--text2:#64748b;--text3:#94a3b8;
+    --radius:10px;--radius-lg:16px;
+    --shadow:0 1px 3px rgba(0,0,0,.1),0 1px 2px rgba(0,0,0,.06);
+    --shadow-md:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06);
+    --shadow-lg:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -2px rgba(0,0,0,.05);
+  }
+
+  /* ===== AUTH ===== */
+  .auth-wrap{display:flex;min-height:100vh;align-items:center;justify-content:center;background:linear-gradient(135deg,#0F2D50 0%,#1B4F8A 50%,#2563EB 100%);padding:20px}
+  .auth-card{background:#fff;border-radius:var(--radius-lg);width:420px;overflow:hidden;box-shadow:var(--shadow-lg)}
+  .auth-header{background:linear-gradient(135deg,#0F2D50,#1B4F8A);padding:28px 32px;text-align:center}
+  .auth-logo{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:8px}
+  .auth-logo-icon{width:48px;height:48px;background:#F59E0B;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:#fff;letter-spacing:-1px}
+  .auth-logo-text{color:#fff;font-size:18px;font-weight:700;letter-spacing:.5px}
+  .auth-logo-sub{color:#93C5FD;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-top:2px}
+  .auth-title{color:#fff;font-size:15px;font-weight:400;opacity:.8;margin-top:4px}
+  .auth-body{padding:28px 32px}
+  .field-group{margin-bottom:18px}
+  .field-label{display:block;font-size:12px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+  .field-input{width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;color:var(--text);outline:none;transition:border .2s}
+  .field-input:focus{border-color:var(--primary-light);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+  .field-select{width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;color:var(--text);outline:none;background:#fff;cursor:pointer}
+  .btn-primary{width:100%;padding:12px;background:linear-gradient(135deg,#1B4F8A,#2563EB);color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;margin-top:8px;transition:opacity .2s}
+  .btn-primary:hover{opacity:.9}
+  .creds-hint{background:#F0F9FF;border:1px solid #BAE6FD;border-radius:8px;padding:12px 14px;margin-top:16px}
+  .creds-hint-title{font-size:11px;font-weight:700;color:#0369A1;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+  .cred-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px dashed #BAE6FD;cursor:pointer}
+  .cred-row:last-child{border-bottom:none}
+  .cred-role{font-size:11px;font-weight:600;color:#0369A1}
+  .cred-info{font-size:10px;color:#0284C7;font-family:monospace}
+  .cred-row:hover .cred-info{text-decoration:underline}
+
+  /* ===== LAYOUT ===== */
+  .app-layout{display:flex;min-height:100vh}
+  .sidebar{width:240px;background:linear-gradient(180deg,#0F2D50 0%,#1B4F8A 100%);display:flex;flex-direction:column;flex-shrink:0}
+  .sidebar-brand{padding:20px 18px;border-bottom:1px solid rgba(255,255,255,.1)}
+  .sidebar-brand-row{display:flex;align-items:center;gap:10px}
+  .sidebar-icon{width:36px;height:36px;background:#F59E0B;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;flex-shrink:0}
+  .sidebar-name{color:#fff;font-size:13px;font-weight:700;line-height:1.3}
+  .sidebar-sub{color:#93C5FD;font-size:10px;line-height:1.2}
+  .sidebar-nav{flex:1;padding:12px 0;overflow-y:auto}
+  .nav-section{padding:8px 18px 4px;font-size:10px;font-weight:700;color:#93C5FD;text-transform:uppercase;letter-spacing:.8px}
+  .nav-item{display:flex;align-items:center;gap:10px;padding:9px 18px;cursor:pointer;color:rgba(255,255,255,.75);font-size:13px;transition:all .15s;border-left:3px solid transparent}
+  .nav-item:hover{background:rgba(255,255,255,.08);color:#fff}
+  .nav-item.active{background:rgba(255,255,255,.12);color:#fff;border-left-color:#F59E0B}
+  .nav-icon{width:16px;text-align:center;font-size:14px}
+  .sidebar-footer{padding:14px 18px;border-top:1px solid rgba(255,255,255,.1)}
+  .user-chip{display:flex;align-items:center;gap:10px}
+  .user-avatar{width:32px;height:32px;border-radius:50%;background:#F59E0B;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0}
+  .user-name{color:#fff;font-size:12px;font-weight:600;line-height:1.3}
+  .user-role{color:#93C5FD;font-size:10px}
+  .logout-btn{margin-left:auto;background:rgba(255,255,255,.1);border:none;color:#93C5FD;border-radius:6px;padding:5px 8px;cursor:pointer;font-size:11px;transition:all .2s}
+  .logout-btn:hover{background:rgba(255,255,255,.2);color:#fff}
+
+  /* ===== MAIN CONTENT ===== */
+  .main-content{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
+  .topbar{background:#fff;border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+  .topbar-title{font-size:18px;font-weight:700;color:var(--text)}
+  .topbar-sub{font-size:12px;color:var(--text2);margin-top:1px}
+  .topbar-actions{display:flex;align-items:center;gap:10px}
+  .badge-notif{background:#EF4444;color:#fff;border-radius:10px;padding:2px 7px;font-size:10px;font-weight:700}
+  .page{flex:1;overflow-y:auto;padding:24px}
+
+  /* ===== CARDS ===== */
+  .card{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;box-shadow:var(--shadow)}
+  .card-sm{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+
+  /* ===== STAT CARDS ===== */
+  .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:24px}
+  .stat-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 20px;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+  .stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+  .stat-card.blue::before{background:linear-gradient(90deg,#1B4F8A,#2563EB)}
+  .stat-card.green::before{background:linear-gradient(90deg,#059669,#10B981)}
+  .stat-card.amber::before{background:linear-gradient(90deg,#D97706,#F59E0B)}
+  .stat-card.red::before{background:linear-gradient(90deg,#DC2626,#EF4444)}
+  .stat-card.indigo::before{background:linear-gradient(90deg,#4338CA,#6366F1)}
+  .stat-icon{font-size:28px;margin-bottom:10px}
+  .stat-value{font-size:28px;font-weight:800;color:var(--text);line-height:1}
+  .stat-label{font-size:12px;color:var(--text2);margin-top:4px;font-weight:500}
+  .stat-change{font-size:11px;color:var(--success);margin-top:6px;font-weight:600}
+
+  /* ===== TABLES ===== */
+  .table-wrap{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--border)}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  thead{background:#F8FAFC}
+  th{padding:11px 14px;text-align:left;font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border);white-space:nowrap}
+  td{padding:12px 14px;border-bottom:1px solid #f1f5f9;color:var(--text);vertical-align:middle}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:#f8fafc}
+  .app-id{font-family:monospace;font-size:11px;color:var(--primary-light);font-weight:700}
+
+  /* ===== BADGES ===== */
+  .badge{display:inline-flex;align-items:center;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap}
+  .badge-submitted{background:#EFF6FF;color:#1D4ED8}
+  .badge-frontdesk{background:#F0FDF4;color:#15803D}
+  .badge-dept{background:#FFFBEB;color:#B45309}
+  .badge-dg{background:#F5F3FF;color:#6D28D9}
+  .badge-approved{background:#DCFCE7;color:#15803D}
+  .badge-rejected{background:#FEF2F2;color:#B91C1C}
+  .badge-pending{background:#FFF7ED;color:#C2410C}
+  .badge-correction{background:#FEF3C7;color:#92400E}
+
+  /* ===== BUTTONS ===== */
+  .btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;border:none;transition:all .15s;text-decoration:none}
+  .btn-blue{background:#1B4F8A;color:#fff}.btn-blue:hover{background:#0F2D50}
+  .btn-green{background:#059669;color:#fff}.btn-green:hover{background:#047857}
+  .btn-red{background:#DC2626;color:#fff}.btn-red:hover{background:#B91C1C}
+  .btn-amber{background:#D97706;color:#fff}.btn-amber:hover{background:#B45309}
+  .btn-ghost{background:transparent;color:var(--text2);border:1px solid var(--border)}.btn-ghost:hover{background:#f1f5f9}
+  .btn-sm{padding:5px 11px;font-size:12px;border-radius:6px}
+
+  /* ===== FORMS ===== */
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+  .form-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px}
+  .form-group{margin-bottom:16px}
+  .form-label{display:block;font-size:12px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px}
+  .form-control{width:100%;padding:9px 12px;border:1.5px solid var(--border);border-radius:7px;font-size:14px;color:var(--text);outline:none;transition:border .2s;background:#fff}
+  .form-control:focus{border-color:var(--primary-light);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+  .form-select{width:100%;padding:9px 12px;border:1.5px solid var(--border);border-radius:7px;font-size:14px;color:var(--text);outline:none;background:#fff}
+  .upload-box{border:2px dashed #CBD5E1;border-radius:10px;padding:24px;text-align:center;cursor:pointer;transition:all .2s}
+  .upload-box:hover{border-color:var(--primary-light);background:#EFF6FF}
+
+  /* ===== PROGRESS / TIMELINE ===== */
+  .timeline{display:flex;flex-direction:column;gap:0}
+  .tl-item{display:flex;gap:14px;position:relative}
+  .tl-item:not(:last-child)::after{content:'';position:absolute;left:15px;top:34px;bottom:0;width:2px;background:#E2E8F0}
+  .tl-dot{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;z-index:1}
+  .tl-dot.done{background:#DCFCE7;color:#15803D}
+  .tl-dot.active{background:#DBEAFE;color:#1D4ED8}
+  .tl-dot.pending{background:#F1F5F9;color:#94A3B8}
+  .tl-content{padding:4px 0 20px}
+  .tl-title{font-size:13px;font-weight:600;color:var(--text)}
+  .tl-sub{font-size:12px;color:var(--text2);margin-top:2px}
+  .tl-time{font-size:11px;color:var(--text3);margin-top:2px}
+
+  /* ===== TABS ===== */
+  .tabs{display:flex;border-bottom:2px solid var(--border);margin-bottom:20px;gap:0}
+  .tab{padding:10px 18px;cursor:pointer;font-size:13px;font-weight:600;color:var(--text2);border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .15s}
+  .tab.active{color:var(--primary);border-bottom-color:var(--primary)}
+  .tab:hover:not(.active){color:var(--text)}
+
+  /* ===== SECTION HEADER ===== */
+  .section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+  .section-title{font-size:15px;font-weight:700;color:var(--text)}
+  .section-sub{font-size:12px;color:var(--text2);margin-top:2px}
+
+  /* ===== PERMIT PREVIEW ===== */
+  .permit-preview{background:linear-gradient(135deg,#f0f9ff 0%,#fff 100%);border:2px solid #BFDBFE;border-radius:12px;padding:24px;text-align:center;position:relative}
+  .permit-seal{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#1B4F8A,#2563EB);margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:32px;color:#fff}
+  .permit-num{font-size:20px;font-weight:800;color:#1B4F8A;font-family:monospace;letter-spacing:2px;margin:8px 0}
+  .permit-qr{width:80px;height:80px;background:#1B4F8A;margin:12px auto 0;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px}
+
+  /* ===== NOTIFICATION ===== */
+  .notif{display:flex;gap:12px;padding:12px 14px;border-radius:8px;margin-bottom:10px;border:1px solid}
+  .notif.info{background:#EFF6FF;border-color:#BFDBFE}
+  .notif.success{background:#F0FDF4;border-color:#BBF7D0}
+  .notif.warning{background:#FFFBEB;border-color:#FDE68A}
+  .notif-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+  .notif-title{font-size:13px;font-weight:600;color:var(--text)}
+  .notif-sub{font-size:12px;color:var(--text2);margin-top:2px}
+  .notif-time{font-size:10px;color:var(--text3);margin-top:4px}
+
+  /* ===== MODAL ===== */
+  .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px}
+  .modal{background:#fff;border-radius:var(--radius-lg);width:100%;max-width:560px;max-height:85vh;overflow-y:auto;box-shadow:var(--shadow-lg)}
+  .modal-header{padding:18px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#fff;z-index:1}
+  .modal-title{font-size:16px;font-weight:700;color:var(--text)}
+  .modal-close{background:none;border:none;font-size:20px;cursor:pointer;color:var(--text2);padding:0 4px;line-height:1}
+  .modal-body{padding:22px}
+  .modal-footer{padding:16px 22px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:10px}
+
+  /* ===== MISC ===== */
+  .divider{height:1px;background:var(--border);margin:20px 0}
+  .tag{display:inline-block;padding:2px 8px;background:#F1F5F9;color:var(--text2);border-radius:4px;font-size:11px;font-weight:600;margin:2px}
+  .empty-state{text-align:center;padding:40px 20px;color:var(--text2)}
+  .empty-state-icon{font-size:40px;margin-bottom:12px;opacity:.5}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+  .flex{display:flex}.flex-col{flex-direction:column}.items-center{align-items:center}.justify-between{justify-content:space-between}.gap-2{gap:8px}.gap-3{gap:12px}.gap-4{gap:16px}
+  .mb-4{margin-bottom:16px}.mb-6{margin-bottom:24px}.mt-4{margin-top:16px}
+  .text-sm{font-size:13px}.text-xs{font-size:11px}.text-lg{font-size:18px}.font-bold{font-weight:700}.font-semibold{font-weight:600}
+  .text-primary{color:var(--primary)}.text-muted{color:var(--text2)}.text-success{color:var(--success)}.text-danger{color:var(--danger)}.text-warning{color:var(--warning)}
+  .w-full{width:100%}
+  input[type=file]{display:none}
+  .step-bar{display:flex;align-items:center;margin-bottom:28px}
+  .step{display:flex;align-items:center;gap:8px;flex:1}
+  .step-num{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+  .step.done .step-num{background:#059669;color:#fff}
+  .step.active .step-num{background:#1B4F8A;color:#fff}
+  .step.pending .step-num{background:#E2E8F0;color:#94A3B8}
+  .step-label{font-size:11px;font-weight:600}.step.done .step-label{color:#059669}.step.active .step-label{color:#1B4F8A}.step.pending .step-label{color:#94A3B8}
+  .step-line{flex:1;height:2px;background:#E2E8F0;margin:0 4px}.step.done+.step-line{background:#059669}
+  .pill{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:600}
+  .pill-blue{background:#EFF6FF;color:#1D4ED8}
+  .pill-green{background:#F0FDF4;color:#15803D}
+  .pill-amber{background:#FFFBEB;color:#B45309}
+  .review-section{background:#F8FAFC;border-radius:10px;padding:14px 16px;margin-bottom:14px}
+  .review-section-title{font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+  .review-field{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #E2E8F0;font-size:13px}
+  .review-field:last-child{border-bottom:none}
+  .review-field-label{color:var(--text2)}
+  .review-field-value{color:var(--text);font-weight:600;text-align:right;max-width:60%}
+  .comment-box{background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;padding:12px;margin-top:10px}
+  .comment-header{font-size:11px;font-weight:700;color:#92400E;margin-bottom:5px}
+  .dept-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:12px}
+  .dept-name{font-size:13px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:8px;margin-bottom:8px}
+  .dept-status{font-size:11px;color:var(--text2)}
+  .fee-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #F1F5F9;font-size:13px}
+  .fee-row.total{border-bottom:none;font-weight:700;font-size:15px;color:var(--primary);margin-top:4px;padding-top:12px;border-top:2px solid var(--border)}
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+const USERS = {
+  'citizen@kasupda.ng':  {pw:'citizen123',  role:'citizen',   name:'Adamu Ibrahim',       dept:''},
+  'frontdesk@kasupda.ng':{pw:'frontdesk123',role:'frontdesk', name:'Fatima Suleiman',      dept:'Front Desk'},
+  'planning@kasupda.ng': {pw:'planning123',role:'town_planning',name:'Engr. Musa Aliyu',   dept:'Town Planning'},
+  'survey@kasupda.ng':   {pw:'survey123',  role:'survey',     name:'Hajiya Amina Bello',   dept:'Survey Unit'},
+  'engineering@kasupda.ng':{pw:'eng123',  role:'engineering', name:'Engr. Chidi Okonkwo',  dept:'Engineering'},
+  'environmental@kasupda.ng':{pw:'env123',role:'environmental',name:'Dr. Grace Yusuf',     dept:'Environmental'},
+  'records@kasupda.ng':  {pw:'records123', role:'records',    name:'Nuhu Tanko',            dept:'Records'},
+  'dg@kasupda.ng':       {pw:'dg123',      role:'dg',         name:'Arch. Murtala Hassan', dept:'Director General'},
+};
+
+const APPS = [
+  {id:'KBP-2025-0041',owner:'Adamu Ibrahim',type:'New Proposal',location:'Plot 234, GRA, Kaduna',date:'2025-01-15',status:'approved',
+   applicant:{title:'Mr',first:'Adamu',middle:'Tanko',surname:'Ibrahim',gender:'Male',dob:'1985-03-12',phone:'08012345678',email:'citizen@kasupda.ng',id:'NIN-2345678901'},
+   property:{landUse:'Residential',zone:'Zone A',plotNo:'234',streetName:'Independence Way',district:'GRA',city:'Kaduna',state:'Kaduna',landArea:'500sqm',noFloors:'2',estCost:'₦15,000,000'},
+   fees:[{desc:'Application Processing Fee',amount:5000},{desc:'Assessment Fee',amount:50000},{desc:'Permit Fee',amount:30000}],
+   review:{frontdesk:'approved',town_planning:'approved',survey:'approved',engineering:'approved',environmental:'approved',dg:'approved'},
+   comments:{frontdesk:'All documents complete.',town_planning:'Compliant with master plan.',engineering:'Structural drawings approved.'},
+   permit:{number:'KBP/KAD/2025/0041',issued:'2025-02-10',expires:'2026-02-10'}
+  },
+  {id:'KBP-2025-0052',owner:'Chinyere Obi',type:'Renovation',location:'No. 18 Kanta Road, Kaduna',date:'2025-01-28',status:'dept_review',
+   applicant:{title:'Mrs',first:'Chinyere',middle:'Agnes',surname:'Obi',gender:'Female',dob:'1979-07-22',phone:'07098765432',email:'chinyere@email.com',id:'NIN-3456789012'},
+   property:{landUse:'Commercial',zone:'Zone B',plotNo:'18',streetName:'Kanta Road',district:'City Centre',city:'Kaduna',state:'Kaduna',landArea:'300sqm',noFloors:'3',estCost:'₦25,000,000'},
+   fees:[{desc:'Application Processing Fee',amount:5000},{desc:'Assessment Fee',amount:75000},{desc:'Permit Fee',amount:50000}],
+   review:{frontdesk:'approved',town_planning:'pending',survey:'pending',engineering:'pending',environmental:'pending',dg:'pending'},
+   comments:{frontdesk:'Received and verified. Forwarded to departments.'},
+   permit:null
+  },
+  {id:'KBP-2025-0063',owner:'Mohammed Lawal',type:'As Built',location:'No. 7 Aliyu Makama Rd',date:'2025-02-05',status:'submitted',
+   applicant:{title:'Alhaji',first:'Mohammed',middle:'',surname:'Lawal',gender:'Male',dob:'1972-11-01',phone:'08087654321',email:'mlawal@email.com',id:'NIN-4567890123'},
+   property:{landUse:'Residential',zone:'Zone C',plotNo:'7',streetName:'Aliyu Makama Road',district:'Tudun Wada',city:'Kaduna',state:'Kaduna',landArea:'400sqm',noFloors:'1',estCost:'₦8,000,000'},
+   fees:[{desc:'Application Processing Fee',amount:5000},{desc:'Assessment Fee',amount:40000},{desc:'Permit Fee',amount:20000}],
+   review:{frontdesk:'pending',town_planning:'pending',survey:'pending',engineering:'pending',environmental:'pending',dg:'pending'},
+   comments:{},
+   permit:null
+  },
+  {id:'KBP-2025-0071',owner:'Hauwa Garba',type:'New Proposal',location:'Plot 112, Barnawa Layout',date:'2025-02-18',status:'correction',
+   applicant:{title:'Mrs',first:'Hauwa',middle:'Binta',surname:'Garba',gender:'Female',dob:'1990-05-14',phone:'08154321234',email:'hgarba@email.com',id:'NIN-5678901234'},
+   property:{landUse:'Residential',zone:'Zone A',plotNo:'112',streetName:'Barnawa Layout',district:'Barnawa',city:'Kaduna',state:'Kaduna',landArea:'600sqm',noFloors:'2',estCost:'₦20,000,000'},
+   fees:[{desc:'Application Processing Fee',amount:5000},{desc:'Assessment Fee',amount:60000},{desc:'Permit Fee',amount:40000}],
+   review:{frontdesk:'correction',town_planning:'pending',survey:'pending',engineering:'pending',environmental:'pending',dg:'pending'},
+   comments:{frontdesk:'Survey plan missing. Please reupload a certified copy from state survey office.'},
+   permit:null
+  },
+  {id:'KBP-2025-0089',owner:'Peter Nwachukwu',type:'Regularization',location:'No. 45 Rigasa Rd',date:'2025-02-25',status:'dg_review',
+   applicant:{title:'Mr',first:'Peter',middle:'Emeka',surname:'Nwachukwu',gender:'Male',dob:'1968-09-30',phone:'09023456789',email:'pnwach@email.com',id:'NIN-6789012345'},
+   property:{landUse:'Mixed Use',zone:'Zone B',plotNo:'45',streetName:'Rigasa Road',district:'Rigasa',city:'Kaduna',state:'Kaduna',landArea:'450sqm',noFloors:'4',estCost:'₦40,000,000'},
+   fees:[{desc:'Application Processing Fee',amount:5000},{desc:'Assessment Fee',amount:100000},{desc:'Regularization Surcharge',amount:80000},{desc:'Permit Fee',amount:60000}],
+   review:{frontdesk:'approved',town_planning:'approved',survey:'approved',engineering:'approved',environmental:'approved',dg:'pending'},
+   comments:{frontdesk:'Complete.',town_planning:'Minor setback issue noted, waived.',engineering:'4-storey load-bearing calculations approved.',environmental:'EIA waiver granted.'},
+   permit:null
+  },
+  {id:'KBP-2025-0094',owner:'Zainab Abdullahi',type:'New Proposal',location:'Plot 78, Narayi High Cost',date:'2025-03-01',status:'rejected',
+   applicant:{title:'Dr',first:'Zainab',middle:'',surname:'Abdullahi',gender:'Female',dob:'1982-12-25',phone:'08076543210',email:'zabdullahi@email.com',id:'NIN-7890123456'},
+   property:{landUse:'Residential',zone:'Zone A',plotNo:'78',streetName:'Narayi High Cost',district:'Narayi',city:'Kaduna',state:'Kaduna',landArea:'350sqm',noFloors:'3',estCost:'₦18,000,000'},
+   fees:[{desc:'Application Processing Fee',amount:5000},{desc:'Assessment Fee',amount:50000},{desc:'Permit Fee',amount:35000}],
+   review:{frontdesk:'approved',town_planning:'rejected',survey:'pending',engineering:'pending',environmental:'pending',dg:'pending'},
+   comments:{town_planning:'Application rejected. Proposed 3-storey building exceeds zone height restriction of 2 floors for Zone A residential. Applicant may reapply with revised drawings.'},
+   permit:null
+  },
+];
+
+const NOTIFS = [
+  {type:'success',title:'Permit Ready: KBP-2025-0041',sub:'Your building permit has been approved and is ready for download.',time:'2 days ago'},
+  {type:'info',title:'Application Received: KBP-2025-0063',sub:'Your application KBP-2025-0063 has been received and is under review.',time:'1 week ago'},
+  {type:'warning',title:'Correction Required: KBP-2025-0071',sub:'Survey plan missing. Please upload a certified survey plan.',time:'3 days ago'},
+];
+
+let state = {
+  view:'login', user:null, activeNav:'dashboard',
+  modal:null, selectedApp:null, formStep:1,
+  newApp:{type:'New Proposal',first:'',middle:'',surname:'',phone:'',email:'',idType:'NIN',idNum:'',
+    houseNo:'',street:'',district:'',city:'Kaduna',landUse:'Residential',zone:'Zone A',
+    plotNo:'',streetName:'',landArea:'',floors:'1',estCost:'',
+    docs:{titleDeed:false,surveyPlan:false,arcDrawings:false,structuralDrawings:false,insurance:false}},
+  loginEmail:'citizen@kasupda.ng', loginPw:'citizen123', loginRole:'citizen',
+  reviewComment:'', reviewAction:'',
+};
+
+function formatCurrency(n){return'₦'+n.toLocaleString();}
+function getStatusBadge(s){
+  const map={submitted:'badge-submitted Submitted',frontdesk_review:'badge-frontdesk Front Desk Review',dept_review:'badge-dept Dept. Review',
+    dg_review:'badge-dg DG Review',approved:'badge-approved Approved',rejected:'badge-rejected Rejected',correction:'badge-correction Correction Needed'};
+  const v=map[s]||'badge-submitted '+s;const[cls,...rest]=v.split(' ');
+  return`<span class="badge ${cls}">${rest.join(' ')}</span>`;
+}
+function getInitials(n){return n.split(' ').map(x=>x[0]).join('').slice(0,2).toUpperCase();}
+function getAppsByRole(user,apps){
+  if(!user)return[];
+  if(user.role==='citizen')return apps.filter(a=>a.owner===user.name||a.applicant.email===user.email||a.id==='KBP-2025-0041'||a.id==='KBP-2025-0063'||a.id==='KBP-2025-0071');
+  if(user.role==='frontdesk')return apps.filter(a=>['submitted','frontdesk_review','dept_review','dg_review','approved','rejected','correction'].includes(a.status));
+  if(user.role==='dg')return apps;
+  if(user.role==='records')return apps;
+  return apps.filter(a=>['dept_review','dg_review','approved','rejected'].includes(a.status));
+}
+
+function render(){
+  const app=document.getElementById('app');
+  if(state.view==='login'){app.innerHTML=renderLogin();attachLogin();return;}
+  app.innerHTML=renderApp();
+  attachApp();
+  if(state.modal)renderModal();
+}
+
+function renderLogin(){
+  const roles=['citizen','frontdesk','town_planning','survey','engineering','environmental','records','dg'];
+  const roleLabels={'citizen':'Citizen','frontdesk':'Front Desk','town_planning':'Town Planning','survey':'Survey Unit','engineering':'Engineering','environmental':'Environmental','records':'Records','dg':'Director General'};
+  const creds=Object.entries(USERS).map(([email,u])=>`
+    <div class="cred-row" onclick="fillCred('${email}','${u.pw}')">
+      <span class="cred-role">${roleLabels[u.role]}</span>
+      <span class="cred-info">${email} / ${u.pw}</span>
+    </div>`).join('');
+  return`<div class="auth-wrap">
+    <div class="auth-card">
+      <div class="auth-header">
+        <div class="auth-logo">
+          <div class="auth-logo-icon">K</div>
+          <div><div class="auth-logo-text">KASUPDA</div><div class="auth-logo-sub">Kaduna State Urban Planning</div></div>
+        </div>
+        <div class="auth-title">Building Permit Application System</div>
+      </div>
+      <div class="auth-body">
+        <div class="field-group">
+          <label class="field-label">Email Address</label>
+          <input class="field-input" id="li-email" type="email" value="${state.loginEmail}" placeholder="Enter your email">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Password</label>
+          <input class="field-input" id="li-pw" type="password" value="${state.loginPw}" placeholder="Enter password">
+        </div>
+        <button class="btn-primary" onclick="doLogin()">Sign In to Portal</button>
+        <div class="creds-hint">
+          <div class="creds-hint-title">🔑 Demo Credentials — click to auto-fill</div>
+          ${creds}
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function attachLogin(){
+  window.doLogin=function(){
+    const email=document.getElementById('li-email').value.trim().toLowerCase();
+    const pw=document.getElementById('li-pw').value.trim();
+    const u=USERS[email];
+    if(u&&u.pw===pw){
+      state.user={...u,email};state.view='app';
+      if(u.role==='citizen')state.activeNav='my_apps';
+      else state.activeNav='dashboard';
+      render();
+    }else{alert('Invalid credentials. Please try again.');}
+  };
+  window.fillCred=function(email,pw){
+    document.getElementById('li-email').value=email;
+    document.getElementById('li-pw').value=pw;
+    state.loginEmail=email;state.loginPw=pw;
+  };
+}
+
+function getNavItems(role){
+  const all={
+    citizen:[{id:'my_apps',icon:'📋',label:'My Applications'},{id:'new_app',icon:'➕',label:'New Application'},{id:'track',icon:'🔍',label:'Track Application'},{id:'notifications',icon:'🔔',label:'Notifications'},{id:'download',icon:'⬇️',label:'Download Permit'}],
+    frontdesk:[{id:'dashboard',icon:'📊',label:'Dashboard'},{id:'inbox',icon:'📥',label:'Inbox'},{id:'all_apps',icon:'📋',label:'All Applications'},{id:'verify',icon:'✅',label:'Verify & Review'}],
+    town_planning:[{id:'dashboard',icon:'📊',label:'Dashboard'},{id:'pending',icon:'⏳',label:'Pending Review'},{id:'all_apps',icon:'📋',label:'All Applications'}],
+    survey:[{id:'dashboard',icon:'📊',label:'Dashboard'},{id:'pending',icon:'⏳',label:'Pending Review'},{id:'all_apps',icon:'📋',label:'All Applications'}],
+    engineering:[{id:'dashboard',icon:'📊',label:'Dashboard'},{id:'pending',icon:'⏳',label:'Pending Review'},{id:'all_apps',icon:'📋',label:'All Applications'}],
+    environmental:[{id:'dashboard',icon:'📊',label:'Dashboard'},{id:'pending',icon:'⏳',label:'Pending Review'},{id:'all_apps',icon:'📋',label:'All Applications'}],
+    records:[{id:'dashboard',icon:'📊',label:'Dashboard'},{id:'all_apps',icon:'📋',label:'All Records'},{id:'reports',icon:'📈',label:'Reports'}],
+    dg:[{id:'dashboard',icon:'📊',label:'Dashboard'},{id:'pending',icon:'⏳',label:'Awaiting Approval'},{id:'all_apps',icon:'📋',label:'All Applications'},{id:'reports',icon:'📈',label:'Reports'}],
+  };
+  return all[role]||[];
+}
+
+function renderApp(){
+  const u=state.user;
+  const nav=getNavItems(u.role);
+  const navHTML=nav.map(n=>`<div class="nav-item${state.activeNav===n.id?' active':''}" onclick="setNav('${n.id}')"><span class="nav-icon">${n.icon}</span>${n.label}</div>`).join('');
+  const topbarInfo=getTopbarInfo();
+  const pendingCount=APPS.filter(a=>a.status==='submitted').length;
+  return`
+  <div class="app-layout">
+    <div class="sidebar">
+      <div class="sidebar-brand">
+        <div class="sidebar-brand-row">
+          <div class="sidebar-icon">K</div>
+          <div><div class="sidebar-name">KASUPDA</div><div class="sidebar-sub">Permit System</div></div>
+        </div>
+      </div>
+      <div class="sidebar-nav">
+        <div class="nav-section">Menu</div>
+        ${navHTML}
+      </div>
+      <div class="sidebar-footer">
+        <div class="user-chip">
+          <div class="user-avatar">${getInitials(u.name)}</div>
+          <div><div class="user-name">${u.name}</div><div class="user-role">${u.dept||'Applicant'}</div></div>
+          <button class="logout-btn" onclick="logout()">Exit</button>
+        </div>
+      </div>
+    </div>
+    <div class="main-content">
+      <div class="topbar">
+        <div><div class="topbar-title">${topbarInfo.title}</div><div class="topbar-sub">${topbarInfo.sub}</div></div>
+        <div class="topbar-actions">
+          ${u.role==='frontdesk'?`<span style="font-size:13px;color:var(--text2);">New Submissions <span class="badge-notif">${pendingCount}</span></span>`:''}
+          <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#1B4F8A,#2563EB);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:700;">${getInitials(u.name)}</div>
+        </div>
+      </div>
+      <div class="page" id="page-content">
+        ${renderPage()}
+      </div>
+    </div>
+  </div>`;
+}
+
+function getTopbarInfo(){
+  const map={
+    my_apps:{title:'My Applications',sub:'Track and manage your permit applications'},
+    new_app:{title:'New Application',sub:'Submit a new building permit application'},
+    track:{title:'Track Application',sub:'Check real-time status of your applications'},
+    notifications:{title:'Notifications',sub:'Your alerts and updates'},
+    download:{title:'Download Permit',sub:'Download your approved permits'},
+    dashboard:{title:'Dashboard',sub:'Overview and statistics'},
+    inbox:{title:'Inbox',sub:'New applications awaiting review'},
+    all_apps:{title:'All Applications',sub:'Complete application registry'},
+    verify:{title:'Verify & Review',sub:'Review submitted applications'},
+    pending:{title:'Pending Review',sub:'Applications waiting for your department'},
+    reports:{title:'Reports & Analytics',sub:'System performance metrics'},
+  };
+  return map[state.activeNav]||{title:'KASUPDA Portal',sub:''};
+}
+
+function renderPage(){
+  const r=state.user.role,n=state.activeNav;
+  if(r==='citizen'){
+    if(n==='my_apps')return renderCitizenApps();
+    if(n==='new_app')return renderNewApp();
+    if(n==='track')return renderTrack();
+    if(n==='notifications')return renderNotifications();
+    if(n==='download')return renderDownload();
+  }
+  if(r==='frontdesk'){
+    if(n==='dashboard')return renderAdminDashboard();
+    if(n==='inbox')return renderFrontDeskInbox();
+    if(n==='all_apps')return renderAllApps();
+    if(n==='verify')return renderVerify();
+  }
+  if(r==='dg'){
+    if(n==='dashboard')return renderDGDashboard();
+    if(n==='pending')return renderDGPending();
+    if(n==='all_apps')return renderAllApps();
+    if(n==='reports')return renderReports();
+  }
+  if(r==='records'){
+    if(n==='dashboard')return renderAdminDashboard();
+    if(n==='all_apps')return renderAllApps();
+    if(n==='reports')return renderReports();
+  }
+  return renderDeptDashboard();
+}
+
+function renderCitizenApps(){
+  const myApps=APPS.filter(a=>a.id==='KBP-2025-0041'||a.id==='KBP-2025-0063'||a.id==='KBP-2025-0071');
+  return`
+  <div class="stats-grid">
+    <div class="stat-card blue"><div class="stat-icon">📋</div><div class="stat-value">${myApps.length}</div><div class="stat-label">Total Applications</div></div>
+    <div class="stat-card green"><div class="stat-icon">✅</div><div class="stat-value">1</div><div class="stat-label">Approved</div></div>
+    <div class="stat-card amber"><div class="stat-icon">⏳</div><div class="stat-value">1</div><div class="stat-label">In Progress</div></div>
+    <div class="stat-card red"><div class="stat-icon">⚠️</div><div class="stat-value">1</div><div class="stat-label">Correction Needed</div></div>
+  </div>
+  <div class="card">
+    <div class="section-header">
+      <div><div class="section-title">My Applications</div><div class="section-sub">Click any row to view details</div></div>
+      <button class="btn btn-blue btn-sm" onclick="setNav('new_app')">➕ New Application</button>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>App ID</th><th>Type</th><th>Property Location</th><th>Date</th><th>Status</th><th>Action</th></tr></thead>
+        <tbody>
+          ${myApps.map(a=>`<tr>
+            <td><span class="app-id">${a.id}</span></td>
+            <td>${a.type}</td>
+            <td style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${a.location}</td>
+            <td style="color:var(--text2);font-size:12px">${a.date}</td>
+            <td>${getStatusBadge(a.status)}</td>
+            <td>
+              <button class="btn btn-ghost btn-sm" onclick="viewApp('${a.id}')">View</button>
+              ${a.status==='approved'?`<button class="btn btn-green btn-sm" onclick="setNav('download')" style="margin-left:4px">Download</button>`:''}
+              ${a.status==='correction'?`<button class="btn btn-amber btn-sm" onclick="openCorrection('${a.id}')" style="margin-left:4px">Fix</button>`:''}
+            </td>
+          </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>
+  </div>`;
+}
+
+function renderNewApp(){
+  const step=state.formStep;
+  const steps=[{n:1,l:'Applicant Info'},{n:2,l:'Property Details'},{n:3,l:'Documents & Fees'},{n:4,l:'Review & Submit'}];
+  const stepBar=steps.map((s,i)=>`
+    <div class="step ${step>s.n?'done':step===s.n?'active':'pending'}">
+      <div class="step-num">${step>s.n?'✓':s.n}</div>
+      <div class="step-label">${s.l}</div>
+    </div>${i<steps.length-1?`<div class="step-line ${step>s.n+1?'':''}"></div>`:''}`).join('');
+  let body='';
+  if(step===1)body=`
+    <div class="form-group"><label class="form-label">Application Type</label>
+      <select class="form-select" id="f-type"><option>New Proposal</option><option>Renovation</option><option>As Built</option><option>Remodeling</option><option>Regularization</option></select>
+    </div>
+    <div class="form-row">
+      <div><label class="form-label">Title</label><select class="form-select"><option>Mr</option><option>Mrs</option><option>Dr</option><option>Alhaji</option><option>Hajiya</option><option>Engr.</option><option>Arch.</option></select></div>
+      <div><label class="form-label">First Name</label><input class="form-control" placeholder="First name" id="f-first"></div>
+    </div>
+    <div class="form-row">
+      <div><label class="form-label">Middle Name</label><input class="form-control" placeholder="Middle name"></div>
+      <div><label class="form-label">Surname</label><input class="form-control" placeholder="Surname"></div>
+    </div>
+    <div class="form-row">
+      <div><label class="form-label">Phone Number</label><input class="form-control" placeholder="080xxxxxxxx"></div>
+      <div><label class="form-label">Email</label><input class="form-control" placeholder="email@example.com"></div>
+    </div>
+    <div class="form-row">
+      <div><label class="form-label">Date of Birth</label><input class="form-control" type="date"></div>
+      <div><label class="form-label">Gender</label><select class="form-select"><option>Male</option><option>Female</option></select></div>
+    </div>
+    <div class="form-row">
+      <div><label class="form-label">Nationality</label><input class="form-control" value="Nigerian"></div>
+      <div><label class="form-label">State of Origin</label><select class="form-select"><option>Kaduna</option><option>Kano</option><option>Lagos</option><option>Abuja FCT</option><option>Rivers</option></select></div>
+    </div>
+    <div class="form-group"><label class="form-label">Identification Type</label>
+      <select class="form-select"><option>NIN</option><option>International Passport</option><option>Driver's License</option><option>Voter's Card</option></select>
+    </div>
+    <div class="form-group"><label class="form-label">ID Number</label><input class="form-control" placeholder="Enter ID number"></div>`;
+  if(step===2)body=`
+    <div class="form-row">
+      <div><label class="form-label">Land Use</label><select class="form-select"><option>Residential</option><option>Commercial</option><option>Mixed Use</option><option>Industrial</option></select></div>
+      <div><label class="form-label">Zone</label><select class="form-select"><option>Zone A</option><option>Zone B</option><option>Zone C</option></select></div>
+    </div>
+    <div class="form-row">
+      <div><label class="form-label">Plot Number</label><input class="form-control" placeholder="e.g. 234"></div>
+      <div><label class="form-label">Street Name</label><input class="form-control" placeholder="Street name"></div>
+    </div>
+    <div class="form-row">
+      <div><label class="form-label">District/Area</label><input class="form-control" placeholder="e.g. GRA"></div>
+      <div><label class="form-label">City/Town</label><input class="form-control" value="Kaduna"></div>
+    </div>
+    <div class="form-row">
+      <div><label class="form-label">Land Area (sqm)</label><input class="form-control" placeholder="e.g. 500"></div>
+      <div><label class="form-label">Number of Floors</label><input class="form-control" type="number" placeholder="e.g. 2" min="1" max="20"></div>
+    </div>
+    <div class="form-group"><label class="form-label">Estimated Cost of Construction</label>
+      <input class="form-control" placeholder="e.g. 15000000">
+    </div>
+    <div class="form-group"><label class="form-label">Brief Description of Building</label>
+      <textarea class="form-control" rows="3" placeholder="Describe the proposed building..."></textarea>
+    </div>
+    <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;padding:12px;font-size:12px;color:#92400E;">
+      ℹ️ Property must be within Kaduna State jurisdiction. Ensure plot number matches your Certificate of Occupancy (C of O) or Survey Plan.
+    </div>`;
+  if(step===3){
+    const docs=[
+      {key:'titleDeed',label:'Title Deed / C of O',required:true},
+      {key:'surveyPlan',label:'Certified Survey Plan',required:true},
+      {key:'arcDrawings',label:'Architectural Drawings (5 copies)',required:true},
+      {key:'structuralDrawings',label:'Structural/Engineering Drawings',required:true},
+      {key:'insurance',label:'Insurance Certificate',required:true},
+    ];
+    body=`
+    <div class="section-header" style="margin-bottom:12px"><div class="section-title">Upload Required Documents</div></div>
+    ${docs.map(d=>`<div style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border:1px solid var(--border);border-radius:8px;margin-bottom:10px;background:${state.newApp.docs[d.key]?'#F0FDF4':'#fff'}">
+      <div><div style="font-size:13px;font-weight:600;color:var(--text)">${d.label}</div><div style="font-size:11px;color:var(--text2)">Required • PDF, JPG, PNG (max 5MB)</div></div>
+      <div style="display:flex;align-items:center;gap:8px">
+        ${state.newApp.docs[d.key]?'<span style="color:#059669;font-size:12px;font-weight:700">✓ Uploaded</span>':''}
+        <button class="btn btn-ghost btn-sm" onclick="fakeUpload('${d.key}')">${state.newApp.docs[d.key]?'Re-upload':'Upload'}</button>
+      </div>
+    </div>`).join('')}
+    <div class="divider"></div>
+    <div class="section-header" style="margin-bottom:12px"><div class="section-title">Fee Schedule</div></div>
+    <div class="card-sm">
+      <div class="fee-row"><span>Application Processing Fee</span><span>₦5,000</span></div>
+      <div class="fee-row"><span>Assessment Fee (based on cost)</span><span>₦50,000</span></div>
+      <div class="fee-row"><span>Building Permit Fee</span><span>₦30,000</span></div>
+      <div class="fee-row total"><span>Total Amount Due</span><span>₦85,000</span></div>
+    </div>
+    <div style="margin-top:16px">
+      <div class="section-header" style="margin-bottom:8px"><div class="section-title">Payment</div></div>
+      <div class="grid-2">
+        <div style="border:2px solid var(--primary);border-radius:10px;padding:14px;cursor:pointer;text-align:center" onclick="selectPayment('online')">
+          <div style="font-size:20px;margin-bottom:4px">💳</div>
+          <div style="font-size:13px;font-weight:700;color:var(--primary)">Pay Online</div>
+          <div style="font-size:11px;color:var(--text2)">Card / Bank Transfer</div>
+        </div>
+        <div style="border:1px solid var(--border);border-radius:10px;padding:14px;cursor:pointer;text-align:center" onclick="selectPayment('bank')">
+          <div style="font-size:20px;margin-bottom:4px">🏦</div>
+          <div style="font-size:13px;font-weight:700;color:var(--text)">Bank Payment</div>
+          <div style="font-size:11px;color:var(--text2)">Pay at any bank</div>
+        </div>
+      </div>
+    </div>`;
+  }
+  if(step===4)body=`
+    <div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:8px;padding:12px 14px;margin-bottom:18px;display:flex;gap:8px;align-items:center">
+      <span style="font-size:16px">✅</span>
+      <div><div style="font-size:13px;font-weight:700;color:#15803D">Ready to Submit</div><div style="font-size:12px;color:#166534">Please review your application details before submitting.</div></div>
+    </div>
+    <div class="review-section"><div class="review-section-title">Applicant Information</div>
+      <div class="review-field"><span class="review-field-label">Name</span><span class="review-field-value">Adamu Ibrahim</span></div>
+      <div class="review-field"><span class="review-field-label">Phone</span><span class="review-field-value">08012345678</span></div>
+      <div class="review-field"><span class="review-field-label">Email</span><span class="review-field-value">citizen@kasupda.ng</span></div>
+      <div class="review-field"><span class="review-field-label">ID</span><span class="review-field-value">NIN-2345678901</span></div>
+    </div>
+    <div class="review-section"><div class="review-section-title">Property Details</div>
+      <div class="review-field"><span class="review-field-label">Application Type</span><span class="review-field-value">New Proposal</span></div>
+      <div class="review-field"><span class="review-field-label">Land Use</span><span class="review-field-value">Residential</span></div>
+      <div class="review-field"><span class="review-field-label">Zone</span><span class="review-field-value">Zone A</span></div>
+      <div class="review-field"><span class="review-field-label">Location</span><span class="review-field-value">Plot 234, Independence Way, GRA</span></div>
+      <div class="review-field"><span class="review-field-label">Floors</span><span class="review-field-value">2</span></div>
+    </div>
+    <div class="review-section"><div class="review-section-title">Documents & Payment</div>
+      <div class="review-field"><span class="review-field-label">Documents</span><span class="review-field-value" style="color:#059669">5/5 Uploaded ✓</span></div>
+      <div class="review-field"><span class="review-field-label">Payment</span><span class="review-field-value" style="color:#059669">₦85,000 Paid ✓</span></div>
+    </div>
+    <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;padding:12px;font-size:12px;color:#92400E;margin-top:4px">
+      By submitting, I declare that all information provided is true and correct. I understand that false information may lead to rejection or revocation of permit.
+    </div>`;
+
+  return`
+  <div class="card">
+    <div class="step-bar">${stepBar}</div>
+    ${body}
+    <div class="divider"></div>
+    <div style="display:flex;justify-content:space-between">
+      ${step>1?`<button class="btn btn-ghost" onclick="setFormStep(${step-1})">← Back</button>`:`<span></span>`}
+      ${step<4?`<button class="btn btn-blue" onclick="setFormStep(${step+1})">Continue →</button>`:`<button class="btn btn-green" onclick="submitApp()">Submit Application ✓</button>`}
+    </div>
+  </div>`;
+}
+
+function renderTrack(){
+  return`
+  <div class="card mb-4">
+    <div class="section-title mb-4">Enter Application ID</div>
+    <div style="display:flex;gap:10px">
+      <input class="form-control" id="track-id" placeholder="e.g. KBP-2025-0041" value="KBP-2025-0041" style="flex:1">
+      <button class="btn btn-blue" onclick="doTrack()">Track</button>
+    </div>
+  </div>
+  <div id="track-result">${renderTrackResult('KBP-2025-0041')}</div>`;
+}
+
+function renderTrackResult(id){
+  const app=APPS.find(a=>a.id===id);
+  if(!app)return`<div class="card"><div class="empty-state"><div class="empty-state-icon">🔍</div>Application not found. Please check the ID and try again.</div></div>`;
+  const stages=[
+    {key:'submitted',label:'Submitted',icon:'📤',sub:'Application received by KASUPDA'},
+    {key:'frontdesk',label:'Front Desk Review',icon:'🗂️',sub:app.review.frontdesk==='approved'?`Verified by: ${USERS['frontdesk@kasupda.ng'].name}`:'Pending front desk verification'},
+    {key:'dept',label:'Department Review',icon:'🏛️',sub:'Town Planning, Survey, Engineering, Environmental'},
+    {key:'dg',label:'DG Approval',icon:'👔',sub:'Director General final decision'},
+    {key:'complete',label:'Permit Issued',icon:'📜',sub:'Permit generated with QR Code'},
+  ];
+  const statusOrder=['submitted','correction','frontdesk_review','dept_review','dg_review','approved','rejected'];
+  const idx=statusOrder.indexOf(app.status);
+  function stageState(key){
+    if(app.status==='approved'||app.status==='rejected')return key==='complete'&&app.status==='approved'?'done':key!=='complete'?'done':'pending';
+    if(key==='submitted')return idx>=0?'done':'pending';
+    if(key==='frontdesk')return app.review.frontdesk==='approved'?'done':app.status==='frontdesk_review'?'active':'pending';
+    if(key==='dept')return['dept_review','dg_review'].includes(app.status)?'active':app.status==='approved'?'done':'pending';
+    if(key==='dg')return app.status==='dg_review'?'active':app.status==='approved'?'done':'pending';
+    if(key==='complete')return app.status==='approved'?'done':'pending';
+    return'pending';
+  }
+  return`<div class="card">
+    <div class="flex justify-between items-center mb-4">
+      <div><div class="section-title">${app.id}</div><div class="section-sub">${app.type} — ${app.location}</div></div>
+      ${getStatusBadge(app.status)}
+    </div>
+    <div class="timeline">
+      ${stages.map(s=>{const ss=stageState(s.key);return`<div class="tl-item">
+        <div class="tl-dot ${ss}">${ss==='done'?'✓':ss==='active'?'●':'○'}</div>
+        <div class="tl-content">
+          <div class="tl-title">${s.icon} ${s.label}</div>
+          <div class="tl-sub">${s.sub}</div>
+          ${ss==='done'?'<div class="tl-time">Completed</div>':ss==='active'?'<div class="tl-time" style="color:var(--primary)">In Progress</div>':''}
+        </div>
+      </div>`}).join('')}
+    </div>
+  </div>`;
+}
+
+function renderNotifications(){
+  return`<div>
+    ${NOTIFS.map(n=>`<div class="notif ${n.type}">
+      <div class="notif-icon">${n.type==='success'?'✅':n.type==='warning'?'⚠️':'ℹ️'}</div>
+      <div><div class="notif-title">${n.title}</div><div class="notif-sub">${n.sub}</div><div class="notif-time">${n.time}</div></div>
+    </div>`).join('')}
+  </div>`;
+}
+
+function renderDownload(){
+  const approved=APPS.filter(a=>a.status==='approved'&&a.permit);
+  return`<div>
+    ${approved.map(a=>`<div class="card mb-4">
+      <div class="permit-preview">
+        <div class="permit-seal">🏛️</div>
+        <div style="font-size:11px;font-weight:700;color:#64748B;letter-spacing:1px;text-transform:uppercase">Kaduna State Urban Planning & Development Authority</div>
+        <div style="font-size:13px;color:var(--text);margin-top:4px">Building Permit</div>
+        <div class="permit-num">${a.permit.number}</div>
+        <div style="font-size:12px;color:var(--text2);margin-top:4px">Issued: ${a.permit.issued} &nbsp;•&nbsp; Expires: ${a.permit.expires}</div>
+        <div class="permit-qr">
+          <div style="display:grid;grid-template-columns:repeat(5,8px);gap:2px">
+            ${Array(25).fill(0).map((_,i)=>`<div style="width:8px;height:8px;background:${[0,2,4,10,12,14,20,22,24,5,7,9,11,15,17,19,3,21].includes(i)?'#fff':'rgba(255,255,255,0.2)'}"></div>`).join('')}
+          </div>
+        </div>
+        <div style="margin-top:12px;font-size:11px;color:var(--text2)">Property: ${a.location}</div>
+        <div style="font-size:11px;color:var(--text2)">Applicant: ${a.owner}</div>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:16px">
+        <button class="btn btn-blue w-full" onclick="alert('Permit PDF downloading...')">⬇️ Download PDF</button>
+        <button class="btn btn-ghost" onclick="alert('Permit printed!')">🖨️ Print</button>
+      </div>
+    </div>`).join('')}
+    ${approved.length===0?`<div class="card"><div class="empty-state"><div class="empty-state-icon">📄</div>No approved permits available for download yet.</div></div>`:''}
+  </div>`;
+}
+
+function renderAdminDashboard(){
+  const total=APPS.length;
+  const approved=APPS.filter(a=>a.status==='approved').length;
+  const pending=APPS.filter(a=>['submitted','frontdesk_review','dept_review','dg_review'].includes(a.status)).length;
+  const rejected=APPS.filter(a=>a.status==='rejected').length;
+  const revenue=APPS.filter(a=>a.status==='approved').reduce((s,a)=>s+a.fees.reduce((fs,f)=>fs+f.amount,0),0);
+  return`
+  <div class="stats-grid">
+    <div class="stat-card blue"><div class="stat-icon">📋</div><div class="stat-value">${total}</div><div class="stat-label">Total Applications</div><div class="stat-change">↑ 12% this month</div></div>
+    <div class="stat-card green"><div class="stat-icon">✅</div><div class="stat-value">${approved}</div><div class="stat-label">Approved Permits</div></div>
+    <div class="stat-card amber"><div class="stat-icon">⏳</div><div class="stat-value">${pending}</div><div class="stat-label">Pending Applications</div></div>
+    <div class="stat-card red"><div class="stat-icon">❌</div><div class="stat-value">${rejected}</div><div class="stat-label">Rejected</div></div>
+    <div class="stat-card indigo"><div class="stat-icon">💰</div><div class="stat-value">${formatCurrency(revenue)}</div><div class="stat-label">Revenue Generated</div></div>
+  </div>
+  <div class="card">
+    <div class="section-header"><div class="section-title">Recent Applications</div></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>App ID</th><th>Applicant</th><th>Type</th><th>Date</th><th>Status</th><th>Action</th></tr></thead>
+        <tbody>
+          ${APPS.slice(0,5).map(a=>`<tr>
+            <td><span class="app-id">${a.id}</span></td>
+            <td>${a.owner}</td><td>${a.type}</td>
+            <td style="font-size:12px;color:var(--text2)">${a.date}</td>
+            <td>${getStatusBadge(a.status)}</td>
+            <td><button class="btn btn-ghost btn-sm" onclick="viewApp('${a.id}')">View</button></td>
+          </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>
+  </div>`;
+}
+
+function renderFrontDeskInbox(){
+  const inbox=APPS.filter(a=>a.status==='submitted'||a.status==='correction');
+  return`<div class="card">
+    <div class="section-header">
+      <div><div class="section-title">Applications Awaiting Review</div><div class="section-sub">${inbox.length} items pending</div></div>
+    </div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>App ID</th><th>Applicant</th><th>Type</th><th>Location</th><th>Submitted</th><th>Status</th><th>Action</th></tr></thead>
+      <tbody>
+        ${inbox.map(a=>`<tr>
+          <td><span class="app-id">${a.id}</span></td>
+          <td>${a.owner}</td><td>${a.type}</td>
+          <td style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px">${a.location}</td>
+          <td style="font-size:12px;color:var(--text2)">${a.date}</td>
+          <td>${getStatusBadge(a.status)}</td>
+          <td><button class="btn btn-blue btn-sm" onclick="openReview('${a.id}','frontdesk')">Review</button></td>
+        </tr>`).join('')}
+        ${inbox.length===0?`<tr><td colspan="7" style="text-align:center;color:var(--text2);padding:24px">No pending applications</td></tr>`:''}
+      </tbody>
+    </table></div>
+  </div>`;
+}
+
+function renderAllApps(){
+  return`<div class="card">
+    <div class="section-header">
+      <div class="section-title">All Applications</div>
+      <div style="display:flex;gap:8px">
+        <select class="form-select" style="width:160px;padding:6px 10px;font-size:13px"><option>All Statuses</option><option>Submitted</option><option>Dept. Review</option><option>Approved</option><option>Rejected</option></select>
+      </div>
+    </div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>App ID</th><th>Applicant</th><th>Type</th><th>Location</th><th>Date</th><th>Status</th><th>Action</th></tr></thead>
+      <tbody>
+        ${APPS.map(a=>`<tr>
+          <td><span class="app-id">${a.id}</span></td>
+          <td>${a.owner}</td><td>${a.type}</td>
+          <td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px">${a.location}</td>
+          <td style="font-size:12px;color:var(--text2)">${a.date}</td>
+          <td>${getStatusBadge(a.status)}</td>
+          <td><button class="btn btn-ghost btn-sm" onclick="viewApp('${a.id}')">View</button></td>
+        </tr>`).join('')}
+      </tbody>
+    </table></div>
+  </div>`;
+}
+
+function renderVerify(){return renderFrontDeskInbox();}
+
+function renderDeptDashboard(){
+  const role=state.user.role;
+  const myPending=APPS.filter(a=>a.status==='dept_review'||a.status==='dg_review');
+  const deptKey=role==='town_planning'?'town_planning':role;
+  const myApps=APPS.filter(a=>['dept_review','dg_review','approved','rejected'].includes(a.status));
+  return`
+  <div class="stats-grid">
+    <div class="stat-card amber"><div class="stat-icon">⏳</div><div class="stat-value">${myPending.length}</div><div class="stat-label">Awaiting My Review</div></div>
+    <div class="stat-card green"><div class="stat-icon">✅</div><div class="stat-value">${myApps.filter(a=>a.review[deptKey]==='approved').length}</div><div class="stat-label">Approved by Me</div></div>
+    <div class="stat-card blue"><div class="stat-icon">📋</div><div class="stat-value">${myApps.length}</div><div class="stat-label">Total Reviewed</div></div>
+    <div class="stat-card red"><div class="stat-icon">⚠️</div><div class="stat-value">0</div><div class="stat-label">Flagged</div></div>
+  </div>
+  <div class="card">
+    <div class="section-header">
+      <div class="section-title">Applications For Review</div>
+      ${state.activeNav==='pending'?'':`<button class="btn btn-blue btn-sm" onclick="setNav('pending')">View Pending →</button>`}
+    </div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>App ID</th><th>Applicant</th><th>Type</th><th>Date</th><th>Dept. Status</th><th>Action</th></tr></thead>
+      <tbody>
+        ${myApps.slice(0,4).map(a=>`<tr>
+          <td><span class="app-id">${a.id}</span></td>
+          <td>${a.owner}</td><td>${a.type}</td>
+          <td style="font-size:12px;color:var(--text2)">${a.date}</td>
+          <td>${a.review[deptKey]==='approved'?'<span class="badge badge-approved">Approved</span>':a.review[deptKey]==='rejected'?'<span class="badge badge-rejected">Rejected</span>':'<span class="badge badge-pending">Pending</span>'}</td>
+          <td><button class="btn btn-blue btn-sm" onclick="openReview('${a.id}','${role}')">Review</button></td>
+        </tr>`).join('')}
+      </tbody>
+    </table></div>
+  </div>`;
+}
+
+function renderDGDashboard(){
+  const pending=APPS.filter(a=>a.status==='dg_review').length;
+  const approved=APPS.filter(a=>a.status==='approved').length;
+  const total=APPS.length;
+  const revenue=APPS.filter(a=>a.status==='approved').reduce((s,a)=>s+a.fees.reduce((fs,f)=>fs+f.amount,0),0);
+  return`
+  <div class="stats-grid">
+    <div class="stat-card amber"><div class="stat-icon">📩</div><div class="stat-value">${pending}</div><div class="stat-label">Awaiting DG Approval</div></div>
+    <div class="stat-card green"><div class="stat-icon">📜</div><div class="stat-value">${approved}</div><div class="stat-label">Permits Issued</div></div>
+    <div class="stat-card blue"><div class="stat-icon">📋</div><div class="stat-value">${total}</div><div class="stat-label">Total Applications</div></div>
+    <div class="stat-card indigo"><div class="stat-icon">💰</div><div class="stat-value">${formatCurrency(revenue)}</div><div class="stat-label">Revenue</div></div>
+  </div>
+  <div class="card">
+    <div class="section-header"><div class="section-title">Awaiting DG Approval</div></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>App ID</th><th>Applicant</th><th>Type</th><th>Location</th><th>Date</th><th>Action</th></tr></thead>
+      <tbody>
+        ${APPS.filter(a=>a.status==='dg_review').map(a=>`<tr>
+          <td><span class="app-id">${a.id}</span></td>
+          <td>${a.owner}</td><td>${a.type}</td>
+          <td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px">${a.location}</td>
+          <td style="font-size:12px;color:var(--text2)">${a.date}</td>
+          <td><button class="btn btn-blue btn-sm" onclick="openReview('${a.id}','dg')">Review & Approve</button></td>
+        </tr>`).join('')}
+        ${APPS.filter(a=>a.status==='dg_review').length===0?`<tr><td colspan="6" style="text-align:center;padding:24px;color:var(--text2)">No applications awaiting DG approval</td></tr>`:''}
+      </tbody>
+    </table></div>
+  </div>`;
+}
+
+function renderDGPending(){
+  return renderDGDashboard();
+}
+
+function renderReports(){
+  const total=APPS.length;
+  const approved=APPS.filter(a=>a.status==='approved').length;
+  const rejected=APPS.filter(a=>a.status==='rejected').length;
+  const pending=total-approved-rejected;
+  const revenue=APPS.filter(a=>a.status==='approved').reduce((s,a)=>s+a.fees.reduce((fs,f)=>fs+f.amount,0),0);
+  return`
+  <div class="stats-grid">
+    <div class="stat-card blue"><div class="stat-icon">📊</div><div class="stat-value">${total}</div><div class="stat-label">Total Applications</div></div>
+    <div class="stat-card green"><div class="stat-icon">✅</div><div class="stat-value">${approved}</div><div class="stat-label">Approved</div></div>
+    <div class="stat-card red"><div class="stat-icon">❌</div><div class="stat-value">${rejected}</div><div class="stat-label">Rejected</div></div>
+    <div class="stat-card amber"><div class="stat-icon">⏳</div><div class="stat-value">${pending}</div><div class="stat-label">In Progress</div></div>
+    <div class="stat-card indigo"><div class="stat-icon">💰</div><div class="stat-value">${formatCurrency(revenue)}</div><div class="stat-label">Revenue Generated</div></div>
+  </div>
+  <div class="grid-2 mb-4">
+    <div class="card"><div class="section-title mb-4">Application Types</div>
+      ${['New Proposal','Renovation','As Built','Remodeling','Regularization'].map(t=>{
+        const c=APPS.filter(a=>a.type===t).length;
+        return`<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f1f5f9">
+          <span style="font-size:13px">${t}</span>
+          <div style="display:flex;align-items:center;gap:8px">
+            <div style="width:${Math.max(c*30,8)}px;height:8px;background:linear-gradient(90deg,#1B4F8A,#2563EB);border-radius:4px"></div>
+            <span style="font-size:12px;font-weight:700;color:var(--text)">${c}</span>
+          </div>
+        </div>`;}).join('')}
+    </div>
+    <div class="card"><div class="section-title mb-4">Department Performance</div>
+      ${['Front Desk','Town Planning','Survey','Engineering','Environmental'].map(d=>`
+        <div style="padding:8px 0;border-bottom:1px solid #f1f5f9">
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+            <span style="font-size:12px;color:var(--text2)">${d}</span>
+            <span style="font-size:12px;font-weight:700;color:var(--success)">100% processed</span>
+          </div>
+          <div style="height:4px;background:#E2E8F0;border-radius:2px"><div style="width:100%;height:100%;background:#059669;border-radius:2px"></div></div>
+        </div>`).join('')}
+    </div>
+  </div>`;
+}
+
+// MODAL RENDERING
+function renderModal(){
+  const existing=document.querySelector('.modal-overlay');
+  if(existing)existing.remove();
+  const overlay=document.createElement('div');
+  overlay.className='modal-overlay';
+  overlay.id='modal-overlay';
+  if(state.modal==='viewApp'){overlay.innerHTML=renderViewAppModal();}
+  else if(state.modal==='review'){overlay.innerHTML=renderReviewModal();}
+  else if(state.modal==='correction'){overlay.innerHTML=renderCorrectionModal();}
+  else if(state.modal==='payment'){overlay.innerHTML=renderPaymentModal();}
+  document.body.appendChild(overlay);
+  overlay.addEventListener('click',e=>{if(e.target===overlay)closeModal();});
+  attachModalEvents();
+}
+
+function renderViewAppModal(){
+  const a=state.selectedApp;if(!a)return'';
+  return`<div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Application: ${a.id}</div>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
+        ${getStatusBadge(a.status)}
+        <span style="font-size:12px;color:var(--text2)">Submitted: ${a.date}</span>
+      </div>
+      <div class="review-section"><div class="review-section-title">Applicant</div>
+        <div class="review-field"><span class="review-field-label">Name</span><span class="review-field-value">${a.applicant.title} ${a.applicant.first} ${a.applicant.middle} ${a.applicant.surname}</span></div>
+        <div class="review-field"><span class="review-field-label">Phone</span><span class="review-field-value">${a.applicant.phone}</span></div>
+        <div class="review-field"><span class="review-field-label">Email</span><span class="review-field-value">${a.applicant.email}</span></div>
+        <div class="review-field"><span class="review-field-label">Gender</span><span class="review-field-value">${a.applicant.gender}</span></div>
+        <div class="review-field"><span class="review-field-label">ID</span><span class="review-field-value">${a.applicant.id}</span></div>
+      </div>
+      <div class="review-section"><div class="review-section-title">Property</div>
+        <div class="review-field"><span class="review-field-label">Type</span><span class="review-field-value">${a.type}</span></div>
+        <div class="review-field"><span class="review-field-label">Land Use</span><span class="review-field-value">${a.property.landUse}</span></div>
+        <div class="review-field"><span class="review-field-label">Zone</span><span class="review-field-value">${a.property.zone}</span></div>
+        <div class="review-field"><span class="review-field-label">Plot No.</span><span class="review-field-value">${a.property.plotNo}</span></div>
+        <div class="review-field"><span class="review-field-label">Street</span><span class="review-field-value">${a.property.streetName}</span></div>
+        <div class="review-field"><span class="review-field-label">District</span><span class="review-field-value">${a.property.district}</span></div>
+        <div class="review-field"><span class="review-field-label">Land Area</span><span class="review-field-value">${a.property.landArea}</span></div>
+        <div class="review-field"><span class="review-field-label">Floors</span><span class="review-field-value">${a.property.noFloors}</span></div>
+        <div class="review-field"><span class="review-field-label">Est. Cost</span><span class="review-field-value">${a.property.estCost}</span></div>
+      </div>
+      <div class="review-section"><div class="review-section-title">Department Reviews</div>
+        ${['frontdesk','town_planning','survey','engineering','environmental'].map(d=>{
+          const labels={frontdesk:'Front Desk',town_planning:'Town Planning',survey:'Survey',engineering:'Engineering',environmental:'Environmental'};
+          const s=a.review[d];
+          return`<div class="review-field">
+            <span class="review-field-label">${labels[d]}</span>
+            <span class="review-field-value" style="color:${s==='approved'?'var(--success)':s==='rejected'?'var(--danger)':s==='correction'?'var(--warning)':'var(--text2)'}">${s?s.charAt(0).toUpperCase()+s.slice(1):'Pending'}</span>
+          </div>`;}).join('')}
+      </div>
+      ${Object.keys(a.comments).length>0?`<div class="comment-box"><div class="comment-header">📝 Review Comments</div>
+        ${Object.entries(a.comments).map(([dept,c])=>`<div style="margin-bottom:6px"><span style="font-size:11px;font-weight:700;color:#92400E;text-transform:capitalize">${dept.replace('_',' ')}:</span><div style="font-size:12px;color:#78350F;margin-top:2px">${c}</div></div>`).join('')}
+      </div>`:''}
+      <div class="review-section mt-4"><div class="review-section-title">Fees</div>
+        ${a.fees.map(f=>`<div class="fee-row"><span>${f.desc}</span><span>${formatCurrency(f.amount)}</span></div>`).join('')}
+        <div class="fee-row total"><span>Total</span><span>${formatCurrency(a.fees.reduce((s,f)=>s+f.amount,0))}</span></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal()">Close</button>
+    </div>
+  </div>`;
+}
+
+function renderReviewModal(){
+  const a=state.selectedApp;const role=state.reviewRole;if(!a)return'';
+  const roleLabels={frontdesk:'Front Desk',town_planning:'Town Planning',survey:'Survey Unit',engineering:'Engineering',environmental:'Environmental',dg:'Director General'};
+  const isDG=role==='dg';
+  const deptCards=!isDG?'':`
+    <div class="review-section"><div class="review-section-title">Department Sign-offs</div>
+      ${['town_planning','survey','engineering','environmental'].map(d=>{
+        const s=a.review[d];const labels={town_planning:'Town Planning',survey:'Survey',engineering:'Engineering',environmental:'Environmental'};
+        return`<div class="review-field"><span class="review-field-label">${labels[d]}</span><span class="review-field-value" style="color:${s==='approved'?'var(--success)':'var(--warning)'}">${s==='approved'?'✓ Approved':'⏳ Pending'}</span></div>`;
+      }).join('')}
+    </div>`;
+  return`<div class="modal">
+    <div class="modal-header">
+      <div><div class="modal-title">${isDG?'DG Final Review':'Dept. Review'}: ${a.id}</div><div style="font-size:12px;color:var(--text2);margin-top:2px">${roleLabels[role]} — ${a.owner}</div></div>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="review-section"><div class="review-section-title">Application Summary</div>
+        <div class="review-field"><span class="review-field-label">Type</span><span class="review-field-value">${a.type}</span></div>
+        <div class="review-field"><span class="review-field-label">Location</span><span class="review-field-value">${a.location}</span></div>
+        <div class="review-field"><span class="review-field-label">Land Use</span><span class="review-field-value">${a.property.landUse}</span></div>
+        <div class="review-field"><span class="review-field-label">Zone</span><span class="review-field-value">${a.property.zone}</span></div>
+        <div class="review-field"><span class="review-field-label">Floors</span><span class="review-field-value">${a.property.noFloors}</span></div>
+        <div class="review-field"><span class="review-field-label">Est. Cost</span><span class="review-field-value">${a.property.estCost}</span></div>
+      </div>
+      <div style="margin-bottom:16px"><div style="font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">Documents</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px">
+          ${['Title Deed','Survey Plan','Arch. Drawings','Structural Drawings','Insurance'].map(d=>`<span class="tag">📄 ${d} ✓</span>`).join('')}
+        </div>
+      </div>
+      ${deptCards}
+      <div class="form-group"><label class="form-label">Review Comment</label>
+        <textarea class="form-control" id="review-comment" rows="3" placeholder="Add your review comment...">${a.comments[role]||''}</textarea>
+      </div>
+      <div style="font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">Decision</div>
+      <div style="display:flex;gap:10px">
+        ${role==='frontdesk'?`<button class="btn btn-amber" onclick="submitReview('correction')">⚠️ Request Correction</button>`:''}
+        <button class="btn btn-red" onclick="submitReview('rejected')">❌ Reject</button>
+        <button class="btn btn-green" onclick="submitReview('approved')">${isDG?'✅ Approve & Issue Permit':'✅ Approve'}</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderCorrectionModal(){
+  const a=state.selectedApp;if(!a)return'';
+  return`<div class="modal">
+    <div class="modal-header"><div class="modal-title">Fix Correction: ${a.id}</div><button class="modal-close" onclick="closeModal()">×</button></div>
+    <div class="modal-body">
+      <div class="notif warning"><div class="notif-icon">⚠️</div><div><div class="notif-title">Correction Required</div><div class="notif-sub">${a.comments.frontdesk||'Please review the required corrections below.'}</div></div></div>
+      <div style="margin-top:16px"><label class="form-label">Re-upload Survey Plan</label>
+        <div class="upload-box" onclick="alert('File picker opened')"><div style="font-size:24px;margin-bottom:8px">📄</div><div style="font-size:13px;font-weight:600;color:var(--text)">Click to upload Survey Plan</div><div style="font-size:12px;color:var(--text2);margin-top:4px">PDF, JPG, PNG (max 5MB)</div></div>
+      </div>
+      <div style="margin-top:12px"><label class="form-label">Additional Note (optional)</label><textarea class="form-control" rows="2" placeholder="Explain any changes made..."></textarea></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-blue" onclick="alert('Correction submitted! Application resubmitted for review.');closeModal()">Resubmit Application</button>
+    </div>
+  </div>`;
+}
+
+function renderPaymentModal(){
+  return`<div class="modal">
+    <div class="modal-header"><div class="modal-title">Online Payment</div><button class="modal-close" onclick="closeModal()">×</button></div>
+    <div class="modal-body">
+      <div style="text-align:center;padding:16px 0"><div style="font-size:32px">💳</div><div style="font-size:24px;font-weight:800;color:var(--primary);margin:8px 0">₦85,000</div><div style="font-size:13px;color:var(--text2)">Total Amount Due</div></div>
+      <div class="form-group"><label class="form-label">Card Number</label><input class="form-control" placeholder="4242 4242 4242 4242"></div>
+      <div class="form-row">
+        <div><label class="form-label">Expiry</label><input class="form-control" placeholder="MM/YY"></div>
+        <div><label class="form-label">CVV</label><input class="form-control" placeholder="123"></div>
+      </div>
+      <div class="form-group"><label class="form-label">Name on Card</label><input class="form-control" placeholder="Adamu Ibrahim"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-green" onclick="alert('Payment of ₦85,000 successful!\\nTransaction ID: TXN-2025-84921\\nYou can now submit your application.');closeModal()">Pay ₦85,000</button>
+    </div>
+  </div>`;
+}
+
+function attachModalEvents(){
+  window.submitReview=function(action){
+    const comment=document.getElementById('review-comment')?.value||'';
+    const a=state.selectedApp;const role=state.reviewRole;
+    if(!a)return;
+    a.comments[role]=comment||a.comments[role]||'';
+    const roleKey=role==='frontdesk'?'frontdesk':role;
+    a.review[roleKey]=action;
+    if(role==='frontdesk'&&action==='approved'){a.status='dept_review';}
+    else if(role==='frontdesk'&&action==='correction'){a.status='correction';}
+    else if(role==='frontdesk'&&action==='rejected'){a.status='rejected';}
+    else if(role==='dg'&&action==='approved'){a.status='approved';a.permit={number:`KBP/KAD/2025/${a.id.split('-')[2]}`,issued:new Date().toISOString().slice(0,10),expires:new Date(Date.now()+365*24*3600*1000).toISOString().slice(0,10)};}
+    else if(role==='dg'&&action==='rejected'){a.status='rejected';}
+    alert(`Decision recorded: ${action.toUpperCase()}\nApplication ${a.id} has been ${action}.`);
+    closeModal();render();
+  };
+}
+
+function attachApp(){
+  window.setNav=function(n){state.activeNav=n;render();};
+  window.setFormStep=function(n){state.formStep=n;render();};
+  window.fakeUpload=function(key){state.newApp.docs[key]=true;render();};
+  window.selectPayment=function(type){if(type==='online'){state.modal='payment';renderModal();}else alert('Pay to: KASUPDA Revenue Account\nBank: Zenith Bank\nAccount No: 1234567890\nAmount: ₦85,000');};
+  window.viewApp=function(id){state.selectedApp=APPS.find(a=>a.id===id);state.modal='viewApp';renderModal();};
+  window.openReview=function(id,role){state.selectedApp=APPS.find(a=>a.id===id);state.reviewRole=role;state.modal='review';renderModal();};
+  window.openCorrection=function(id){state.selectedApp=APPS.find(a=>a.id===id);state.modal='correction';renderModal();};
+  window.closeModal=function(){state.modal=null;const o=document.getElementById('modal-overlay');if(o)o.remove();};
+  window.submitApp=function(){alert('Application submitted successfully!\nApplication ID: KBP-2025-0'+(Math.floor(Math.random()*900)+100)+'\nYou will receive SMS and email notifications on your application status.');state.formStep=1;state.activeNav='my_apps';render();};
+  window.logout=function(){state.user=null;state.view='login';state.activeNav='dashboard';render();};
+  window.doTrack=function(){const id=document.getElementById('track-id').value.trim();document.getElementById('track-result').innerHTML=renderTrackResult(id);};
+}
+
+render();
+</script>
+</body>
+</html>
