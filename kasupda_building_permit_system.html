@@ -7,7 +7,7 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#f0f2f5;min-height:100vh;color:#1e293b}
-:root{--primary:#1B4F8A;--pl:#2563EB;--pd:#0F2D50;--success:#059669;--warning:#D97706;--danger:#DC2626;--border:#e2e8f0;--text:#1e293b;--text2:#64748b;--text3:#94a3b8;--r:10px;--rl:16px;--sh:0 1px 3px rgba(0,0,0,.1);--shl:0 10px 15px -3px rgba(0,0,0,.12)}
+:root{--primary:#1B4F8A;--pl:#2563EB;--pd:#0F2D50;--success:#059669;--warning:#D97706;--danger:#DC2626;--border:#e2e8f0;--text:#1e293b;--text2:#64748b;--text3:#94a3b8;--sh:0 1px 3px rgba(0,0,0,.1);--shl:0 10px 15px -3px rgba(0,0,0,.12)}
 .auth-wrap{display:flex;min-height:100vh;align-items:center;justify-content:center;background:linear-gradient(135deg,#0F2D50,#1B4F8A,#2563EB);padding:20px}
 .auth-card{background:#fff;border-radius:16px;width:440px;overflow:hidden;box-shadow:var(--shl)}
 .auth-hdr{background:linear-gradient(135deg,#0F2D50,#1B4F8A);padding:28px 32px;text-align:center}
@@ -50,7 +50,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#f0f2f5;min-height:1
 .page{flex:1;overflow-y:auto;padding:24px}
 .card{background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:20px;box-shadow:var(--sh);margin-bottom:20px}
 .csm{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:16px}
-.sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;margin-bottom:24px}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:24px}
 .stat{background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:18px 20px;position:relative;overflow:hidden;box-shadow:var(--sh)}
 .stat::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
 .stat.blue::before{background:linear-gradient(90deg,#1B4F8A,#2563EB)}
@@ -58,6 +58,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#f0f2f5;min-height:1
 .stat.amber::before{background:linear-gradient(90deg,#D97706,#F59E0B)}
 .stat.red::before{background:linear-gradient(90deg,#DC2626,#EF4444)}
 .stat.indigo::before{background:linear-gradient(90deg,#4338CA,#6366F1)}
+.stat.teal::before{background:linear-gradient(90deg,#0891B2,#06B6D4)}
 .stic{font-size:28px;margin-bottom:10px}
 .sval{font-size:28px;font-weight:800;color:#1e293b;line-height:1}
 .slbl{font-size:12px;color:#64748b;margin-top:4px;font-weight:500}
@@ -71,8 +72,9 @@ tr:hover td{background:#f8fafc}
 .aid{font-family:monospace;font-size:11px;color:#2563EB;font-weight:700}
 .badge{display:inline-flex;align-items:center;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap}
 .b-sub{background:#EFF6FF;color:#1D4ED8}.b-dept{background:#FFFBEB;color:#B45309}.b-dg{background:#F5F3FF;color:#6D28D9}.b-ok{background:#DCFCE7;color:#15803D}.b-rej{background:#FEF2F2;color:#B91C1C}.b-pen{background:#FFF7ED;color:#C2410C}.b-cor{background:#FEF3C7;color:#92400E}
+.b-locked{background:#FEE2E2;color:#991B1B}.b-active{background:#DCFCE7;color:#14532D}
 .btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;border:none;transition:all .15s}
-.bbl{background:#1B4F8A;color:#fff}.bgr{background:#059669;color:#fff}.brd{background:#DC2626;color:#fff}.bam{background:#D97706;color:#fff}
+.bbl{background:#1B4F8A;color:#fff}.bgr{background:#059669;color:#fff}.brd{background:#DC2626;color:#fff}.bam{background:#D97706;color:#fff}.bpu{background:#7C3AED;color:#fff}
 .bgh{background:transparent;color:#64748b;border:1px solid #e2e8f0}.bgh:hover{background:#f1f5f9}
 .bsm{padding:5px 11px;font-size:12px;border-radius:6px}
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
@@ -93,14 +95,15 @@ tr:hover td{background:#f8fafc}
 .dvd{height:1px;background:#e2e8f0;margin:20px 0}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .notif{display:flex;gap:12px;padding:12px 14px;border-radius:8px;margin-bottom:10px;border:1px solid}
-.notif.info{background:#EFF6FF;border-color:#BFDBFE}.notif.success{background:#F0FDF4;border-color:#BBF7D0}.notif.warning{background:#FFFBEB;border-color:#FDE68A}
+.notif.info{background:#EFF6FF;border-color:#BFDBFE}.notif.success{background:#F0FDF4;border-color:#BBF7D0}.notif.warning{background:#FFFBEB;border-color:#FDE68A}.notif.danger{background:#FEF2F2;border-color:#FECACA}
 .nic{font-size:16px;flex-shrink:0;margin-top:1px}
 .nttl{font-size:13px;font-weight:600;color:#1e293b}.nsb{font-size:12px;color:#64748b;margin-top:2px}.nt{font-size:10px;color:#94a3b8;margin-top:4px}
 .permit-w{background:linear-gradient(135deg,#f0f9ff,#fff);border:2px solid #BFDBFE;border-radius:12px;padding:24px;text-align:center}
 .permit-seal{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#1B4F8A,#2563EB);margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:32px;color:#fff}
 .permit-num{font-size:20px;font-weight:800;color:#1B4F8A;font-family:monospace;letter-spacing:2px;margin:8px 0}
 .mov{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px}
-.modal{background:#fff;border-radius:16px;width:100%;max-width:540px;max-height:85vh;overflow-y:auto;box-shadow:var(--shl)}
+.modal{background:#fff;border-radius:16px;width:100%;max-width:560px;max-height:88vh;overflow-y:auto;box-shadow:var(--shl)}
+.modal-wide{max-width:780px}
 .mhdr{padding:18px 22px;border-bottom:1px solid #e2e8f0;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#fff;z-index:1}
 .mttl{font-size:16px;font-weight:700;color:#1e293b}
 .mclose{background:none;border:none;font-size:20px;cursor:pointer;color:#64748b;line-height:1;padding:0 4px}
@@ -121,11 +124,51 @@ tr:hover td{background:#f8fafc}
 .slb{font-size:11px;font-weight:600}.step.done .slb{color:#059669}.step.active .slb{color:#1B4F8A}.step.pend .slb{color:#94A3B8}
 .sline{flex:1;height:2px;background:#E2E8F0;margin:0 4px}
 .bnot{background:#EF4444;color:#fff;border-radius:10px;padding:2px 7px;font-size:10px;font-weight:700}
+/* GPS map styles */
+.gps-map{background:#1a2332;border-radius:12px;position:relative;overflow:hidden;height:340px;margin-bottom:16px}
+.gps-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:40px 40px}
+.gps-roads{position:absolute;inset:0}
+.gps-pin{position:absolute;transform:translate(-50%,-100%);cursor:pointer;transition:transform .2s}
+.gps-pin:hover{transform:translate(-50%,-100%) scale(1.2)}
+.gps-pin-dot{width:14px;height:14px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 3px rgba(255,255,255,.2)}
+.gps-pin-dot.online{background:#22C55E}.gps-pin-dot.idle{background:#F59E0B}.gps-pin-dot.offline{background:#EF4444}
+.gps-pulse{position:absolute;inset:-4px;border-radius:50%;animation:pulse 2s infinite}
+.gps-pulse.online{background:rgba(34,197,94,.3)}.gps-pulse.idle{background:rgba(245,158,11,.3)}
+@keyframes pulse{0%{transform:scale(1);opacity:1}100%{transform:scale(2.5);opacity:0}}
+.gps-label{position:absolute;top:-32px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.8);color:#fff;font-size:10px;font-weight:600;padding:2px 7px;border-radius:10px;white-space:nowrap}
+.gps-legend{display:flex;gap:14px;margin-bottom:12px}
+.gps-leg-item{display:flex;align-items:center;gap:6px;font-size:12px;color:#64748b}
+.gps-leg-dot{width:10px;height:10px;border-radius:50%}
+.staff-card{display:flex;align-items:center;gap:12px;padding:10px 14px;border:1px solid #e2e8f0;border-radius:10px;margin-bottom:8px;cursor:pointer;transition:all .15s}
+.staff-card:hover{background:#f8fafc;border-color:#cbd5e1}
+.staff-card.selected{border-color:#2563EB;background:#EFF6FF}
+.staff-av{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0}
+.staff-info{flex:1;min-width:0}
+.staff-nm{font-size:13px;font-weight:600;color:#1e293b}
+.staff-loc{font-size:11px;color:#64748b;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.staff-time{font-size:10px;color:#94a3b8;margin-top:1px}
+/* Override panel */
+.override-warn{background:linear-gradient(135deg,#FFF1F2,#fff);border:2px solid #FECDD3;border-radius:12px;padding:16px;margin-bottom:16px}
+/* Staff management */
+.staff-row{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #f1f5f9}
+.staff-row:last-child{border-bottom:none}
+.lock-toggle{position:relative;width:44px;height:24px;border-radius:12px;cursor:pointer;border:none;transition:background .2s;flex-shrink:0}
+.lock-toggle.on{background:#059669}.lock-toggle.off{background:#e2e8f0}
+.lock-toggle::after{content:'';position:absolute;top:2px;width:20px;height:20px;border-radius:50%;background:#fff;transition:left .2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.lock-toggle.on::after{left:22px}.lock-toggle.off::after{left:2px}
+.dg-action-bar{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:24px}
+.dg-action-card{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:18px;cursor:pointer;transition:all .2s;text-align:center;box-shadow:var(--sh)}
+.dg-action-card:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.1)}
+.dg-action-card.blue{border-top:3px solid #2563EB}.dg-action-card.red{border-top:3px solid #DC2626}.dg-action-card.green{border-top:3px solid #059669}
+.dg-action-ic{font-size:30px;margin-bottom:8px}
+.dg-action-ttl{font-size:13px;font-weight:700;color:#1e293b;margin-bottom:3px}
+.dg-action-sb{font-size:11px;color:#64748b}
 </style>
 </head>
 <body>
 <div id="app"></div>
 <script>
+/* ── DATA ── */
 const USERS={
   'citizen@kasupda.ng':{pw:'citizen123',role:'citizen',name:'Adamu Ibrahim',dept:''},
   'frontdesk@kasupda.ng':{pw:'frontdesk123',role:'frontdesk',name:'Fatima Suleiman',dept:'Front Desk'},
@@ -136,6 +179,33 @@ const USERS={
   'records@kasupda.ng':{pw:'records123',role:'records',name:'Nuhu Tanko',dept:'Records'},
   'dg@kasupda.ng':{pw:'dg123',role:'dg',name:'Arch. Murtala Hassan',dept:'Director General'},
 };
+
+/* Staff access control state - DG can lock/unlock */
+var STAFF_ACCESS={
+  'frontdesk@kasupda.ng':{locked:false,lockedReason:''},
+  'planning@kasupda.ng':{locked:false,lockedReason:''},
+  'survey@kasupda.ng':{locked:false,lockedReason:''},
+  'engineering@kasupda.ng':{locked:false,lockedReason:''},
+  'environmental@kasupda.ng':{locked:false,lockedReason:''},
+  'records@kasupda.ng':{locked:false,lockedReason:''},
+};
+
+/* Field staff GPS data (simulated) */
+var FIELD_STAFF=[
+  {email:'planning@kasupda.ng',name:'Engr. Musa Aliyu',dept:'Town Planning',status:'online',
+   lat:52,lng:38,location:'GRA Phase 2, Kaduna',task:'Site inspection - KBP-2025-0052',lastSeen:'Just now',battery:87,speed:'0 km/h'},
+  {email:'survey@kasupda.ng',name:'Hajiya Amina Bello',dept:'Survey Unit',status:'online',
+   lat:28,lng:62,location:'Barnawa Layout, Kaduna',task:'Survey verification - KBP-2025-0071',lastSeen:'2 min ago',battery:64,speed:'12 km/h'},
+  {email:'engineering@kasupda.ng',name:'Engr. Chidi Okonkwo',dept:'Engineering',status:'idle',
+   lat:65,lng:25,location:'Rigasa, Kaduna',task:'Structural assessment - KBP-2025-0089',lastSeen:'8 min ago',battery:45,speed:'0 km/h'},
+  {email:'environmental@kasupda.ng',name:'Dr. Grace Yusuf',dept:'Environmental',status:'online',
+   lat:42,lng:75,location:'Tudun Wada, Kaduna',task:'Environmental assessment - KBP-2025-0063',lastSeen:'1 min ago',battery:92,speed:'8 km/h'},
+  {email:'frontdesk@kasupda.ng',name:'Fatima Suleiman',dept:'Front Desk',status:'offline',
+   lat:55,lng:50,location:'KASUPDA HQ',task:'Office duty',lastSeen:'45 min ago',battery:20,speed:'0 km/h'},
+  {email:'records@kasupda.ng',name:'Nuhu Tanko',dept:'Records',status:'idle',
+   lat:70,lng:48,location:'City Centre, Kaduna',task:'Document verification - KBP-2025-0041',lastSeen:'15 min ago',battery:73,speed:'0 km/h'},
+];
+
 const APPS=[
   {id:'KBP-2025-0041',owner:'Adamu Ibrahim',type:'New Proposal',location:'Plot 234, GRA, Kaduna',date:'2025-01-15',status:'approved',
    applicant:{title:'Mr',first:'Adamu',middle:'Tanko',surname:'Ibrahim',gender:'Male',phone:'08012345678',email:'citizen@kasupda.ng',id:'NIN-2345678901'},
@@ -175,58 +245,89 @@ const APPS=[
    review:{frontdesk:'approved',town_planning:'rejected',survey:'pending',engineering:'pending',environmental:'pending',dg:'pending'},
    comments:{town_planning:'Exceeds Zone A height limit of 2 floors. Reapply with revised drawings.'},permit:null},
 ];
+
 const NOTIFS=[
   {type:'success',title:'Permit Ready: KBP-2025-0041',sub:'Your permit is approved and ready for download.',time:'2 days ago'},
   {type:'info',title:'Application Received: KBP-2025-0063',sub:'Your application is under review.',time:'1 week ago'},
   {type:'warning',title:'Correction Required: KBP-2025-0071',sub:'Survey plan missing. Please upload a certified survey plan.',time:'3 days ago'},
 ];
 
-let S={view:'login',user:null,nav:'dashboard',modal:null,selApp:null,revRole:null,fstep:1,
+var S={view:'login',user:null,nav:'dashboard',modal:null,selApp:null,revRole:null,fstep:1,selStaff:null,
   docs:{titleDeed:false,surveyPlan:false,arcDrawings:false,structuralDrawings:false,insurance:false}};
 
+/* GPS simulation - move staff positions every 3 seconds */
+var gpsTimer=null;
+function startGPS(){
+  if(gpsTimer)return;
+  gpsTimer=setInterval(function(){
+    FIELD_STAFF.forEach(function(sf){
+      if(sf.status==='online'){
+        sf.lat=Math.max(10,Math.min(90,sf.lat+(Math.random()*4-2)));
+        sf.lng=Math.max(10,Math.min(90,sf.lng+(Math.random()*4-2)));
+        sf.speed=Math.floor(Math.random()*25)+' km/h';
+        sf.lastSeen='Just now';
+      }
+    });
+    if(S.user&&S.user.role==='dg'&&S.nav==='gps_monitor'){
+      var pg=document.getElementById('gps-page');
+      if(pg)pg.innerHTML=gpsMonitorContent();
+      attachGPSEvents();
+    }
+  },3000);
+}
+function stopGPS(){if(gpsTimer){clearInterval(gpsTimer);gpsTimer=null;}}
+
 const fmt=n=>'N'+n.toLocaleString();
-const totalRev=()=>APPS.filter(a=>a.status==='approved').reduce((s,a)=>s+a.fees.reduce((f,x)=>f+x.amount,0),0);
-const ini=n=>n.split(' ').map(x=>x[0]).join('').slice(0,2).toUpperCase();
-// Revenue card is ONLY shown for dg and records roles
-const canSeeRevenue=()=>['dg','records'].includes(S.user?.role);
+const totalRev=()=>APPS.filter(function(a){return a.status==='approved';}).reduce(function(s,a){return s+a.fees.reduce(function(f,x){return f+x.amount;},0);},0);
+const ini=n=>n.split(' ').map(function(x){return x[0];}).join('').slice(0,2).toUpperCase();
+const staffColors={'frontdesk':'#2563EB','town_planning':'#7C3AED','survey':'#059669','engineering':'#D97706','environmental':'#0891B2','records':'#DC2626'};
 
 function bdg(s){
-  const m={submitted:'b-sub Submitted',dept_review:'b-dept Dept. Review',dg_review:'b-dg DG Review',approved:'b-ok Approved',rejected:'b-rej Rejected',correction:'b-cor Correction'};
-  const v=(m[s]||'b-sub '+s).split(' ');
+  var m={submitted:'b-sub Submitted',dept_review:'b-dept Dept. Review',dg_review:'b-dg DG Review',approved:'b-ok Approved',rejected:'b-rej Rejected',correction:'b-cor Correction'};
+  var v=(m[s]||'b-sub '+s).split(' ');
   return '<span class="badge '+v[0]+'">'+v.slice(1).join(' ')+'</span>';
 }
 
 function render(){
-  const app=document.getElementById('app');
-  if(S.view==='login'){app.innerHTML=loginPage();attachLogin();return;}
+  var app=document.getElementById('app');
+  if(S.view==='login'){app.innerHTML=loginPage();attachLogin();stopGPS();return;}
   app.innerHTML=shell();attachApp();
   if(S.modal)showModal();
+  if(S.user&&S.user.role==='dg'&&S.nav==='gps_monitor')startGPS();
+  else stopGPS();
 }
 
+/* ── LOGIN ── */
 function loginPage(){
-  const rl={citizen:'Citizen',frontdesk:'Front Desk',town_planning:'Town Planning',survey:'Survey Unit',engineering:'Engineering',environmental:'Environmental',records:'Records',dg:'Director General'};
+  var rl={citizen:'Citizen',frontdesk:'Front Desk',town_planning:'Town Planning',survey:'Survey Unit',engineering:'Engineering',environmental:'Environmental',records:'Records',dg:'Director General'};
   return '<div class="auth-wrap"><div class="auth-card">'
     +'<div class="auth-hdr"><div class="auth-logo"><div class="logo-ic">K</div><div><div class="logo-nm">KASUPDA</div><div class="logo-sb">Kaduna State Urban Planning</div></div></div><div class="auth-ttl">Building Permit Application System</div></div>'
     +'<div class="auth-body">'
-    +'<div class="fg"><label class="flb">Email Address</label><input class="fin" id="le" type="email" value="citizen@kasupda.ng"></div>'
-    +'<div class="fg"><label class="flb">Password</label><input class="fin" id="lp" type="password" value="citizen123"></div>'
+    +'<div class="fg"><label class="flb">Email Address</label><input class="fin" id="le" type="email" value="dg@kasupda.ng"></div>'
+    +'<div class="fg"><label class="flb">Password</label><input class="fin" id="lp" type="password" value="dg123"></div>'
     +'<button class="btn-login" onclick="doLogin()">Sign In to Portal</button>'
     +'<div class="creds"><div class="creds-ttl">Demo Credentials - click to fill</div>'
     +Object.entries(USERS).map(function(e){return '<div class="cr" onclick="fillC(\''+e[0]+'\',\''+e[1].pw+'\')"><span class="cr-role">'+rl[e[1].role]+'</span><span class="cr-info">'+e[0]+' / '+e[1].pw+'</span></div>';}).join('')
     +'</div></div></div></div>';
 }
-
 function attachLogin(){
   window.doLogin=function(){
     var e=document.getElementById('le').value.trim().toLowerCase();
     var p=document.getElementById('lp').value.trim();
     var u=USERS[e];
-    if(u&&u.pw===p){S.user=Object.assign({},u,{email:e});S.view='app';S.nav=u.role==='citizen'?'my_apps':'dashboard';render();}
-    else alert('Invalid credentials. Please try again.');
+    if(u&&u.pw===p){
+      /* Check if DG has locked this account */
+      if(STAFF_ACCESS[e]&&STAFF_ACCESS[e].locked){
+        alert('ACCOUNT LOCKED\n\nYour account has been suspended by the Director General.\nReason: '+(STAFF_ACCESS[e].lockedReason||'Administrative action')+'\n\nPlease contact the DG office.');
+        return;
+      }
+      S.user=Object.assign({},u,{email:e});S.view='app';S.nav=u.role==='citizen'?'my_apps':'dashboard';render();
+    }else alert('Invalid credentials. Please try again.');
   };
   window.fillC=function(e,p){document.getElementById('le').value=e;document.getElementById('lp').value=p;};
 }
 
+/* ── NAV ── */
 function navItems(role){
   var all={
     citizen:[{id:'my_apps',ic:'📋',lb:'My Applications'},{id:'new_app',ic:'➕',lb:'New Application'},{id:'track',ic:'🔍',lb:'Track Application'},{id:'notifications',ic:'🔔',lb:'Notifications'},{id:'download',ic:'⬇️',lb:'Download Permit'}],
@@ -236,21 +337,49 @@ function navItems(role){
     engineering:[{id:'dashboard',ic:'📊',lb:'Dashboard'},{id:'pending',ic:'⏳',lb:'Pending Review'},{id:'all_apps',ic:'📋',lb:'All Applications'}],
     environmental:[{id:'dashboard',ic:'📊',lb:'Dashboard'},{id:'pending',ic:'⏳',lb:'Pending Review'},{id:'all_apps',ic:'📋',lb:'All Applications'}],
     records:[{id:'dashboard',ic:'📊',lb:'Dashboard'},{id:'all_apps',ic:'📋',lb:'All Records'},{id:'reports',ic:'📈',lb:'Reports'}],
-    dg:[{id:'dashboard',ic:'📊',lb:'Dashboard'},{id:'pending',ic:'⏳',lb:'Awaiting Approval'},{id:'all_apps',ic:'📋',lb:'All Applications'},{id:'reports',ic:'📈',lb:'Reports'}],
+    dg:[
+      {id:'dashboard',ic:'📊',lb:'Dashboard'},
+      {id:'pending',ic:'⏳',lb:'Awaiting Approval'},
+      {id:'all_apps',ic:'📋',lb:'All Applications'},
+      {id:'dg_override',ic:'⚡',lb:'Override Applications'},
+      {id:'staff_access',ic:'🔐',lb:'Staff Access Control'},
+      {id:'gps_monitor',ic:'📡',lb:'GPS Field Monitor'},
+      {id:'reports',ic:'📈',lb:'Reports'},
+    ],
   };
   return all[role]||[];
 }
 
-var tbMap={my_apps:['My Applications','Track and manage your applications'],new_app:['New Application','Submit a building permit application'],track:['Track Application','Check real-time status'],notifications:['Notifications','Your alerts and updates'],download:['Download Permit','Download approved permits'],dashboard:['Dashboard','Overview and statistics'],inbox:['Inbox','Applications awaiting review'],all_apps:['All Applications','Complete application registry'],pending:['Pending Review','Applications awaiting your department'],reports:['Reports & Analytics','System performance metrics']};
+var tbMap={
+  my_apps:['My Applications','Track and manage your applications'],
+  new_app:['New Application','Submit a building permit application'],
+  track:['Track Application','Check real-time status'],
+  notifications:['Notifications','Your alerts and updates'],
+  download:['Download Permit','Download approved permits'],
+  dashboard:['Dashboard','Overview and statistics'],
+  inbox:['Inbox','Applications awaiting review'],
+  all_apps:['All Applications','Complete application registry'],
+  pending:['Pending Review','Applications awaiting your department'],
+  reports:['Reports & Analytics','System performance metrics'],
+  dg_override:['Override Applications','DG authority — override any application decision'],
+  staff_access:['Staff Access Control','Lock / unlock staff system access'],
+  gps_monitor:['GPS Field Monitor','Live location tracking of field staff'],
+};
 
 function shell(){
   var u=S.user,items=navItems(u.role),pend=APPS.filter(function(a){return a.status==='submitted';}).length;
   var tb=tbMap[S.nav]||['KASUPDA',''];
+  var lockedCount=Object.values(STAFF_ACCESS).filter(function(x){return x.locked;}).length;
   return '<div class="layout">'
     +'<div class="sidebar">'
     +'<div class="sb-brand"><div class="sb-row"><div class="sb-ic">K</div><div><div class="sb-nm">KASUPDA</div><div class="sb-sb">Permit System</div></div></div></div>'
     +'<div class="sb-nav"><div class="nav-sec">Menu</div>'
-    +items.map(function(n){return '<div class="ni'+(S.nav===n.id?' active':'')+'" onclick="go(\''+n.id+'\')"><span style="width:16px;text-align:center">'+n.ic+'</span>'+n.lb+'</div>';}).join('')
+    +items.map(function(n){
+      var extra='';
+      if(n.id==='staff_access'&&lockedCount>0)extra=' <span class="bnot">'+lockedCount+'</span>';
+      if(n.id==='gps_monitor')extra=' <span style="font-size:9px;background:#22C55E;color:#fff;border-radius:8px;padding:1px 5px;margin-left:2px">LIVE</span>';
+      return '<div class="ni'+(S.nav===n.id?' active':'')+'" onclick="go(\''+n.id+'\')"><span style="width:16px;text-align:center">'+n.ic+'</span>'+n.lb+extra+'</div>';
+    }).join('')
     +'</div>'
     +'<div class="sb-ft"><div class="uch"><div class="uav">'+ini(u.name)+'</div><div><div class="unm">'+u.name+'</div><div class="url">'+(u.dept||'Applicant')+'</div></div><button class="exit-btn" onclick="logout()">Exit</button></div></div>'
     +'</div>'
@@ -258,41 +387,32 @@ function shell(){
     +'<div class="topbar"><div><div class="tb-ttl">'+tb[0]+'</div><div class="tb-sb">'+tb[1]+'</div></div>'
     +'<div style="display:flex;align-items:center;gap:10px">'
     +(u.role==='frontdesk'?'<span style="font-size:13px;color:#64748b">New <span class="bnot">'+pend+'</span></span>':'')
+    +(u.role==='dg'?'<span style="font-size:11px;background:#0F2D50;color:#93C5FD;border-radius:8px;padding:4px 10px;font-weight:600">DG Authority</span>':'')
     +'<div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#1B4F8A,#2563EB);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:700">'+ini(u.name)+'</div>'
     +'</div></div>'
-    +'<div class="page">'+renderPage()+'</div>'
+    +'<div class="page" id="main-page">'+renderPage()+'</div>'
     +'</div></div>';
 }
 
 function renderPage(){
   var r=S.user.role,n=S.nav;
   if(r==='citizen'){
-    if(n==='my_apps')return citizenApps();
-    if(n==='new_app')return newApp();
-    if(n==='track')return trackPage();
-    if(n==='notifications')return notifsPage();
-    if(n==='download')return downloadPage();
+    if(n==='my_apps')return citizenApps();if(n==='new_app')return newApp();if(n==='track')return trackPage();if(n==='notifications')return notifsPage();if(n==='download')return downloadPage();
   }
-  if(r==='frontdesk'){
-    if(n==='dashboard')return fdDash();   // NO revenue
-    if(n==='inbox')return inboxPage();
-    if(n==='all_apps')return allApps();
-  }
+  if(r==='frontdesk'){if(n==='dashboard')return fdDash();if(n==='inbox')return inboxPage();if(n==='all_apps')return allApps();}
   if(r==='dg'){
-    if(n==='dashboard'||n==='pending')return dgDash();  // HAS revenue
+    if(n==='dashboard'||n==='pending')return dgDash();
     if(n==='all_apps')return allApps();
     if(n==='reports')return reportsPage();
+    if(n==='dg_override')return dgOverridePage();
+    if(n==='staff_access')return staffAccessPage();
+    if(n==='gps_monitor')return '<div id="gps-page">'+gpsMonitorContent()+'</div>';
   }
-  if(r==='records'){
-    if(n==='dashboard')return recDash();  // HAS revenue
-    if(n==='all_apps')return allApps();
-    if(n==='reports')return reportsPage();
-  }
-  // All department roles: town_planning, survey, engineering, environmental — NO revenue
+  if(r==='records'){if(n==='dashboard')return recDash();if(n==='all_apps')return allApps();if(n==='reports')return reportsPage();}
   return deptDash();
 }
 
-/* ── CITIZEN ── */
+/* ── CITIZEN pages ── */
 function citizenApps(){
   var my=APPS.filter(function(a){return ['KBP-2025-0041','KBP-2025-0063','KBP-2025-0071'].includes(a.id);});
   return '<div class="sgrid">'
@@ -303,268 +423,248 @@ function citizenApps(){
     +'</div>'
     +'<div class="card"><div class="sh"><div class="st">My Applications</div><button class="btn bbl bsm" onclick="go(\'new_app\')">+ New Application</button></div>'
     +'<div class="tw"><table><thead><tr><th>App ID</th><th>Type</th><th>Location</th><th>Date</th><th>Status</th><th>Action</th></tr></thead><tbody>'
-    +my.map(function(a){
-      return '<tr><td><span class="aid">'+a.id+'</span></td><td>'+a.type+'</td>'
-        +'<td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+a.location+'</td>'
-        +'<td style="font-size:12px;color:#64748b">'+a.date+'</td>'
-        +'<td>'+bdg(a.status)+'</td>'
-        +'<td><button class="btn bgh bsm" onclick="viewApp(\''+a.id+'\')">View</button>'
-        +(a.status==='approved'?' <button class="btn bgr bsm" onclick="go(\'download\')">Download</button>':'')
-        +(a.status==='correction'?' <button class="btn bam bsm" onclick="fixApp(\''+a.id+'\')">Fix</button>':'')
-        +'</td></tr>';
-    }).join('')
+    +my.map(function(a){return '<tr><td><span class="aid">'+a.id+'</span></td><td>'+a.type+'</td><td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+a.location+'</td><td style="font-size:12px;color:#64748b">'+a.date+'</td><td>'+bdg(a.status)+'</td><td><button class="btn bgh bsm" onclick="viewApp(\''+a.id+'\')">View</button>'+(a.status==='approved'?' <button class="btn bgr bsm" onclick="go(\'download\')">Download</button>':'')+(a.status==='correction'?' <button class="btn bam bsm" onclick="fixApp(\''+a.id+'\')">Fix</button>':'')+'</td></tr>';}).join('')
     +'</tbody></table></div></div>';
 }
-
 function newApp(){
   var s=S.fstep;
   var steps=[{n:1,l:'Applicant'},{n:2,l:'Property'},{n:3,l:'Docs & Fees'},{n:4,l:'Review'}];
-  var bar=steps.map(function(st,i){
-    var cls=s>st.n?'done':s===st.n?'active':'pend';
-    return '<div class="step '+cls+'"><div class="snum">'+(s>st.n?'✓':st.n)+'</div><div class="slb">'+st.l+'</div></div>'+(i<3?'<div class="sline"></div>':'');
-  }).join('');
+  var bar=steps.map(function(st,i){var cls=s>st.n?'done':s===st.n?'active':'pend';return '<div class="step '+cls+'"><div class="snum">'+(s>st.n?'✓':st.n)+'</div><div class="slb">'+st.l+'</div></div>'+(i<3?'<div class="sline"></div>':'');}).join('');
   var body='';
-  if(s===1){
-    body='<div class="fgrp"><label class="flbl">Application Type</label><select class="fsel"><option>New Proposal</option><option>Renovation</option><option>As Built</option><option>Remodeling</option><option>Regularization</option></select></div>'
-      +'<div class="frow"><div><label class="flbl">Title</label><select class="fsel"><option>Mr</option><option>Mrs</option><option>Dr</option><option>Alhaji</option><option>Hajiya</option><option>Engr.</option><option>Arch.</option></select></div><div><label class="flbl">First Name</label><input class="fctl" placeholder="First name"></div></div>'
-      +'<div class="frow"><div><label class="flbl">Middle Name</label><input class="fctl" placeholder="Middle name"></div><div><label class="flbl">Surname</label><input class="fctl" placeholder="Surname"></div></div>'
-      +'<div class="frow"><div><label class="flbl">Phone</label><input class="fctl" placeholder="080xxxxxxxx"></div><div><label class="flbl">Email</label><input class="fctl" placeholder="email@example.com"></div></div>'
-      +'<div class="frow"><div><label class="flbl">Date of Birth</label><input class="fctl" type="date"></div><div><label class="flbl">Gender</label><select class="fsel"><option>Male</option><option>Female</option></select></div></div>'
-      +'<div class="frow"><div><label class="flbl">Nationality</label><input class="fctl" value="Nigerian"></div><div><label class="flbl">State of Origin</label><select class="fsel"><option>Kaduna</option><option>Kano</option><option>Lagos</option><option>Abuja FCT</option></select></div></div>'
-      +'<div class="frow"><div><label class="flbl">ID Type</label><select class="fsel"><option>NIN</option><option>Passport</option><option>Driver License</option><option>Voters Card</option></select></div><div><label class="flbl">ID Number</label><input class="fctl" placeholder="Enter ID number"></div></div>';
-  }
-  if(s===2){
-    body='<div class="frow"><div><label class="flbl">Land Use</label><select class="fsel"><option>Residential</option><option>Commercial</option><option>Mixed Use</option><option>Industrial</option></select></div><div><label class="flbl">Zone</label><select class="fsel"><option>Zone A</option><option>Zone B</option><option>Zone C</option></select></div></div>'
-      +'<div class="frow"><div><label class="flbl">Plot Number</label><input class="fctl" placeholder="e.g. 234"></div><div><label class="flbl">Street Name</label><input class="fctl" placeholder="Street name"></div></div>'
-      +'<div class="frow"><div><label class="flbl">District</label><input class="fctl" placeholder="e.g. GRA"></div><div><label class="flbl">City</label><input class="fctl" value="Kaduna"></div></div>'
-      +'<div class="frow"><div><label class="flbl">Land Area (sqm)</label><input class="fctl" placeholder="e.g. 500"></div><div><label class="flbl">No. of Floors</label><input class="fctl" type="number" min="1" max="20" placeholder="e.g. 2"></div></div>'
-      +'<div class="fgrp"><label class="flbl">Estimated Cost (N)</label><input class="fctl" placeholder="e.g. 15000000"></div>'
-      +'<div class="fgrp"><label class="flbl">Brief Description</label><textarea class="fctl" rows="3" placeholder="Describe the proposed building..."></textarea></div>';
-  }
-  if(s===3){
-    var docs=[{k:'titleDeed',l:'Title Deed / C of O'},{k:'surveyPlan',l:'Certified Survey Plan'},{k:'arcDrawings',l:'Architectural Drawings (5 copies)'},{k:'structuralDrawings',l:'Structural/Engineering Drawings'},{k:'insurance',l:'Insurance Certificate'}];
-    body='<div class="st" style="margin-bottom:14px">Required Documents</div>'
-      +docs.map(function(d){
-        return '<div style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border:1px solid #e2e8f0;border-radius:8px;margin-bottom:10px;background:'+(S.docs[d.k]?'#F0FDF4':'#fff')+'">'
-          +'<div><div style="font-size:13px;font-weight:600">'+d.l+'</div><div style="font-size:11px;color:#64748b">Required - PDF, JPG, PNG (max 5MB)</div></div>'
-          +'<div style="display:flex;align-items:center;gap:8px">'+(S.docs[d.k]?'<span style="color:#059669;font-size:12px;font-weight:700">Uploaded</span>':'')
-          +'<button class="btn bgh bsm" onclick="fakeUp(\''+d.k+'\')">'+(S.docs[d.k]?'Re-upload':'Upload')+'</button></div></div>';
-      }).join('')
-      +'<div class="dvd"></div>'
-      +'<div class="st" style="margin-bottom:12px">Fee Schedule</div>'
-      +'<div class="csm"><div class="feer"><span>Application Processing Fee</span><span>N5,000</span></div><div class="feer"><span>Assessment Fee</span><span>N50,000</span></div><div class="feer"><span>Permit Fee</span><span>N30,000</span></div><div class="feer tot"><span>Total Due</span><span>N85,000</span></div></div>'
-      +'<div style="margin-top:16px"><div class="st" style="margin-bottom:12px">Payment Method</div>'
-      +'<div class="g2"><div style="border:2px solid #1B4F8A;border-radius:10px;padding:14px;cursor:pointer;text-align:center" onclick="openPayModal()"><div style="font-size:20px;margin-bottom:4px">💳</div><div style="font-size:13px;font-weight:700;color:#1B4F8A">Pay Online</div><div style="font-size:11px;color:#64748b">Card / Transfer</div></div>'
-      +'<div style="border:1px solid #e2e8f0;border-radius:10px;padding:14px;cursor:pointer;text-align:center" onclick="alert(\'Account: KASUPDA Revenue\\nBank: Zenith Bank\\nAccount No: 1234567890\\nAmount: N85,000\')"><div style="font-size:20px;margin-bottom:4px">🏦</div><div style="font-size:13px;font-weight:700">Bank Payment</div><div style="font-size:11px;color:#64748b">Pay at any bank</div></div></div></div>';
-  }
-  if(s===4){
-    body='<div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:8px;padding:12px 14px;margin-bottom:18px;display:flex;gap:8px"><span>✅</span><div><div style="font-size:13px;font-weight:700;color:#15803D">Ready to Submit</div><div style="font-size:12px;color:#166534">Please review your details.</div></div></div>'
-      +'<div class="rsec"><div class="rttl">Applicant</div><div class="rf"><span class="rfl">Name</span><span class="rfv">Adamu Ibrahim</span></div><div class="rf"><span class="rfl">Phone</span><span class="rfv">08012345678</span></div><div class="rf"><span class="rfl">Email</span><span class="rfv">citizen@kasupda.ng</span></div></div>'
-      +'<div class="rsec"><div class="rttl">Property</div><div class="rf"><span class="rfl">Type</span><span class="rfv">New Proposal</span></div><div class="rf"><span class="rfl">Zone</span><span class="rfv">Zone A</span></div><div class="rf"><span class="rfl">Location</span><span class="rfv">Plot 234, GRA</span></div></div>'
-      +'<div class="rsec"><div class="rttl">Docs & Payment</div><div class="rf"><span class="rfl">Documents</span><span class="rfv" style="color:#059669">5/5 Uploaded</span></div><div class="rf"><span class="rfl">Payment</span><span class="rfv" style="color:#059669">N85,000 Paid</span></div></div>';
-  }
-  return '<div class="card"><div class="sbar">'+bar+'</div>'+body
-    +'<div class="dvd"></div><div style="display:flex;justify-content:space-between">'
-    +(s>1?'<button class="btn bgh" onclick="setStep('+(s-1)+')">Back</button>':'<span></span>')
-    +(s<4?'<button class="btn bbl" onclick="setStep('+(s+1)+')">Continue</button>':'<button class="btn bgr" onclick="subApp()">Submit Application</button>')
-    +'</div></div>';
+  if(s===1){body='<div class="fgrp"><label class="flbl">Application Type</label><select class="fsel"><option>New Proposal</option><option>Renovation</option><option>As Built</option><option>Remodeling</option><option>Regularization</option></select></div><div class="frow"><div><label class="flbl">Title</label><select class="fsel"><option>Mr</option><option>Mrs</option><option>Dr</option><option>Alhaji</option><option>Hajiya</option><option>Engr.</option><option>Arch.</option></select></div><div><label class="flbl">First Name</label><input class="fctl" placeholder="First name"></div></div><div class="frow"><div><label class="flbl">Middle Name</label><input class="fctl" placeholder="Middle name"></div><div><label class="flbl">Surname</label><input class="fctl" placeholder="Surname"></div></div><div class="frow"><div><label class="flbl">Phone</label><input class="fctl" placeholder="080xxxxxxxx"></div><div><label class="flbl">Email</label><input class="fctl" placeholder="email@example.com"></div></div><div class="frow"><div><label class="flbl">Nationality</label><input class="fctl" value="Nigerian"></div><div><label class="flbl">State of Origin</label><select class="fsel"><option>Kaduna</option><option>Kano</option><option>Lagos</option><option>Abuja FCT</option></select></div></div><div class="frow"><div><label class="flbl">ID Type</label><select class="fsel"><option>NIN</option><option>Passport</option><option>Driver License</option><option>Voters Card</option></select></div><div><label class="flbl">ID Number</label><input class="fctl" placeholder="Enter ID number"></div></div>';}
+  if(s===2){body='<div class="frow"><div><label class="flbl">Land Use</label><select class="fsel"><option>Residential</option><option>Commercial</option><option>Mixed Use</option><option>Industrial</option></select></div><div><label class="flbl">Zone</label><select class="fsel"><option>Zone A</option><option>Zone B</option><option>Zone C</option></select></div></div><div class="frow"><div><label class="flbl">Plot Number</label><input class="fctl" placeholder="e.g. 234"></div><div><label class="flbl">Street Name</label><input class="fctl" placeholder="Street name"></div></div><div class="frow"><div><label class="flbl">District</label><input class="fctl" placeholder="e.g. GRA"></div><div><label class="flbl">City</label><input class="fctl" value="Kaduna"></div></div><div class="frow"><div><label class="flbl">Land Area (sqm)</label><input class="fctl" placeholder="e.g. 500"></div><div><label class="flbl">No. of Floors</label><input class="fctl" type="number" min="1" max="20" placeholder="e.g. 2"></div></div><div class="fgrp"><label class="flbl">Estimated Cost (N)</label><input class="fctl" placeholder="e.g. 15000000"></div>';}
+  if(s===3){var docs=[{k:'titleDeed',l:'Title Deed / C of O'},{k:'surveyPlan',l:'Certified Survey Plan'},{k:'arcDrawings',l:'Architectural Drawings'},{k:'structuralDrawings',l:'Structural Drawings'},{k:'insurance',l:'Insurance Certificate'}];body='<div class="st" style="margin-bottom:14px">Required Documents</div>'+docs.map(function(d){return '<div style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border:1px solid #e2e8f0;border-radius:8px;margin-bottom:10px;background:'+(S.docs[d.k]?'#F0FDF4':'#fff')+'"><div><div style="font-size:13px;font-weight:600">'+d.l+'</div><div style="font-size:11px;color:#64748b">PDF, JPG, PNG max 5MB</div></div><div style="display:flex;align-items:center;gap:8px">'+(S.docs[d.k]?'<span style="color:#059669;font-size:12px;font-weight:700">Uploaded</span>':'')+'<button class="btn bgh bsm" onclick="fakeUp(\''+d.k+'\')">'+(S.docs[d.k]?'Re-upload':'Upload')+'</button></div></div>';}).join('')+'<div class="dvd"></div><div class="st" style="margin-bottom:12px">Fee Schedule</div><div class="csm"><div class="feer"><span>Application Processing Fee</span><span>N5,000</span></div><div class="feer"><span>Assessment Fee</span><span>N50,000</span></div><div class="feer"><span>Permit Fee</span><span>N30,000</span></div><div class="feer tot"><span>Total Due</span><span>N85,000</span></div></div><div style="margin-top:16px"><div class="st" style="margin-bottom:12px">Payment Method</div><div class="g2"><div style="border:2px solid #1B4F8A;border-radius:10px;padding:14px;cursor:pointer;text-align:center" onclick="openPayModal()"><div style="font-size:20px;margin-bottom:4px">💳</div><div style="font-size:13px;font-weight:700;color:#1B4F8A">Pay Online</div></div><div style="border:1px solid #e2e8f0;border-radius:10px;padding:14px;cursor:pointer;text-align:center" onclick="alert(\'Account: KASUPDA Revenue\nBank: Zenith Bank\nNo: 1234567890\nN85,000\')"><div style="font-size:20px;margin-bottom:4px">🏦</div><div style="font-size:13px;font-weight:700">Bank Payment</div></div></div></div>';}
+  if(s===4){body='<div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:8px;padding:12px 14px;margin-bottom:18px;display:flex;gap:8px"><span>✅</span><div><div style="font-size:13px;font-weight:700;color:#15803D">Ready to Submit</div><div style="font-size:12px;color:#166534">Please review your details.</div></div></div><div class="rsec"><div class="rttl">Applicant</div><div class="rf"><span class="rfl">Name</span><span class="rfv">Adamu Ibrahim</span></div><div class="rf"><span class="rfl">Phone</span><span class="rfv">08012345678</span></div></div><div class="rsec"><div class="rttl">Property</div><div class="rf"><span class="rfl">Type</span><span class="rfv">New Proposal</span></div><div class="rf"><span class="rfl">Zone</span><span class="rfv">Zone A</span></div><div class="rf"><span class="rfl">Location</span><span class="rfv">Plot 234, GRA</span></div></div><div class="rsec"><div class="rttl">Docs & Payment</div><div class="rf"><span class="rfl">Documents</span><span class="rfv" style="color:#059669">5/5 Uploaded</span></div><div class="rf"><span class="rfl">Payment</span><span class="rfv" style="color:#059669">N85,000 Paid</span></div></div>';}
+  return '<div class="card"><div class="sbar">'+bar+'</div>'+body+'<div class="dvd"></div><div style="display:flex;justify-content:space-between">'+(s>1?'<button class="btn bgh" onclick="setStep('+(s-1)+')">Back</button>':'<span></span>')+(s<4?'<button class="btn bbl" onclick="setStep('+(s+1)+')">Continue</button>':'<button class="btn bgr" onclick="subApp()">Submit Application</button>')+'</div></div>';
 }
-
-function trackPage(){
-  return '<div class="card" style="margin-bottom:16px"><div class="st" style="margin-bottom:14px">Enter Application ID</div>'
-    +'<div style="display:flex;gap:10px"><input class="fctl" id="tid" placeholder="e.g. KBP-2025-0041" value="KBP-2025-0041" style="flex:1"><button class="btn bbl" onclick="doTrack()">Track</button></div>'
-    +'</div><div id="tr">'+trackResult('KBP-2025-0041')+'</div>';
-}
+function trackPage(){return '<div class="card" style="margin-bottom:16px"><div class="st" style="margin-bottom:14px">Enter Application ID</div><div style="display:flex;gap:10px"><input class="fctl" id="tid" placeholder="e.g. KBP-2025-0041" value="KBP-2025-0041" style="flex:1"><button class="btn bbl" onclick="doTrack()">Track</button></div></div><div id="tr">'+trackResult('KBP-2025-0041')+'</div>';}
 function trackResult(id){
   var a=APPS.find(function(x){return x.id===id;});
   if(!a)return '<div class="card" style="text-align:center;padding:40px 20px"><div style="font-size:40px;opacity:.4;margin-bottom:12px">🔍</div><div style="color:#64748b">Application not found.</div></div>';
-  var stages=[
-    {k:'s',l:'Submitted',ic:'📤',sub:'Received by KASUPDA'},
-    {k:'fd',l:'Front Desk Review',ic:'🗂️',sub:'Document verification'},
-    {k:'dept',l:'Department Review',ic:'🏛️',sub:'Town Planning, Survey, Engineering, Environmental'},
-    {k:'dg',l:'DG Approval',ic:'👔',sub:'Final decision'},
-    {k:'done',l:'Permit Issued',ic:'📜',sub:'Permit with QR Code'}
-  ];
-  function st(k){
-    if(a.status==='approved')return'done';
-    if(k==='s')return'done';
-    if(k==='fd')return a.review.frontdesk==='approved'?'done':'act';
-    if(k==='dept')return(a.status==='dept_review'||a.status==='dg_review')?'act':'pend';
-    if(k==='dg')return a.status==='dg_review'?'act':'pend';
-    return a.status==='approved'?'done':'pend';
-  }
-  return '<div class="card"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px"><div><div class="st">'+a.id+'</div><div style="font-size:12px;color:#64748b;margin-top:2px">'+a.type+' - '+a.location+'</div></div>'+bdg(a.status)+'</div>'
-    +'<div class="tl">'+stages.map(function(sg){
-      var sv=st(sg.k);
-      return '<div class="tl-it"><div class="tld '+sv+'">'+(sv==='done'?'✓':sv==='act'?'●':'○')+'</div>'
-        +'<div class="tlc"><div class="tlttl">'+sg.ic+' '+sg.l+'</div><div class="tlsb">'+sg.sub+'</div>'
-        +(sv==='done'?'<div class="tlt">Completed</div>':sv==='act'?'<div class="tlt" style="color:#2563EB">In Progress</div>':'')
-        +'</div></div>';
-    }).join('')+'</div></div>';
-}
-
-function notifsPage(){
-  return '<div>'+NOTIFS.map(function(n){
-    return '<div class="notif '+n.type+'"><div class="nic">'+(n.type==='success'?'✅':n.type==='warning'?'⚠️':'ℹ️')+'</div>'
-      +'<div><div class="nttl">'+n.title+'</div><div class="nsb">'+n.sub+'</div><div class="nt">'+n.time+'</div></div></div>';
-  }).join('')+'</div>';
-}
-
+  var stages=[{k:'s',l:'Submitted',ic:'📤',sub:'Received'},{k:'fd',l:'Front Desk',ic:'🗂️',sub:'Verification'},{k:'dept',l:'Dept. Review',ic:'🏛️',sub:'Town Planning, Survey, Engineering, Environmental'},{k:'dg',l:'DG Approval',ic:'👔',sub:'Final decision'},{k:'done',l:'Permit Issued',ic:'📜',sub:'QR Code & Number'}];
+  function st(k){if(a.status==='approved')return'done';if(k==='s')return'done';if(k==='fd')return a.review.frontdesk==='approved'?'done':'act';if(k==='dept')return(a.status==='dept_review'||a.status==='dg_review')?'act':'pend';if(k==='dg')return a.status==='dg_review'?'act':'pend';return a.status==='approved'?'done':'pend';}
+  return '<div class="card"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px"><div><div class="st">'+a.id+'</div><div style="font-size:12px;color:#64748b;margin-top:2px">'+a.type+' — '+a.location+'</div></div>'+bdg(a.status)+'</div><div class="tl">'+stages.map(function(sg){var sv=st(sg.k);return '<div class="tl-it"><div class="tld '+sv+'">'+(sv==='done'?'✓':sv==='act'?'●':'○')+'</div><div class="tlc"><div class="tlttl">'+sg.ic+' '+sg.l+'</div><div class="tlsb">'+sg.sub+'</div>'+(sv==='done'?'<div class="tlt">Completed</div>':sv==='act'?'<div class="tlt" style="color:#2563EB">In Progress</div>':'')+'</div></div>';}).join('')+'</div></div>';}
+function notifsPage(){return '<div>'+NOTIFS.map(function(n){return '<div class="notif '+n.type+'"><div class="nic">'+(n.type==='success'?'✅':n.type==='warning'?'⚠️':'ℹ️')+'</div><div><div class="nttl">'+n.title+'</div><div class="nsb">'+n.sub+'</div><div class="nt">'+n.time+'</div></div></div>';}).join('')+'</div>';}
 function downloadPage(){
   var ok=APPS.filter(function(a){return a.status==='approved'&&a.permit;});
-  return '<div>'+ok.map(function(a){
-    return '<div class="card"><div class="permit-w">'
-      +'<div class="permit-seal">🏛️</div>'
-      +'<div style="font-size:11px;font-weight:700;color:#64748B;letter-spacing:1px;text-transform:uppercase">Kaduna State Urban Planning & Development Authority</div>'
-      +'<div style="font-size:13px;color:#1e293b;margin-top:4px">Building Permit</div>'
-      +'<div class="permit-num">'+a.permit.number+'</div>'
-      +'<div style="font-size:12px;color:#64748b;margin-top:4px">Issued: '+a.permit.issued+' - Expires: '+a.permit.expires+'</div>'
-      +'<div style="width:80px;height:80px;background:#1B4F8A;margin:12px auto 0;border-radius:8px;display:grid;place-items:center">'
-      +'<div style="display:grid;grid-template-columns:repeat(5,8px);gap:2px">'
-      +Array(25).fill(0).map(function(_,i){return '<div style="width:8px;height:8px;background:'+([0,2,4,10,12,14,20,22,24,5,7,9,11,15,17,19,3,21].includes(i)?'#fff':'rgba(255,255,255,.2)')+'"></div>';}).join('')
-      +'</div></div>'
-      +'<div style="margin-top:12px;font-size:11px;color:#64748b">'+a.location+'</div>'
-      +'</div>'
-      +'<div style="display:flex;gap:10px;margin-top:16px"><button class="btn bbl" style="flex:1" onclick="alert(\'Downloading PDF...\')">Download PDF</button><button class="btn bgh" onclick="alert(\'Printing...\')">Print</button></div>'
-      +'</div>';
-  }).join('')+'</div>';
-}
+  return '<div>'+ok.map(function(a){return '<div class="card"><div class="permit-w"><div class="permit-seal">🏛️</div><div style="font-size:11px;font-weight:700;color:#64748B;letter-spacing:1px;text-transform:uppercase">Kaduna State Urban Planning & Development Authority</div><div style="font-size:13px;color:#1e293b;margin-top:4px">Building Permit</div><div class="permit-num">'+a.permit.number+'</div><div style="font-size:12px;color:#64748b;margin-top:4px">Issued: '+a.permit.issued+' - Expires: '+a.permit.expires+'</div><div style="width:80px;height:80px;background:#1B4F8A;margin:12px auto 0;border-radius:8px;display:grid;place-items:center"><div style="display:grid;grid-template-columns:repeat(5,8px);gap:2px">'+Array(25).fill(0).map(function(_,i){return '<div style="width:8px;height:8px;background:'+([0,2,4,10,12,14,20,22,24,5,7,9,11,15,17,19,3,21].includes(i)?'#fff':'rgba(255,255,255,.2)')+'"></div>';}).join('')+'</div></div><div style="margin-top:12px;font-size:11px;color:#64748b">'+a.location+'</div></div><div style="display:flex;gap:10px;margin-top:16px"><button class="btn bbl" style="flex:1" onclick="alert(\'Downloading PDF...\')">Download PDF</button><button class="btn bgh" onclick="alert(\'Printing...\')">Print</button></div></div>';}).join('')+'</div>';}
 
-/* ── FRONT DESK dashboard — NO revenue card ── */
+/* ── FRONT DESK — no revenue ── */
 function fdDash(){
-  var total=APPS.length;
-  var ok=APPS.filter(function(a){return a.status==='approved';}).length;
-  var pend=APPS.filter(function(a){return ['submitted','dept_review','dg_review'].includes(a.status);}).length;
-  var rej=APPS.filter(function(a){return a.status==='rejected';}).length;
-  return '<div class="sgrid">'
-    +'<div class="stat blue"><div class="stic">📋</div><div class="sval">'+total+'</div><div class="slbl">Total Applications</div></div>'
-    +'<div class="stat green"><div class="stic">✅</div><div class="sval">'+ok+'</div><div class="slbl">Approved Permits</div></div>'
-    +'<div class="stat amber"><div class="stic">⏳</div><div class="sval">'+pend+'</div><div class="slbl">Pending</div></div>'
-    +'<div class="stat red"><div class="stic">❌</div><div class="sval">'+rej+'</div><div class="slbl">Rejected</div></div>'
-    +'</div>'+recentTbl();
+  var total=APPS.length,ok=APPS.filter(function(a){return a.status==='approved';}).length,pend=APPS.filter(function(a){return ['submitted','dept_review','dg_review'].includes(a.status);}).length,rej=APPS.filter(function(a){return a.status==='rejected';}).length;
+  return '<div class="sgrid"><div class="stat blue"><div class="stic">📋</div><div class="sval">'+total+'</div><div class="slbl">Total Applications</div></div><div class="stat green"><div class="stic">✅</div><div class="sval">'+ok+'</div><div class="slbl">Approved Permits</div></div><div class="stat amber"><div class="stic">⏳</div><div class="sval">'+pend+'</div><div class="slbl">Pending</div></div><div class="stat red"><div class="stic">❌</div><div class="sval">'+rej+'</div><div class="slbl">Rejected</div></div></div>'+recentTbl();
 }
 
-/* ── DEPARTMENT dashboards — NO revenue card ── */
+/* ── DEPT — no revenue ── */
 function deptDash(){
   var role=S.user.role;
   var all=APPS.filter(function(a){return ['dept_review','dg_review','approved','rejected'].includes(a.status);});
   var pend=APPS.filter(function(a){return a.status==='dept_review';});
-  return '<div class="sgrid">'
-    +'<div class="stat amber"><div class="stic">⏳</div><div class="sval">'+pend.length+'</div><div class="slbl">Awaiting My Review</div></div>'
-    +'<div class="stat green"><div class="stic">✅</div><div class="sval">'+all.filter(function(a){return a.review[role]==='approved';}).length+'</div><div class="slbl">Approved by Me</div></div>'
-    +'<div class="stat blue"><div class="stic">📋</div><div class="sval">'+all.length+'</div><div class="slbl">Total Reviewed</div></div>'
-    +'<div class="stat red"><div class="stic">⚠️</div><div class="sval">0</div><div class="slbl">Flagged</div></div>'
-    +'</div>'
-    +'<div class="card"><div class="sh"><div class="st">Applications For Review</div></div>'
-    +'<div class="tw"><table><thead><tr><th>App ID</th><th>Applicant</th><th>Type</th><th>Date</th><th>My Status</th><th>Action</th></tr></thead><tbody>'
-    +all.slice(0,5).map(function(a){
-      var rs=a.review[role];
-      var rbdg=rs==='approved'?'<span class="badge b-ok">Approved</span>':rs==='rejected'?'<span class="badge b-rej">Rejected</span>':'<span class="badge b-pen">Pending</span>';
-      return '<tr><td><span class="aid">'+a.id+'</span></td><td>'+a.owner+'</td><td>'+a.type+'</td><td style="font-size:12px;color:#64748b">'+a.date+'</td><td>'+rbdg+'</td><td><button class="btn bbl bsm" onclick="openRev(\''+a.id+'\',\''+role+'\')">Review</button></td></tr>';
-    }).join('')
-    +'</tbody></table></div></div>';
+  return '<div class="sgrid"><div class="stat amber"><div class="stic">⏳</div><div class="sval">'+pend.length+'</div><div class="slbl">Awaiting My Review</div></div><div class="stat green"><div class="stic">✅</div><div class="sval">'+all.filter(function(a){return a.review[role]==='approved';}).length+'</div><div class="slbl">Approved by Me</div></div><div class="stat blue"><div class="stic">📋</div><div class="sval">'+all.length+'</div><div class="slbl">Total Reviewed</div></div><div class="stat red"><div class="stic">⚠️</div><div class="sval">0</div><div class="slbl">Flagged</div></div></div><div class="card"><div class="sh"><div class="st">Applications For Review</div></div><div class="tw"><table><thead><tr><th>App ID</th><th>Applicant</th><th>Type</th><th>Date</th><th>My Status</th><th>Action</th></tr></thead><tbody>'+all.slice(0,5).map(function(a){var rs=a.review[role];var rbdg=rs==='approved'?'<span class="badge b-ok">Approved</span>':rs==='rejected'?'<span class="badge b-rej">Rejected</span>':'<span class="badge b-pen">Pending</span>';return '<tr><td><span class="aid">'+a.id+'</span></td><td>'+a.owner+'</td><td>'+a.type+'</td><td style="font-size:12px;color:#64748b">'+a.date+'</td><td>'+rbdg+'</td><td><button class="btn bbl bsm" onclick="openRev(\''+a.id+'\',\''+role+'\')">Review</button></td></tr>';}).join('')+'</tbody></table></div></div>';
 }
 
-/* ── DG dashboard — HAS revenue card ── */
+/* ── DG DASHBOARD — has revenue + 3 action cards ── */
 function dgDash(){
   var pend=APPS.filter(function(a){return a.status==='dg_review';});
   var ok=APPS.filter(function(a){return a.status==='approved';});
+  var lockedCount=Object.values(STAFF_ACCESS).filter(function(x){return x.locked;}).length;
+  var onlineCount=FIELD_STAFF.filter(function(sf){return sf.status==='online';}).length;
   return '<div class="sgrid">'
     +'<div class="stat amber"><div class="stic">📩</div><div class="sval">'+pend.length+'</div><div class="slbl">Awaiting DG Approval</div></div>'
     +'<div class="stat green"><div class="stic">📜</div><div class="sval">'+ok.length+'</div><div class="slbl">Permits Issued</div></div>'
     +'<div class="stat blue"><div class="stic">📋</div><div class="sval">'+APPS.length+'</div><div class="slbl">Total Applications</div></div>'
     +'<div class="stat indigo"><div class="stic">💰</div><div class="sval">'+fmt(totalRev())+'</div><div class="slbl">Revenue Generated</div></div>'
+    +'<div class="stat teal"><div class="stic">📡</div><div class="sval">'+onlineCount+'</div><div class="slbl">Staff Online (GPS)</div></div>'
+    +'<div class="stat red"><div class="stic">🔒</div><div class="sval">'+lockedCount+'</div><div class="slbl">Locked Accounts</div></div>'
     +'</div>'
-    +'<div class="card"><div class="sh"><div class="st">Awaiting DG Approval</div></div>'
+    +'<div class="dg-action-bar">'
+    +'<div class="dg-action-card blue" onclick="go(\'dg_override\')">'
+    +'<div class="dg-action-ic">⚡</div>'
+    +'<div class="dg-action-ttl">Override Applications</div>'
+    +'<div class="dg-action-sb">Force approve, reject, or reset any application regardless of department stage</div>'
+    +'</div>'
+    +'<div class="dg-action-card red" onclick="go(\'staff_access\')">'
+    +'<div class="dg-action-ic">🔐</div>'
+    +'<div class="dg-action-ttl">Staff Access Control</div>'
+    +'<div class="dg-action-sb">Lock or unlock any staff member\'s system access instantly</div>'
+    +'</div>'
+    +'<div class="dg-action-card green" onclick="go(\'gps_monitor\')">'
+    +'<div class="dg-action-ic">📡</div>'
+    +'<div class="dg-action-ttl">GPS Field Monitor</div>'
+    +'<div class="dg-action-sb">Live real-time tracking of all field officers on the map</div>'
+    +'</div>'
+    +'</div>'
+    +'<div class="card"><div class="sh"><div class="st">Awaiting DG Approval</div><button class="btn bbl bsm" onclick="go(\'pending\')">View All</button></div>'
     +'<div class="tw"><table><thead><tr><th>App ID</th><th>Applicant</th><th>Type</th><th>Location</th><th>Date</th><th>Action</th></tr></thead><tbody>'
-    +(pend.length?pend.map(function(a){
-      return '<tr><td><span class="aid">'+a.id+'</span></td><td>'+a.owner+'</td><td>'+a.type+'</td>'
-        +'<td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px">'+a.location+'</td>'
-        +'<td style="font-size:12px;color:#64748b">'+a.date+'</td>'
-        +'<td><button class="btn bbl bsm" onclick="openRev(\''+a.id+'\',\'dg\')">Review & Approve</button></td></tr>';
-    }).join(''):'<tr><td colspan="6" style="text-align:center;padding:24px;color:#64748b">No applications awaiting DG approval</td></tr>')
+    +(pend.length?pend.map(function(a){return '<tr><td><span class="aid">'+a.id+'</span></td><td>'+a.owner+'</td><td>'+a.type+'</td><td style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px">'+a.location+'</td><td style="font-size:12px;color:#64748b">'+a.date+'</td><td><button class="btn bbl bsm" onclick="openRev(\''+a.id+'\',\'dg\')">Review & Approve</button></td></tr>';}).join(''):'<tr><td colspan="6" style="text-align:center;padding:24px;color:#64748b">No applications awaiting DG approval</td></tr>')
     +'</tbody></table></div></div>';
 }
 
-/* ── Records dashboard — HAS revenue card ── */
+/* ── 1. DG OVERRIDE PAGE ── */
+function dgOverridePage(){
+  return '<div class="override-warn"><div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:20px">⚡</span><div style="font-size:14px;font-weight:700;color:#9F1239">DG Override Authority</div></div><div style="font-size:13px;color:#BE123C">This panel allows you to override any application decision at any stage. All override actions are logged with a timestamp and your DG credentials. Use with discretion.</div></div>'
+    +'<div class="card"><div class="sh"><div class="st">All Applications — Override Panel</div><div style="font-size:12px;color:#64748b">'+APPS.length+' applications</div></div>'
+    +'<div class="tw"><table><thead><tr><th>App ID</th><th>Applicant</th><th>Type</th><th>Current Status</th><th>Stage</th><th>DG Override</th></tr></thead><tbody>'
+    +APPS.map(function(a){
+      var stageLabel={submitted:'Awaiting Front Desk',frontdesk_review:'At Front Desk',dept_review:'At Departments',dg_review:'Awaiting DG',approved:'Completed',rejected:'Rejected',correction:'Correction Pending'}[a.status]||a.status;
+      return '<tr><td><span class="aid">'+a.id+'</span></td><td>'+a.owner+'</td><td>'+a.type+'</td><td>'+bdg(a.status)+'</td>'
+        +'<td style="font-size:12px;color:#64748b">'+stageLabel+'</td>'
+        +'<td style="display:flex;gap:5px;flex-wrap:wrap;padding:8px 14px">'
+        +(a.status!=='approved'?'<button class="btn bgr bsm" onclick="dgOverride(\''+a.id+'\',\'approved\')">Force Approve</button>':'')
+        +(a.status!=='rejected'?'<button class="btn brd bsm" onclick="dgOverride(\''+a.id+'\',\'rejected\')">Force Reject</button>':'')
+        +(a.status!=='submitted'?'<button class="btn bam bsm" onclick="dgOverride(\''+a.id+'\',\'reset\')">Reset</button>':'')
+        +'<button class="btn bpu bsm" onclick="openDGOverrideModal(\''+a.id+'\')">Custom</button>'
+        +'</td></tr>';
+    }).join('')
+    +'</tbody></table></div></div>';
+}
+
+/* ── 2. STAFF ACCESS CONTROL PAGE ── */
+function staffAccessPage(){
+  var staffList=Object.entries(USERS).filter(function(e){return e[1].role!=='citizen'&&e[1].role!=='dg';});
+  var lockedCount=Object.values(STAFF_ACCESS).filter(function(x){return x.locked;}).length;
+  return '<div class="card" style="margin-bottom:16px;background:linear-gradient(135deg,#F8FAFC,#fff);border:1px solid #e2e8f0">'
+    +'<div style="display:flex;align-items:center;gap:12px;margin-bottom:4px"><span style="font-size:22px">🔐</span><div><div class="st">Staff Access Control</div><div style="font-size:12px;color:#64748b;margin-top:2px">'+lockedCount+' account(s) currently locked</div></div></div>'
+    +'</div>'
+    +'<div class="card">'
+    +'<div class="sh"><div class="st">System Access Management</div><button class="btn brd bsm" onclick="lockAllStaff()">Lock All Staff</button></div>'
+    +'<div style="margin-top:4px">'
+    +staffList.map(function(entry){
+      var email=entry[0],u=entry[1];
+      var acc=STAFF_ACCESS[email]||{locked:false};
+      var isLocked=acc.locked;
+      var colorMap={frontdesk:'#2563EB',town_planning:'#7C3AED',survey:'#059669',engineering:'#D97706',environmental:'#0891B2',records:'#DC2626'};
+      var col=colorMap[u.role]||'#64748b';
+      return '<div class="staff-row">'
+        +'<div class="uav" style="background:'+col+'">'+ini(u.name)+'</div>'
+        +'<div style="flex:1;min-width:0">'
+        +'<div style="font-size:13px;font-weight:600;color:#1e293b">'+u.name+'</div>'
+        +'<div style="font-size:11px;color:#64748b;margin-top:1px">'+u.dept+' &bull; '+email+'</div>'
+        +(isLocked?'<div style="font-size:10px;color:#DC2626;margin-top:2px;font-weight:600">LOCKED: '+(acc.lockedReason||'Suspended by DG')+'</div>':'<div style="font-size:10px;color:#059669;margin-top:2px">Active — Full system access</div>')
+        +'</div>'
+        +'<div style="display:flex;align-items:center;gap:10px">'
+        +'<span class="badge '+(isLocked?'b-locked':'b-active')+'">'+(isLocked?'Locked':'Active')+'</span>'
+        +'<button class="lock-toggle '+(isLocked?'off':'on')+'" onclick="toggleLock(\''+email+'\')" title="'+(isLocked?'Unlock account':'Lock account')+'"></button>'
+        +'<button class="btn '+(isLocked?'bgr':'brd')+' bsm" onclick="toggleLock(\''+email+'\')"> '+(isLocked?'Unlock':'Lock')+'</button>'
+        +'</div>'
+        +'</div>';
+    }).join('')
+    +'</div></div>'
+    +'<div class="card">'
+    +'<div class="st" style="margin-bottom:14px">Access Log</div>'
+    +'<div id="access-log">'
+    +(Object.entries(STAFF_ACCESS).filter(function(e){return e[1].locked;}).length?
+      Object.entries(STAFF_ACCESS).filter(function(e){return e[1].locked;}).map(function(e){
+        var u=USERS[e[0]];
+        return '<div class="notif danger"><div class="nic">🔒</div><div><div class="nttl">'+u.name+' — Account Locked</div><div class="nsb">Reason: '+(e[1].lockedReason||'Administrative suspension')+'</div><div class="nt">By: Arch. Murtala Hassan (DG) &bull; Today</div></div></div>';
+      }).join('')
+      :'<div style="text-align:center;padding:24px;color:#94a3b8;font-size:13px">No access changes recorded. All staff are active.</div>')
+    +'</div></div>';
+}
+
+/* ── 3. GPS MONITOR PAGE ── */
+function gpsMonitorContent(){
+  var onlineCount=FIELD_STAFF.filter(function(sf){return sf.status==='online';}).length;
+  var idleCount=FIELD_STAFF.filter(function(sf){return sf.status==='idle';}).length;
+  var offlineCount=FIELD_STAFF.filter(function(sf){return sf.status==='offline';}).length;
+  var selSf=S.selStaff?FIELD_STAFF.find(function(sf){return sf.email===S.selStaff;}):null;
+
+  var pins=FIELD_STAFF.map(function(sf){
+    var colorMap={online:'#22C55E',idle:'#F59E0B',offline:'#EF4444'};
+    var col=colorMap[sf.status];
+    return '<div class="gps-pin" style="left:'+sf.lng+'%;top:'+sf.lat+'%" onclick="selStaff(\''+sf.email+'\')" title="'+sf.name+'">'
+      +'<div class="gps-label">'+sf.name.split(' ')[0]+'</div>'
+      +'<div style="position:relative;width:14px;height:14px">'
+      +(sf.status!=='offline'?'<div class="gps-pulse '+sf.status+'" style="position:absolute;inset:-4px;border-radius:50%;background:'+col+'33;animation:pulse 2s infinite"></div>':'')
+      +'<div class="gps-pin-dot '+sf.status+'" style="background:'+col+'"></div>'
+      +'</div></div>';
+  }).join('');
+
+  /* Draw simulated road lines as SVG paths */
+  var roads='<svg width="100%" height="100%" style="position:absolute;inset:0">'
+    +'<path d="M0,50% L100%,50%" stroke="rgba(255,255,255,.08)" stroke-width="3" fill="none"/>'
+    +'<path d="M0,30% L100%,70%" stroke="rgba(255,255,255,.06)" stroke-width="2" fill="none"/>'
+    +'<path d="M30%,0 L70%,100%" stroke="rgba(255,255,255,.06)" stroke-width="2" fill="none"/>'
+    +'<path d="M50%,0 L50%,100%" stroke="rgba(255,255,255,.07)" stroke-width="3" fill="none"/>'
+    +'<circle cx="50%" cy="50%" r="4" fill="#F59E0B"/>'
+    +'<text x="52%" y="53%" fill="#F59E0B" font-size="9" font-weight="700">HQ</text>'
+    +'</svg>';
+
+  return '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">'
+    +'<div class="gps-legend">'
+    +'<div class="gps-leg-item"><div class="gps-leg-dot" style="background:#22C55E"></div>Online ('+onlineCount+')</div>'
+    +'<div class="gps-leg-item"><div class="gps-leg-dot" style="background:#F59E0B"></div>Idle ('+idleCount+')</div>'
+    +'<div class="gps-leg-item"><div class="gps-leg-dot" style="background:#EF4444"></div>Offline ('+offlineCount+')</div>'
+    +'</div>'
+    +'<div style="display:flex;align-items:center;gap:6px;font-size:12px;color:#059669;font-weight:600"><div style="width:8px;height:8px;border-radius:50%;background:#22C55E;animation:pulse 2s infinite"></div>Live Tracking Active</div>'
+    +'</div>'
+    +'<div class="g2" style="align-items:start">'
+    +'<div>'
+    +'<div class="gps-map"><div class="gps-grid"></div>'+roads+pins+'</div>'
+    +(selSf?'<div class="card" style="margin:0;border:2px solid #2563EB">'
+      +'<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">'
+      +'<div class="uav" style="background:'+(staffColors[selSf.email.split('@')[0]]||'#64748b')+'">'+ini(selSf.name)+'</div>'
+      +'<div><div style="font-size:14px;font-weight:700">'+selSf.name+'</div><div style="font-size:11px;color:#64748b">'+selSf.dept+'</div></div>'
+      +'<span class="badge '+(selSf.status==='online'?'b-ok':selSf.status==='idle'?'b-pen':'b-rej')+'" style="margin-left:auto">'+selSf.status.toUpperCase()+'</span>'
+      +'</div>'
+      +'<div class="rsec" style="margin:0"><div class="rttl">Live Data</div>'
+      +'<div class="rf"><span class="rfl">Location</span><span class="rfv">'+selSf.location+'</span></div>'
+      +'<div class="rf"><span class="rfl">Current Task</span><span class="rfv">'+selSf.task+'</span></div>'
+      +'<div class="rf"><span class="rfl">Last Seen</span><span class="rfv">'+selSf.lastSeen+'</span></div>'
+      +'<div class="rf"><span class="rfl">Speed</span><span class="rfv">'+selSf.speed+'</span></div>'
+      +'<div class="rf"><span class="rfl">Battery</span><span class="rfv" style="color:'+(selSf.battery<30?'#DC2626':'#059669')+'">'+selSf.battery+'%</span></div>'
+      +'<div class="rf"><span class="rfl">GPS Coords</span><span class="rfv" style="font-family:monospace;font-size:11px">'+selSf.lat.toFixed(4)+'N, '+selSf.lng.toFixed(4)+'E</span></div>'
+      +'</div>'
+      +'<div style="display:flex;gap:8px;margin-top:12px">'
+      +'<button class="btn bbl bsm" style="flex:1" onclick="alert(\'Sending alert to '+selSf.name+'...\nAlert sent successfully!\')">Send Alert</button>'
+      +'<button class="btn bam bsm" onclick="alert(\''+selSf.name+' has been recalled to HQ.\')">Recall to HQ</button>'
+      +'</div>'
+      +'</div>'
+      :'<div style="text-align:center;padding:20px;color:#94a3b8;font-size:12px;border:1px dashed #e2e8f0;border-radius:10px">Click a staff pin on the map to view details</div>')
+    +'</div>'
+    +'<div>'
+    +'<div class="card" style="margin-bottom:12px"><div class="st" style="margin-bottom:12px">Field Staff ('+FIELD_STAFF.length+')</div>'
+    +FIELD_STAFF.map(function(sf){
+      var col={online:'#22C55E',idle:'#F59E0B',offline:'#EF4444'}[sf.status];
+      var isSelected=S.selStaff===sf.email;
+      return '<div class="staff-card'+(isSelected?' selected':'')+'" onclick="selStaff(\''+sf.email+'\')">'
+        +'<div style="position:relative"><div class="uav" style="background:'+(staffColors[sf.email.split('@')[0].replace(/[^a-z]/g,'')]||'#64748b')+'">'+ini(sf.name)+'</div>'
+        +'<div style="position:absolute;bottom:0;right:0;width:10px;height:10px;border-radius:50%;background:'+col+';border:2px solid #fff"></div></div>'
+        +'<div class="staff-info">'
+        +'<div class="staff-nm">'+sf.name+'</div>'
+        +'<div class="staff-loc">'+sf.location+'</div>'
+        +'<div class="staff-time">'+sf.lastSeen+' &bull; Batt: '+sf.battery+'%</div>'
+        +'</div>'
+        +'<div style="font-size:11px;font-weight:700;color:'+col+'">'+sf.status.toUpperCase()+'</div>'
+        +'</div>';
+    }).join('')+'</div>'
+    +'<div class="card"><div class="st" style="margin-bottom:12px">Quick Actions</div>'
+    +'<button class="btn bbl" style="width:100%;margin-bottom:8px" onclick="alert(\'Emergency broadcast sent to all 6 field staff!\')">📢 Broadcast to All Staff</button>'
+    +'<button class="btn bam" style="width:100%;margin-bottom:8px" onclick="alert(\'All field staff recalled to HQ.\')">🏠 Recall All to HQ</button>'
+    +'<button class="btn bgh" style="width:100%" onclick="alert(\'GPS activity report generated.\')">📊 Export GPS Report</button>'
+    +'</div>'
+    +'</div></div>';
+}
+
+/* ── RECORDS — with revenue ── */
 function recDash(){
-  var total=APPS.length;
-  var ok=APPS.filter(function(a){return a.status==='approved';}).length;
-  var pend=APPS.filter(function(a){return ['submitted','dept_review','dg_review'].includes(a.status);}).length;
-  var rej=APPS.filter(function(a){return a.status==='rejected';}).length;
-  return '<div class="sgrid">'
-    +'<div class="stat blue"><div class="stic">📋</div><div class="sval">'+total+'</div><div class="slbl">Total Applications</div></div>'
-    +'<div class="stat green"><div class="stic">✅</div><div class="sval">'+ok+'</div><div class="slbl">Approved Permits</div></div>'
-    +'<div class="stat amber"><div class="stic">⏳</div><div class="sval">'+pend+'</div><div class="slbl">Pending</div></div>'
-    +'<div class="stat red"><div class="stic">❌</div><div class="sval">'+rej+'</div><div class="slbl">Rejected</div></div>'
-    +'<div class="stat indigo"><div class="stic">💰</div><div class="sval">'+fmt(totalRev())+'</div><div class="slbl">Revenue Generated</div></div>'
-    +'</div>'+recentTbl();
+  var total=APPS.length,ok=APPS.filter(function(a){return a.status==='approved';}).length,pend=APPS.filter(function(a){return ['submitted','dept_review','dg_review'].includes(a.status);}).length,rej=APPS.filter(function(a){return a.status==='rejected';}).length;
+  return '<div class="sgrid"><div class="stat blue"><div class="stic">📋</div><div class="sval">'+total+'</div><div class="slbl">Total Applications</div></div><div class="stat green"><div class="stic">✅</div><div class="sval">'+ok+'</div><div class="slbl">Approved Permits</div></div><div class="stat amber"><div class="stic">⏳</div><div class="sval">'+pend+'</div><div class="slbl">Pending</div></div><div class="stat red"><div class="stic">❌</div><div class="sval">'+rej+'</div><div class="slbl">Rejected</div></div><div class="stat indigo"><div class="stic">💰</div><div class="sval">'+fmt(totalRev())+'</div><div class="slbl">Revenue Generated</div></div></div>'+recentTbl();
 }
 
 function recentTbl(){
-  return '<div class="card"><div class="sh"><div class="st">Recent Applications</div></div>'
-    +'<div class="tw"><table><thead><tr><th>App ID</th><th>Applicant</th><th>Type</th><th>Date</th><th>Status</th><th>Action</th></tr></thead><tbody>'
-    +APPS.slice(0,5).map(function(a){
-      return '<tr><td><span class="aid">'+a.id+'</span></td><td>'+a.owner+'</td><td>'+a.type+'</td><td style="font-size:12px;color:#64748b">'+a.date+'</td><td>'+bdg(a.status)+'</td><td><button class="btn bgh bsm" onclick="viewApp(\''+a.id+'\')">View</button></td></tr>';
-    }).join('')
-    +'</tbody></table></div></div>';
+  return '<div class="card"><div class="sh"><div class="st">Recent Applications</div></div><div class="tw"><table><thead><tr><th>App ID</th><th>Applicant</th><th>Type</th><th>Date</th><th>Status</th><th>Action</th></tr></thead><tbody>'+APPS.slice(0,5).map(function(a){return '<tr><td><span class="aid">'+a.id+'</span></td><td>'+a.owner+'</td><td>'+a.type+'</td><td style="font-size:12px;color:#64748b">'+a.date+'</td><td>'+bdg(a.status)+'</td><td><button class="btn bgh bsm" onclick="viewApp(\''+a.id+'\')">View</button></td></tr>';}).join('')+'</tbody></table></div></div>';
 }
-
 function inboxPage(){
   var list=S.nav==='inbox'?APPS.filter(function(a){return ['submitted','correction'].includes(a.status);}):APPS;
-  return '<div class="card"><div class="sh"><div><div class="st">'+(S.nav==='inbox'?'Awaiting Review':'All Applications')+'</div><div style="font-size:12px;color:#64748b">'+list.length+' items</div></div></div>'
-    +'<div class="tw"><table><thead><tr><th>App ID</th><th>Applicant</th><th>Type</th><th>Location</th><th>Date</th><th>Status</th><th>Action</th></tr></thead><tbody>'
-    +list.map(function(a){
-      var isInbox=['submitted','correction'].includes(a.status);
-      return '<tr><td><span class="aid">'+a.id+'</span></td><td>'+a.owner+'</td><td>'+a.type+'</td>'
-        +'<td style="max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px">'+a.location+'</td>'
-        +'<td style="font-size:12px;color:#64748b">'+a.date+'</td>'
-        +'<td>'+bdg(a.status)+'</td>'
-        +'<td>'+(isInbox?'<button class="btn bbl bsm" onclick="openRev(\''+a.id+'\',\'frontdesk\')">Review</button>':'<button class="btn bgh bsm" onclick="viewApp(\''+a.id+'\')">View</button>')+'</td></tr>';
-    }).join('')
-    +(!list.length?'<tr><td colspan="7" style="text-align:center;padding:24px;color:#64748b">No items</td></tr>':'')
-    +'</tbody></table></div></div>';
+  return '<div class="card"><div class="sh"><div><div class="st">'+(S.nav==='inbox'?'Awaiting Review':'All Applications')+'</div><div style="font-size:12px;color:#64748b">'+list.length+' items</div></div></div><div class="tw"><table><thead><tr><th>App ID</th><th>Applicant</th><th>Type</th><th>Location</th><th>Date</th><th>Status</th><th>Action</th></tr></thead><tbody>'+list.map(function(a){var isInbox=['submitted','correction'].includes(a.status);return '<tr><td><span class="aid">'+a.id+'</span></td><td>'+a.owner+'</td><td>'+a.type+'</td><td style="max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px">'+a.location+'</td><td style="font-size:12px;color:#64748b">'+a.date+'</td><td>'+bdg(a.status)+'</td><td>'+(isInbox?'<button class="btn bbl bsm" onclick="openRev(\''+a.id+'\',\'frontdesk\')">Review</button>':'<button class="btn bgh bsm" onclick="viewApp(\''+a.id+'\')">View</button>')+'</td></tr>';}).join('')+(!list.length?'<tr><td colspan="7" style="text-align:center;padding:24px;color:#64748b">No items</td></tr>':'')+'</tbody></table></div></div>';
 }
-
 function allApps(){
-  return '<div class="card"><div class="sh"><div class="st">All Applications</div>'
-    +'<select class="fsel" style="width:160px;padding:6px 10px;font-size:13px"><option>All Statuses</option><option>Submitted</option><option>Dept. Review</option><option>Approved</option><option>Rejected</option></select>'
-    +'</div><div class="tw"><table><thead><tr><th>App ID</th><th>Applicant</th><th>Type</th><th>Location</th><th>Date</th><th>Status</th><th>Action</th></tr></thead><tbody>'
-    +APPS.map(function(a){
-      return '<tr><td><span class="aid">'+a.id+'</span></td><td>'+a.owner+'</td><td>'+a.type+'</td>'
-        +'<td style="max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px">'+a.location+'</td>'
-        +'<td style="font-size:12px;color:#64748b">'+a.date+'</td>'
-        +'<td>'+bdg(a.status)+'</td>'
-        +'<td><button class="btn bgh bsm" onclick="viewApp(\''+a.id+'\')">View</button></td></tr>';
-    }).join('')
-    +'</tbody></table></div></div>';
+  return '<div class="card"><div class="sh"><div class="st">All Applications</div><select class="fsel" style="width:160px;padding:6px 10px;font-size:13px"><option>All Statuses</option><option>Submitted</option><option>Dept. Review</option><option>Approved</option><option>Rejected</option></select></div><div class="tw"><table><thead><tr><th>App ID</th><th>Applicant</th><th>Type</th><th>Location</th><th>Date</th><th>Status</th><th>Action</th></tr></thead><tbody>'+APPS.map(function(a){return '<tr><td><span class="aid">'+a.id+'</span></td><td>'+a.owner+'</td><td>'+a.type+'</td><td style="max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px">'+a.location+'</td><td style="font-size:12px;color:#64748b">'+a.date+'</td><td>'+bdg(a.status)+'</td><td><button class="btn bgh bsm" onclick="viewApp(\''+a.id+'\')">View</button></td></tr>';}).join('')+'</tbody></table></div></div>';
 }
-
 function reportsPage(){
   var total=APPS.length,ok=APPS.filter(function(a){return a.status==='approved';}).length,rej=APPS.filter(function(a){return a.status==='rejected';}).length,pend=total-ok-rej;
-  return '<div class="sgrid">'
-    +'<div class="stat blue"><div class="stic">📊</div><div class="sval">'+total+'</div><div class="slbl">Total Applications</div></div>'
-    +'<div class="stat green"><div class="stic">✅</div><div class="sval">'+ok+'</div><div class="slbl">Approved</div></div>'
-    +'<div class="stat red"><div class="stic">❌</div><div class="sval">'+rej+'</div><div class="slbl">Rejected</div></div>'
-    +'<div class="stat amber"><div class="stic">⏳</div><div class="sval">'+pend+'</div><div class="slbl">In Progress</div></div>'
-    +'<div class="stat indigo"><div class="stic">💰</div><div class="sval">'+fmt(totalRev())+'</div><div class="slbl">Revenue Generated</div></div>'
-    +'</div>'
-    +'<div class="g2">'
-    +'<div class="card"><div class="st" style="margin-bottom:14px">Application Types</div>'
-    +['New Proposal','Renovation','As Built','Remodeling','Regularization'].map(function(t){
-      var c=APPS.filter(function(a){return a.type===t;}).length;
-      return '<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f1f5f9">'
-        +'<span style="font-size:13px">'+t+'</span>'
-        +'<div style="display:flex;align-items:center;gap:8px"><div style="width:'+Math.max(c*30,8)+'px;height:8px;background:linear-gradient(90deg,#1B4F8A,#2563EB);border-radius:4px"></div><span style="font-size:12px;font-weight:700">'+c+'</span></div>'
-        +'</div>';
-    }).join('')+'</div>'
-    +'<div class="card"><div class="st" style="margin-bottom:14px">Department Performance</div>'
-    +['Front Desk','Town Planning','Survey','Engineering','Environmental'].map(function(d){
-      return '<div style="padding:8px 0;border-bottom:1px solid #f1f5f9">'
-        +'<div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;color:#64748b">'+d+'</span><span style="font-size:12px;font-weight:700;color:#059669">100%</span></div>'
-        +'<div style="height:4px;background:#E2E8F0;border-radius:2px"><div style="width:100%;height:100%;background:#059669;border-radius:2px"></div></div></div>';
-    }).join('')+'</div>'
-    +'</div>';
+  return '<div class="sgrid"><div class="stat blue"><div class="stic">📊</div><div class="sval">'+total+'</div><div class="slbl">Total Applications</div></div><div class="stat green"><div class="stic">✅</div><div class="sval">'+ok+'</div><div class="slbl">Approved</div></div><div class="stat red"><div class="stic">❌</div><div class="sval">'+rej+'</div><div class="slbl">Rejected</div></div><div class="stat amber"><div class="stic">⏳</div><div class="sval">'+pend+'</div><div class="slbl">In Progress</div></div><div class="stat indigo"><div class="stic">💰</div><div class="sval">'+fmt(totalRev())+'</div><div class="slbl">Revenue Generated</div></div></div><div class="g2"><div class="card"><div class="st" style="margin-bottom:14px">Application Types</div>'+['New Proposal','Renovation','As Built','Remodeling','Regularization'].map(function(t){var c=APPS.filter(function(a){return a.type===t;}).length;return '<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f1f5f9"><span style="font-size:13px">'+t+'</span><div style="display:flex;align-items:center;gap:8px"><div style="width:'+Math.max(c*30,8)+'px;height:8px;background:linear-gradient(90deg,#1B4F8A,#2563EB);border-radius:4px"></div><span style="font-size:12px;font-weight:700">'+c+'</span></div></div>';}).join('')+'</div><div class="card"><div class="st" style="margin-bottom:14px">Department Performance</div>'+['Front Desk','Town Planning','Survey','Engineering','Environmental'].map(function(d){return '<div style="padding:8px 0;border-bottom:1px solid #f1f5f9"><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;color:#64748b">'+d+'</span><span style="font-size:12px;font-weight:700;color:#059669">100%</span></div><div style="height:4px;background:#E2E8F0;border-radius:2px"><div style="width:100%;height:100%;background:#059669;border-radius:2px"></div></div></div>';}).join('')+'</div></div>';
 }
 
 /* ── MODALS ── */
@@ -575,117 +675,73 @@ function showModal(){
   else if(S.modal==='rev')ov.innerHTML=revModal();
   else if(S.modal==='fix')ov.innerHTML=fixModal();
   else if(S.modal==='pay')ov.innerHTML=payModalHtml();
+  else if(S.modal==='dgcustom')ov.innerHTML=dgCustomModal();
+  else if(S.modal==='lockconfirm')ov.innerHTML=lockConfirmModal();
   document.body.appendChild(ov);
   ov.addEventListener('click',function(e){if(e.target===ov)closeM();});
   window.submitRev=function(action){
     var c=document.getElementById('rcom');var cval=c?c.value:'';
     var a=S.selApp;var role=S.revRole;if(!a)return;
-    a.comments[role]=cval||a.comments[role]||'';
-    a.review[role]=action;
+    a.comments[role]=cval||a.comments[role]||'';a.review[role]=action;
     if(role==='frontdesk'&&action==='approved')a.status='dept_review';
     else if(role==='frontdesk'&&action==='correction')a.status='correction';
     else if(role==='frontdesk'&&action==='rejected')a.status='rejected';
-    else if(role==='dg'&&action==='approved'){
-      a.status='approved';
-      var now=new Date();
-      var exp=new Date(now.getTime()+365*24*3600*1000);
-      a.permit={number:'KBP/KAD/2025/'+a.id.split('-')[2],issued:now.toISOString().slice(0,10),expires:exp.toISOString().slice(0,10)};
-    }
+    else if(role==='dg'&&action==='approved'){a.status='approved';var now=new Date();var exp=new Date(now.getTime()+365*24*3600*1000);a.permit={number:'KBP/KAD/2025/'+a.id.split('-')[2],issued:now.toISOString().slice(0,10),expires:exp.toISOString().slice(0,10)};}
     else if(role==='dg'&&action==='rejected')a.status='rejected';
-    alert('Decision: '+action.toUpperCase()+'\nApplication '+a.id+' has been updated.');
-    closeM();render();
+    alert('Decision: '+action.toUpperCase()+'\nApplication '+a.id+' has been updated.');closeM();render();
   };
 }
 
 function viewModal(){
   var a=S.selApp;if(!a)return'';
-  var deptLabels={frontdesk:'Front Desk',town_planning:'Town Planning',survey:'Survey',engineering:'Engineering',environmental:'Environmental'};
-  return '<div class="modal"><div class="mhdr"><div class="mttl">Application: '+a.id+'</div><button class="mclose" onclick="closeM()">x</button></div>'
-    +'<div class="mbdy">'
-    +'<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">'+bdg(a.status)+'<span style="font-size:12px;color:#64748b">'+a.date+'</span></div>'
-    +'<div class="rsec"><div class="rttl">Applicant</div>'
-    +'<div class="rf"><span class="rfl">Name</span><span class="rfv">'+a.applicant.title+' '+a.applicant.first+' '+a.applicant.middle+' '+a.applicant.surname+'</span></div>'
-    +'<div class="rf"><span class="rfl">Phone</span><span class="rfv">'+a.applicant.phone+'</span></div>'
-    +'<div class="rf"><span class="rfl">Email</span><span class="rfv">'+a.applicant.email+'</span></div>'
-    +'<div class="rf"><span class="rfl">ID</span><span class="rfv">'+a.applicant.id+'</span></div></div>'
-    +'<div class="rsec"><div class="rttl">Property</div>'
-    +'<div class="rf"><span class="rfl">Type</span><span class="rfv">'+a.type+'</span></div>'
-    +'<div class="rf"><span class="rfl">Land Use</span><span class="rfv">'+a.property.landUse+'</span></div>'
-    +'<div class="rf"><span class="rfl">Zone</span><span class="rfv">'+a.property.zone+'</span></div>'
-    +'<div class="rf"><span class="rfl">Location</span><span class="rfv">'+a.property.streetName+', '+a.property.district+'</span></div>'
-    +'<div class="rf"><span class="rfl">Floors</span><span class="rfv">'+a.property.noFloors+'</span></div>'
-    +'<div class="rf"><span class="rfl">Est. Cost</span><span class="rfv">'+a.property.estCost+'</span></div></div>'
-    +'<div class="rsec"><div class="rttl">Department Reviews</div>'
-    +['frontdesk','town_planning','survey','engineering','environmental'].map(function(d){
-      var sv=a.review[d];
-      var col=sv==='approved'?'#059669':sv==='rejected'?'#DC2626':'#64748b';
-      return '<div class="rf"><span class="rfl">'+deptLabels[d]+'</span><span class="rfv" style="color:'+col+'">'+( sv?sv[0].toUpperCase()+sv.slice(1):'Pending')+'</span></div>';
-    }).join('')+'</div>'
-    +(Object.keys(a.comments).length?'<div class="cmt"><div style="font-size:11px;font-weight:700;color:#92400E;margin-bottom:5px">Comments</div>'
-      +Object.entries(a.comments).map(function(e){return '<div style="margin-bottom:6px"><span style="font-size:11px;font-weight:700;color:#92400E;text-transform:capitalize">'+e[0].replace('_',' ')+':</span><div style="font-size:12px;color:#78350F;margin-top:2px">'+e[1]+'</div></div>';}).join('')+'</div>':'')
-    +'<div class="rsec" style="margin-top:14px"><div class="rttl">Fees</div>'
-    +a.fees.map(function(f){return '<div class="feer"><span>'+f.desc+'</span><span>'+fmt(f.amount)+'</span></div>';}).join('')
-    +'<div class="feer tot"><span>Total</span><span>'+fmt(a.fees.reduce(function(s,f){return s+f.amount;},0))+'</span></div></div>'
-    +'</div><div class="mftr"><button class="btn bgh" onclick="closeM()">Close</button></div></div>';
+  var dl={frontdesk:'Front Desk',town_planning:'Town Planning',survey:'Survey',engineering:'Engineering',environmental:'Environmental'};
+  return '<div class="modal"><div class="mhdr"><div class="mttl">Application: '+a.id+'</div><button class="mclose" onclick="closeM()">×</button></div><div class="mbdy"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">'+bdg(a.status)+'<span style="font-size:12px;color:#64748b">'+a.date+'</span></div><div class="rsec"><div class="rttl">Applicant</div><div class="rf"><span class="rfl">Name</span><span class="rfv">'+a.applicant.title+' '+a.applicant.first+' '+a.applicant.middle+' '+a.applicant.surname+'</span></div><div class="rf"><span class="rfl">Phone</span><span class="rfv">'+a.applicant.phone+'</span></div><div class="rf"><span class="rfl">Email</span><span class="rfv">'+a.applicant.email+'</span></div><div class="rf"><span class="rfl">ID</span><span class="rfv">'+a.applicant.id+'</span></div></div><div class="rsec"><div class="rttl">Property</div><div class="rf"><span class="rfl">Type</span><span class="rfv">'+a.type+'</span></div><div class="rf"><span class="rfl">Land Use</span><span class="rfv">'+a.property.landUse+'</span></div><div class="rf"><span class="rfl">Zone</span><span class="rfv">'+a.property.zone+'</span></div><div class="rf"><span class="rfl">Location</span><span class="rfv">'+a.property.streetName+', '+a.property.district+'</span></div><div class="rf"><span class="rfl">Floors</span><span class="rfv">'+a.property.noFloors+'</span></div><div class="rf"><span class="rfl">Est. Cost</span><span class="rfv">'+a.property.estCost+'</span></div></div><div class="rsec"><div class="rttl">Department Reviews</div>'+['frontdesk','town_planning','survey','engineering','environmental'].map(function(d){var sv=a.review[d];var col=sv==='approved'?'#059669':sv==='rejected'?'#DC2626':'#64748b';return '<div class="rf"><span class="rfl">'+dl[d]+'</span><span class="rfv" style="color:'+col+'">'+(sv?sv[0].toUpperCase()+sv.slice(1):'Pending')+'</span></div>';}).join('')+'</div>'+(Object.keys(a.comments).length?'<div class="cmt"><div style="font-size:11px;font-weight:700;color:#92400E;margin-bottom:5px">Comments</div>'+Object.entries(a.comments).map(function(e){return '<div style="margin-bottom:6px"><span style="font-size:11px;font-weight:700;color:#92400E;text-transform:capitalize">'+e[0].replace('_',' ')+':</span><div style="font-size:12px;color:#78350F;margin-top:2px">'+e[1]+'</div></div>';}).join('')+'</div>':'')+'<div class="rsec" style="margin-top:14px"><div class="rttl">Fees</div>'+a.fees.map(function(f){return '<div class="feer"><span>'+f.desc+'</span><span>'+fmt(f.amount)+'</span></div>';}).join('')+'<div class="feer tot"><span>Total</span><span>'+fmt(a.fees.reduce(function(s,f){return s+f.amount;},0))+'</span></div></div></div><div class="mftr"><button class="btn bgh" onclick="closeM()">Close</button></div></div>';
 }
-
 function revModal(){
   var a=S.selApp,role=S.revRole;if(!a)return'';
   var lb={frontdesk:'Front Desk',town_planning:'Town Planning',survey:'Survey Unit',engineering:'Engineering',environmental:'Environmental',dg:'Director General'};
   var isDG=role==='dg';
-  return '<div class="modal"><div class="mhdr"><div>'
-    +'<div class="mttl">'+(isDG?'DG Final Review':'Dept. Review')+': '+a.id+'</div>'
-    +'<div style="font-size:12px;color:#64748b;margin-top:2px">'+lb[role]+' - '+a.owner+'</div>'
-    +'</div><button class="mclose" onclick="closeM()">x</button></div>'
-    +'<div class="mbdy">'
-    +'<div class="rsec"><div class="rttl">Summary</div>'
-    +'<div class="rf"><span class="rfl">Type</span><span class="rfv">'+a.type+'</span></div>'
-    +'<div class="rf"><span class="rfl">Location</span><span class="rfv">'+a.location+'</span></div>'
-    +'<div class="rf"><span class="rfl">Zone</span><span class="rfv">'+a.property.zone+'</span></div>'
-    +'<div class="rf"><span class="rfl">Floors</span><span class="rfv">'+a.property.noFloors+'</span></div>'
-    +'<div class="rf"><span class="rfl">Est. Cost</span><span class="rfv">'+a.property.estCost+'</span></div></div>'
-    +(isDG?'<div class="rsec"><div class="rttl">Dept. Sign-offs</div>'
-      +['town_planning','survey','engineering','environmental'].map(function(d){
-        var lb2={town_planning:'Town Planning',survey:'Survey',engineering:'Engineering',environmental:'Environmental'};
-        var sv=a.review[d];
-        return '<div class="rf"><span class="rfl">'+lb2[d]+'</span><span class="rfv" style="color:'+(sv==='approved'?'#059669':'#D97706')+'">'+(sv==='approved'?'Approved':'Pending')+'</span></div>';
-      }).join('')+'</div>':'')
-    +'<div class="fgrp"><label class="flbl">Review Comment</label><textarea class="fctl" id="rcom" rows="3" placeholder="Add your comment...">'+( a.comments[role]||'')+'</textarea></div>'
-    +'<div style="font-size:12px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">Decision</div>'
-    +'<div style="display:flex;gap:10px">'
-    +(role==='frontdesk'?'<button class="btn bam" onclick="submitRev(\'correction\')">Request Correction</button>':'')
-    +'<button class="btn brd" onclick="submitRev(\'rejected\')">Reject</button>'
-    +'<button class="btn bgr" onclick="submitRev(\'approved\')">'+(isDG?'Approve & Issue Permit':'Approve')+'</button>'
-    +'</div></div></div>';
+  return '<div class="modal"><div class="mhdr"><div><div class="mttl">'+(isDG?'DG Final Review':'Dept. Review')+': '+a.id+'</div><div style="font-size:12px;color:#64748b;margin-top:2px">'+lb[role]+' — '+a.owner+'</div></div><button class="mclose" onclick="closeM()">×</button></div><div class="mbdy"><div class="rsec"><div class="rttl">Summary</div><div class="rf"><span class="rfl">Type</span><span class="rfv">'+a.type+'</span></div><div class="rf"><span class="rfl">Location</span><span class="rfv">'+a.location+'</span></div><div class="rf"><span class="rfl">Zone</span><span class="rfv">'+a.property.zone+'</span></div><div class="rf"><span class="rfl">Floors</span><span class="rfv">'+a.property.noFloors+'</span></div></div>'+(isDG?'<div class="rsec"><div class="rttl">Dept. Sign-offs</div>'+['town_planning','survey','engineering','environmental'].map(function(d){var lb2={town_planning:'Town Planning',survey:'Survey',engineering:'Engineering',environmental:'Environmental'};var sv=a.review[d];return '<div class="rf"><span class="rfl">'+lb2[d]+'</span><span class="rfv" style="color:'+(sv==='approved'?'#059669':'#D97706')+'">'+(sv==='approved'?'Approved':'Pending')+'</span></div>';}).join('')+'</div>':'')+'<div class="fgrp"><label class="flbl">Review Comment</label><textarea class="fctl" id="rcom" rows="3" placeholder="Add your comment...">'+(a.comments[role]||'')+'</textarea></div><div style="font-size:12px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">Decision</div><div style="display:flex;gap:10px">'+(role==='frontdesk'?'<button class="btn bam" onclick="submitRev(\'correction\')">Request Correction</button>':'')+'<button class="btn brd" onclick="submitRev(\'rejected\')">Reject</button><button class="btn bgr" onclick="submitRev(\'approved\')">'+(isDG?'Approve & Issue Permit':'Approve')+'</button></div></div></div>';
 }
-
 function fixModal(){
   var a=S.selApp;if(!a)return'';
-  return '<div class="modal"><div class="mhdr"><div class="mttl">Fix Correction: '+a.id+'</div><button class="mclose" onclick="closeM()">x</button></div>'
-    +'<div class="mbdy">'
-    +'<div class="notif warning"><div class="nic">⚠️</div><div><div class="nttl">Correction Required</div><div class="nsb">'+(a.comments.frontdesk||'Please review the required corrections.')+'</div></div></div>'
-    +'<div style="margin-top:16px"><label class="flbl">Re-upload Survey Plan</label>'
-    +'<div style="border:2px dashed #CBD5E1;border-radius:10px;padding:24px;text-align:center;cursor:pointer" onclick="alert(\'File picker opened\')">'
-    +'<div style="font-size:24px;margin-bottom:8px">📄</div><div style="font-size:13px;font-weight:600">Click to upload Survey Plan</div>'
-    +'<div style="font-size:12px;color:#64748b;margin-top:4px">PDF, JPG, PNG (max 5MB)</div></div></div>'
-    +'<div style="margin-top:12px"><label class="flbl">Note (optional)</label><textarea class="fctl" rows="2" placeholder="Explain changes made..."></textarea></div>'
-    +'</div>'
-    +'<div class="mftr"><button class="btn bgh" onclick="closeM()">Cancel</button><button class="btn bbl" onclick="alert(\'Resubmitted successfully!\');closeM()">Resubmit</button></div></div>';
+  return '<div class="modal"><div class="mhdr"><div class="mttl">Fix Correction: '+a.id+'</div><button class="mclose" onclick="closeM()">×</button></div><div class="mbdy"><div class="notif warning"><div class="nic">⚠️</div><div><div class="nttl">Correction Required</div><div class="nsb">'+(a.comments.frontdesk||'Please review corrections.')+'</div></div></div><div style="margin-top:16px"><label class="flbl">Re-upload Survey Plan</label><div style="border:2px dashed #CBD5E1;border-radius:10px;padding:24px;text-align:center;cursor:pointer" onclick="alert(\'File picker opened\')"><div style="font-size:24px;margin-bottom:8px">📄</div><div style="font-size:13px;font-weight:600">Click to upload Survey Plan</div></div></div></div><div class="mftr"><button class="btn bgh" onclick="closeM()">Cancel</button><button class="btn bbl" onclick="alert(\'Resubmitted!\');closeM()">Resubmit</button></div></div>';
+}
+function payModalHtml(){
+  return '<div class="modal"><div class="mhdr"><div class="mttl">Online Payment</div><button class="mclose" onclick="closeM()">×</button></div><div class="mbdy"><div style="text-align:center;padding:16px 0"><div style="font-size:32px">💳</div><div style="font-size:24px;font-weight:800;color:#1B4F8A;margin:8px 0">N85,000</div><div style="font-size:13px;color:#64748b">Total Amount Due</div></div><div class="fgrp"><label class="flbl">Card Number</label><input class="fctl" placeholder="4242 4242 4242 4242"></div><div class="frow"><div><label class="flbl">Expiry</label><input class="fctl" placeholder="MM/YY"></div><div><label class="flbl">CVV</label><input class="fctl" placeholder="123"></div></div><div class="fgrp"><label class="flbl">Name on Card</label><input class="fctl" placeholder="Adamu Ibrahim"></div></div><div class="mftr"><button class="btn bgh" onclick="closeM()">Cancel</button><button class="btn bgr" onclick="alert(\'Payment successful!\nTXN-2025-84921\');closeM()">Pay N85,000</button></div></div>';
 }
 
-function payModalHtml(){
-  return '<div class="modal"><div class="mhdr"><div class="mttl">Online Payment</div><button class="mclose" onclick="closeM()">x</button></div>'
+/* DG Custom Override Modal */
+function dgCustomModal(){
+  var a=S.selApp;if(!a)return'';
+  return '<div class="modal"><div class="mhdr"><div><div class="mttl" style="color:#7C3AED">Custom Override: '+a.id+'</div><div style="font-size:12px;color:#64748b;margin-top:2px">DG Authority — '+a.owner+'</div></div><button class="mclose" onclick="closeM()">×</button></div>'
     +'<div class="mbdy">'
-    +'<div style="text-align:center;padding:16px 0"><div style="font-size:32px">💳</div><div style="font-size:24px;font-weight:800;color:#1B4F8A;margin:8px 0">N85,000</div><div style="font-size:13px;color:#64748b">Total Amount Due</div></div>'
-    +'<div class="fgrp"><label class="flbl">Card Number</label><input class="fctl" placeholder="4242 4242 4242 4242"></div>'
-    +'<div class="frow"><div><label class="flbl">Expiry</label><input class="fctl" placeholder="MM/YY"></div><div><label class="flbl">CVV</label><input class="fctl" placeholder="123"></div></div>'
-    +'<div class="fgrp"><label class="flbl">Name on Card</label><input class="fctl" placeholder="Adamu Ibrahim"></div>'
+    +'<div style="background:#F5F3FF;border:1px solid #DDD6FE;border-radius:8px;padding:12px;margin-bottom:16px"><div style="font-size:12px;font-weight:700;color:#6D28D9;margin-bottom:4px">DG CUSTOM OVERRIDE</div><div style="font-size:12px;color:#7C3AED">Set this application to any status and bypass all departmental requirements. This action is fully logged.</div></div>'
+    +'<div class="fgrp"><label class="flbl">Override Action</label><select class="fsel" id="ov-action"><option value="approved">Force Approve — Issue Permit Immediately</option><option value="rejected">Force Reject — Close Application</option><option value="dept_review">Reset to Department Review</option><option value="submitted">Reset to Submitted</option><option value="dg_review">Move to DG Review</option></select></div>'
+    +'<div class="fgrp"><label class="flbl">Override Reason (required)</label><textarea class="fctl" id="ov-reason" rows="3" placeholder="State the reason for this override..."></textarea></div>'
+    +'<div class="fgrp"><label class="flbl">DG Authorization Code</label><input class="fctl" id="ov-code" placeholder="Enter DG auth code (use: DG-2025)"></div>'
     +'</div>'
-    +'<div class="mftr"><button class="btn bgh" onclick="closeM()">Cancel</button><button class="btn bgr" onclick="alert(\'Payment successful!\\nTransaction ID: TXN-2025-84921\');closeM()">Pay N85,000</button></div></div>';
+    +'<div class="mftr"><button class="btn bgh" onclick="closeM()">Cancel</button><button class="btn bpu" onclick="submitDGOverride()">Execute Override</button></div></div>';
+}
+
+/* Lock confirm modal */
+function lockConfirmModal(){
+  var email=S.lockTarget;var u=USERS[email];if(!u)return'';
+  var isLocked=STAFF_ACCESS[email]&&STAFF_ACCESS[email].locked;
+  return '<div class="modal"><div class="mhdr"><div class="mttl">'+(isLocked?'Unlock Account':'Lock Account')+': '+u.name+'</div><button class="mclose" onclick="closeM()">×</button></div>'
+    +'<div class="mbdy">'
+    +(isLocked
+      ?'<div class="notif success"><div class="nic">🔓</div><div><div class="nttl">Restore Access</div><div class="nsb">'+u.name+'\'s account will be unlocked and they will regain full system access.</div></div></div>'
+      :'<div class="notif danger"><div class="nic">🔒</div><div><div class="nttl">Suspend Account</div><div class="nsb">'+u.name+' will be immediately locked out and cannot log in until unlocked.</div></div></div>')
+    +(!isLocked?'<div class="fgrp"><label class="flbl">Reason for Lockout</label><textarea class="fctl" id="lock-reason" rows="2" placeholder="State reason for suspension..."></textarea></div>':'')
+    +'</div>'
+    +'<div class="mftr"><button class="btn bgh" onclick="closeM()">Cancel</button>'
+    +'<button class="btn '+(isLocked?'bgr':'brd')+'" onclick="confirmLock(\''+email+'\')">'+(isLocked?'Unlock Account':'Lock Account')+'</button>'
+    +'</div></div>';
 }
 
 function attachApp(){
-  window.go=function(n){S.nav=n;render();};
+  window.go=function(n){S.nav=n;if(n!=='gps_monitor')stopGPS();render();};
   window.setStep=function(n){S.fstep=n;render();};
   window.fakeUp=function(k){S.docs[k]=true;render();};
   window.openPayModal=function(){S.modal='pay';showModal();};
@@ -694,8 +750,60 @@ function attachApp(){
   window.fixApp=function(id){S.selApp=APPS.find(function(a){return a.id===id;});S.modal='fix';showModal();};
   window.closeM=function(){S.modal=null;var o=document.getElementById('mov');if(o)o.remove();};
   window.subApp=function(){alert('Application submitted!\nID: KBP-2025-0'+Math.floor(Math.random()*900+100)+'\nYou will receive SMS and email notifications.');S.fstep=1;S.nav='my_apps';render();};
-  window.logout=function(){S.user=null;S.view='login';S.nav='dashboard';render();};
+  window.logout=function(){S.user=null;S.view='login';S.nav='dashboard';stopGPS();render();};
   window.doTrack=function(){var id=document.getElementById('tid').value.trim();document.getElementById('tr').innerHTML=trackResult(id);};
+
+  /* DG Override actions */
+  window.dgOverride=function(id,action){
+    var a=APPS.find(function(x){return x.id===id;});if(!a)return;
+    var confirmMsg=action==='approved'?'Force APPROVE application '+id+'? This will bypass all department reviews and issue a permit immediately.'
+      :action==='rejected'?'Force REJECT application '+id+'? This will close the application regardless of its current stage.'
+      :'Reset application '+id+' to submitted status?';
+    if(!confirm(confirmMsg))return;
+    if(action==='approved'){a.status='approved';var now=new Date();var exp=new Date(now.getTime()+365*24*3600*1000);a.permit={number:'KBP/KAD/2025/'+a.id.split('-')[2],issued:now.toISOString().slice(0,10),expires:exp.toISOString().slice(0,10)};['frontdesk','town_planning','survey','engineering','environmental','dg'].forEach(function(d){a.review[d]='approved';});a.comments.dg='DG OVERRIDE: Force approved by Director General.';}
+    else if(action==='rejected'){a.status='rejected';a.comments.dg='DG OVERRIDE: Force rejected by Director General.';}
+    else if(action==='reset'){a.status='submitted';a.permit=null;['frontdesk','town_planning','survey','engineering','environmental','dg'].forEach(function(d){a.review[d]='pending';});}
+    alert('Override executed successfully!\nApplication '+id+' is now: '+a.status.toUpperCase());render();
+  };
+  window.openDGOverrideModal=function(id){S.selApp=APPS.find(function(a){return a.id===id;});S.modal='dgcustom';showModal();};
+  window.submitDGOverride=function(){
+    var action=document.getElementById('ov-action')?.value;
+    var reason=document.getElementById('ov-reason')?.value;
+    var code=document.getElementById('ov-code')?.value;
+    if(!reason){alert('Please state the reason for this override.');return;}
+    if(code!=='DG-2025'){alert('Invalid DG authorization code.\nUse: DG-2025');return;}
+    var a=S.selApp;if(!a)return;
+    a.status=action;
+    if(action==='approved'){var now=new Date();var exp=new Date(now.getTime()+365*24*3600*1000);a.permit={number:'KBP/KAD/2025/'+a.id.split('-')[2],issued:now.toISOString().slice(0,10),expires:exp.toISOString().slice(0,10)};['frontdesk','town_planning','survey','engineering','environmental','dg'].forEach(function(d){a.review[d]='approved';});}
+    a.comments.dg='DG CUSTOM OVERRIDE: '+reason;
+    alert('Custom override executed!\nApplication '+a.id+'\nNew Status: '+action.toUpperCase()+'\nLogged with DG credentials.');
+    closeM();render();
+  };
+
+  /* Staff lock/unlock */
+  window.toggleLock=function(email){S.lockTarget=email;S.modal='lockconfirm';showModal();};
+  window.confirmLock=function(email){
+    var acc=STAFF_ACCESS[email];if(!acc)return;
+    var reason='';
+    if(!acc.locked){var el=document.getElementById('lock-reason');reason=el?el.value:'Administrative suspension';if(!reason){alert('Please provide a reason for the lockout.');return;}}
+    acc.locked=!acc.locked;acc.lockedReason=acc.locked?reason:'';
+    var u=USERS[email];
+    alert((acc.locked?'Account LOCKED: ':'Account UNLOCKED: ')+u.name+'\n'+(acc.locked?'Reason: '+reason:'Full access restored.'));
+    closeM();render();
+  };
+  window.lockAllStaff=function(){
+    if(!confirm('Lock ALL staff accounts? This will immediately suspend access for all 6 staff members.'))return;
+    var reason='Mass lockout by Director General — '+new Date().toLocaleString();
+    Object.keys(STAFF_ACCESS).forEach(function(k){STAFF_ACCESS[k].locked=true;STAFF_ACCESS[k].lockedReason=reason;});
+    alert('All staff accounts have been locked.');render();
+  };
+
+  /* GPS */
+  window.selStaff=function(email){S.selStaff=email;var pg=document.getElementById('gps-page');if(pg){pg.innerHTML=gpsMonitorContent();attachGPSEvents();}};
+}
+
+function attachGPSEvents(){
+  window.selStaff=function(email){S.selStaff=email;var pg=document.getElementById('gps-page');if(pg){pg.innerHTML=gpsMonitorContent();attachGPSEvents();}};
 }
 
 render();
