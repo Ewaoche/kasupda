@@ -172,10 +172,9 @@ tr:hover td{background:#f8fafc}
 const USERS={
   'citizen@kasupda.ng':{pw:'citizen123',role:'citizen',name:'Adamu Ibrahim',dept:''},
   'frontdesk@kasupda.ng':{pw:'frontdesk123',role:'frontdesk',name:'Fatima Suleiman',dept:'Front Desk'},
-  'planning@kasupda.ng':{pw:'planning123',role:'town_planning',name:'Engr. Musa Aliyu',dept:'Town Planning'},
-  'survey@kasupda.ng':{pw:'survey123',role:'survey',name:'Hajiya Amina Bello',dept:'Survey Unit'},
-  'engineering@kasupda.ng':{pw:'eng123',role:'engineering',name:'Engr. Chidi Okonkwo',dept:'Engineering'},
-  'environmental@kasupda.ng':{pw:'env123',role:'environmental',name:'Dr. Grace Yusuf',dept:'Environmental'},
+  'planning@kasupda.ng':{pw:'planning123',role:'dev_control',name:'Engr. Musa Aliyu',dept:'Development Control'},
+  'survey@kasupda.ng':{pw:'survey123',role:'monitoring',name:'Hajiya Amina Bello',dept:'Monitoring & Compliance'},
+  'engineering@kasupda.ng':{pw:'eng123',role:'urban_planning',name:'Engr. Chidi Okonkwo',dept:'Urban Planning & Research'},
   'records@kasupda.ng':{pw:'records123',role:'records',name:'Nuhu Tanko',dept:'Records'},
   'dg@kasupda.ng':{pw:'dg123',role:'dg',name:'Arch. Murtala Hassan',dept:'Director General'},
 };
@@ -186,23 +185,17 @@ var STAFF_ACCESS={
   'planning@kasupda.ng':{locked:false,lockedReason:''},
   'survey@kasupda.ng':{locked:false,lockedReason:''},
   'engineering@kasupda.ng':{locked:false,lockedReason:''},
-  'environmental@kasupda.ng':{locked:false,lockedReason:''},
   'records@kasupda.ng':{locked:false,lockedReason:''},
 };
 
 /* Field staff GPS data (simulated) */
 var FIELD_STAFF=[
-  {email:'planning@kasupda.ng',name:'Engr. Musa Aliyu',dept:'Town Planning',status:'online',
+  {email:'planning@kasupda.ng',name:'Engr. Musa Aliyu',dept:'Development Control',status:'online',
    lat:52,lng:38,location:'GRA Phase 2, Kaduna',task:'Site inspection - KBP-2025-0052',lastSeen:'Just now',battery:87,speed:'0 km/h'},
-  {email:'survey@kasupda.ng',name:'Hajiya Amina Bello',dept:'Survey Unit',status:'online',
-   lat:28,lng:62,location:'Barnawa Layout, Kaduna',task:'Survey verification - KBP-2025-0071',lastSeen:'2 min ago',battery:64,speed:'12 km/h'},
-  {email:'engineering@kasupda.ng',name:'Engr. Chidi Okonkwo',dept:'Engineering',status:'idle',
-   lat:65,lng:25,location:'Rigasa, Kaduna',task:'Structural assessment - KBP-2025-0089',lastSeen:'8 min ago',battery:45,speed:'0 km/h'},
-  {email:'environmental@kasupda.ng',name:'Dr. Grace Yusuf',dept:'Environmental',status:'online',
-   lat:42,lng:75,location:'Tudun Wada, Kaduna',task:'Environmental assessment - KBP-2025-0063',lastSeen:'1 min ago',battery:92,speed:'8 km/h'},
-  {email:'frontdesk@kasupda.ng',name:'Fatima Suleiman',dept:'Front Desk',status:'offline',
-   lat:55,lng:50,location:'KASUPDA HQ',task:'Office duty',lastSeen:'45 min ago',battery:20,speed:'0 km/h'},
-  {email:'records@kasupda.ng',name:'Nuhu Tanko',dept:'Records',status:'idle',
+  {email:'survey@kasupda.ng',name:'Hajiya Amina Bello',dept:'Monitoring & Compliance',status:'online',
+   lat:28,lng:62,location:'Barnawa Layout, Kaduna',task:'Compliance verification - KBP-2025-0071',lastSeen:'2 min ago',battery:64,speed:'12 km/h'},
+  {email:'engineering@kasupda.ng',name:'Engr. Chidi Okonkwo',dept:'Urban Planning & Research',status:'idle',
+   lat:65,lng:25,location:'Rigasa, Kaduna',task:'Urban planning assessment - KBP-2025-0089',lastSeen:'8 min ago',battery:45,speed:'0 km/h'},  {email:'records@kasupda.ng',name:'Nuhu Tanko',dept:'Records',status:'idle',
    lat:70,lng:48,location:'City Centre, Kaduna',task:'Document verification - KBP-2025-0041',lastSeen:'15 min ago',battery:73,speed:'0 km/h'},
 ];
 
@@ -211,39 +204,39 @@ const APPS=[
    applicant:{title:'Mr',first:'Adamu',middle:'Tanko',surname:'Ibrahim',gender:'Male',phone:'08012345678',email:'citizen@kasupda.ng',id:'NIN-2345678901'},
    property:{landUse:'Residential',zone:'Zone A',plotNo:'234',streetName:'Independence Way',district:'GRA',city:'Kaduna',landArea:'500sqm',noFloors:'2',estCost:'N15,000,000'},
    fees:[{desc:'Application Processing Fee',amount:5000},{desc:'Assessment Fee',amount:50000},{desc:'Permit Fee',amount:30000}],
-   review:{frontdesk:'approved',town_planning:'approved',survey:'approved',engineering:'approved',environmental:'approved',dg:'approved'},
-   comments:{frontdesk:'All documents complete.',town_planning:'Compliant with master plan.',engineering:'Structural drawings approved.'},
+   review:{frontdesk:'approved',dev_control:'approved',monitoring:'approved',urban_planning:'approved',dg:'approved'},
+   comments:{frontdesk:'All documents complete.',dev_control:'Compliant with master plan.',urban_planning:'Structural drawings approved.'},
    permit:{number:'KBP/KAD/2025/0041',issued:'2025-02-10',expires:'2026-02-10'}},
   {id:'KBP-2025-0052',owner:'Chinyere Obi',type:'Renovation',location:'No. 18 Kanta Road, Kaduna',date:'2025-01-28',status:'dept_review',
    applicant:{title:'Mrs',first:'Chinyere',middle:'Agnes',surname:'Obi',gender:'Female',phone:'07098765432',email:'chinyere@email.com',id:'NIN-3456789012'},
    property:{landUse:'Commercial',zone:'Zone B',plotNo:'18',streetName:'Kanta Road',district:'City Centre',city:'Kaduna',landArea:'300sqm',noFloors:'3',estCost:'N25,000,000'},
    fees:[{desc:'Application Processing Fee',amount:5000},{desc:'Assessment Fee',amount:75000},{desc:'Permit Fee',amount:50000}],
-   review:{frontdesk:'approved',town_planning:'pending',survey:'pending',engineering:'pending',environmental:'pending',dg:'pending'},
+   review:{frontdesk:'approved',dev_control:'pending',monitoring:'pending',urban_planning:'pending',dg:'pending'},
    comments:{frontdesk:'Forwarded to departments.'},permit:null},
   {id:'KBP-2025-0063',owner:'Mohammed Lawal',type:'As Built',location:'No. 7 Aliyu Makama Rd',date:'2025-02-05',status:'submitted',
    applicant:{title:'Alhaji',first:'Mohammed',middle:'',surname:'Lawal',gender:'Male',phone:'08087654321',email:'mlawal@email.com',id:'NIN-4567890123'},
    property:{landUse:'Residential',zone:'Zone C',plotNo:'7',streetName:'Aliyu Makama Road',district:'Tudun Wada',city:'Kaduna',landArea:'400sqm',noFloors:'1',estCost:'N8,000,000'},
    fees:[{desc:'Application Processing Fee',amount:5000},{desc:'Assessment Fee',amount:40000},{desc:'Permit Fee',amount:20000}],
-   review:{frontdesk:'pending',town_planning:'pending',survey:'pending',engineering:'pending',environmental:'pending',dg:'pending'},
+   review:{frontdesk:'pending',dev_control:'pending',monitoring:'pending',urban_planning:'pending',dg:'pending'},
    comments:{},permit:null},
   {id:'KBP-2025-0071',owner:'Hauwa Garba',type:'New Proposal',location:'Plot 112, Barnawa Layout',date:'2025-02-18',status:'correction',
    applicant:{title:'Mrs',first:'Hauwa',middle:'Binta',surname:'Garba',gender:'Female',phone:'08154321234',email:'hgarba@email.com',id:'NIN-5678901234'},
    property:{landUse:'Residential',zone:'Zone A',plotNo:'112',streetName:'Barnawa Layout',district:'Barnawa',city:'Kaduna',landArea:'600sqm',noFloors:'2',estCost:'N20,000,000'},
    fees:[{desc:'Application Processing Fee',amount:5000},{desc:'Assessment Fee',amount:60000},{desc:'Permit Fee',amount:40000}],
-   review:{frontdesk:'correction',town_planning:'pending',survey:'pending',engineering:'pending',environmental:'pending',dg:'pending'},
+   review:{frontdesk:'correction',dev_control:'pending',monitoring:'pending',urban_planning:'pending',dg:'pending'},
    comments:{frontdesk:'Survey plan missing. Please reupload a certified copy from state survey office.'},permit:null},
   {id:'KBP-2025-0089',owner:'Peter Nwachukwu',type:'Regularization',location:'No. 45 Rigasa Rd',date:'2025-02-25',status:'dg_review',
    applicant:{title:'Mr',first:'Peter',middle:'Emeka',surname:'Nwachukwu',gender:'Male',phone:'09023456789',email:'pnwach@email.com',id:'NIN-6789012345'},
    property:{landUse:'Mixed Use',zone:'Zone B',plotNo:'45',streetName:'Rigasa Road',district:'Rigasa',city:'Kaduna',landArea:'450sqm',noFloors:'4',estCost:'N40,000,000'},
    fees:[{desc:'Application Processing Fee',amount:5000},{desc:'Assessment Fee',amount:100000},{desc:'Regularization Surcharge',amount:80000},{desc:'Permit Fee',amount:60000}],
-   review:{frontdesk:'approved',town_planning:'approved',survey:'approved',engineering:'approved',environmental:'approved',dg:'pending'},
-   comments:{frontdesk:'Complete.',town_planning:'Minor setback waived.',engineering:'4-storey calculations approved.',environmental:'EIA waiver granted.'},permit:null},
+   review:{frontdesk:'approved',dev_control:'approved',monitoring:'approved',urban_planning:'approved',dg:'pending'},
+   comments:{frontdesk:'Complete.',dev_control:'Minor setback waived.',urban_planning:'4-storey calculations approved.'},permit:null},
   {id:'KBP-2025-0094',owner:'Zainab Abdullahi',type:'New Proposal',location:'Plot 78, Narayi High Cost',date:'2025-03-01',status:'rejected',
    applicant:{title:'Dr',first:'Zainab',middle:'',surname:'Abdullahi',gender:'Female',phone:'08076543210',email:'zabdullahi@email.com',id:'NIN-7890123456'},
    property:{landUse:'Residential',zone:'Zone A',plotNo:'78',streetName:'Narayi High Cost',district:'Narayi',city:'Kaduna',landArea:'350sqm',noFloors:'3',estCost:'N18,000,000'},
    fees:[{desc:'Application Processing Fee',amount:5000},{desc:'Assessment Fee',amount:50000},{desc:'Permit Fee',amount:35000}],
-   review:{frontdesk:'approved',town_planning:'rejected',survey:'pending',engineering:'pending',environmental:'pending',dg:'pending'},
-   comments:{town_planning:'Exceeds Zone A height limit of 2 floors. Reapply with revised drawings.'},permit:null},
+   review:{frontdesk:'approved',dev_control:'rejected',monitoring:'pending',urban_planning:'pending',dg:'pending'},
+   comments:{dev_control:'Exceeds Zone A height limit of 2 floors. Reapply with revised drawings.'},permit:null},
 ];
 
 const NOTIFS=[
@@ -280,7 +273,7 @@ function stopGPS(){if(gpsTimer){clearInterval(gpsTimer);gpsTimer=null;}}
 const fmt=n=>'N'+n.toLocaleString();
 const totalRev=()=>APPS.filter(function(a){return a.status==='approved';}).reduce(function(s,a){return s+a.fees.reduce(function(f,x){return f+x.amount;},0);},0);
 const ini=n=>n.split(' ').map(function(x){return x[0];}).join('').slice(0,2).toUpperCase();
-const staffColors={'frontdesk':'#2563EB','town_planning':'#7C3AED','survey':'#059669','engineering':'#D97706','environmental':'#0891B2','records':'#DC2626'};
+const staffColors={'frontdesk':'#2563EB','dev_control':'#7C3AED','monitoring':'#059669','urban_planning':'#D97706','records':'#DC2626'};
 
 function bdg(s){
   var m={submitted:'b-sub Submitted',dept_review:'b-dept Dept. Review',dg_review:'b-dg DG Review',approved:'b-ok Approved',rejected:'b-rej Rejected',correction:'b-cor Correction'};
@@ -299,7 +292,7 @@ function render(){
 
 /* ── LOGIN ── */
 function loginPage(){
-  var rl={citizen:'Citizen',frontdesk:'Front Desk',town_planning:'Town Planning',survey:'Survey Unit',engineering:'Engineering',environmental:'Environmental',records:'Records',dg:'Director General'};
+  var rl={citizen:'Citizen',frontdesk:'Front Desk',dev_control:'Development Control',monitoring:'Monitoring & Compliance',urban_planning:'Urban Planning & Research',records:'Records',dg:'Director General'};
   return '<div class="auth-wrap"><div class="auth-card">'
     +'<div class="auth-hdr"><div class="auth-logo"><div class="logo-ic">K</div><div><div class="logo-nm">KASUPDA</div><div class="logo-sb">Kaduna State Urban Planning</div></div></div><div class="auth-ttl">Building Permit Application System</div></div>'
     +'<div class="auth-body">'
@@ -332,10 +325,9 @@ function navItems(role){
   var all={
     citizen:[{id:'my_apps',ic:'📋',lb:'My Applications'},{id:'new_app',ic:'➕',lb:'New Application'},{id:'track',ic:'🔍',lb:'Track Application'},{id:'notifications',ic:'🔔',lb:'Notifications'},{id:'download',ic:'⬇️',lb:'Download Permit'}],
     frontdesk:[{id:'dashboard',ic:'📊',lb:'Dashboard'},{id:'inbox',ic:'📥',lb:'Inbox'},{id:'all_apps',ic:'📋',lb:'All Applications'}],
-    town_planning:[{id:'dashboard',ic:'📊',lb:'Dashboard'},{id:'pending',ic:'⏳',lb:'Pending Review'},{id:'all_apps',ic:'📋',lb:'All Applications'}],
-    survey:[{id:'dashboard',ic:'📊',lb:'Dashboard'},{id:'pending',ic:'⏳',lb:'Pending Review'},{id:'all_apps',ic:'📋',lb:'All Applications'}],
-    engineering:[{id:'dashboard',ic:'📊',lb:'Dashboard'},{id:'pending',ic:'⏳',lb:'Pending Review'},{id:'all_apps',ic:'📋',lb:'All Applications'}],
-    environmental:[{id:'dashboard',ic:'📊',lb:'Dashboard'},{id:'pending',ic:'⏳',lb:'Pending Review'},{id:'all_apps',ic:'📋',lb:'All Applications'}],
+    dev_control:[{id:'dashboard',ic:'📊',lb:'Dashboard'},{id:'pending',ic:'⏳',lb:'Pending Review'},{id:'all_apps',ic:'📋',lb:'All Applications'}],
+    monitoring:[{id:'dashboard',ic:'📊',lb:'Dashboard'},{id:'pending',ic:'⏳',lb:'Pending Review'},{id:'all_apps',ic:'📋',lb:'All Applications'}],
+    urban_planning:[{id:'dashboard',ic:'📊',lb:'Dashboard'},{id:'pending',ic:'⏳',lb:'Pending Review'},{id:'all_apps',ic:'📋',lb:'All Applications'}],
     records:[{id:'dashboard',ic:'📊',lb:'Dashboard'},{id:'all_apps',ic:'📋',lb:'All Records'},{id:'reports',ic:'📈',lb:'Reports'}],
     dg:[
       {id:'dashboard',ic:'📊',lb:'Dashboard'},
@@ -441,7 +433,7 @@ function trackPage(){return '<div class="card" style="margin-bottom:16px"><div c
 function trackResult(id){
   var a=APPS.find(function(x){return x.id===id;});
   if(!a)return '<div class="card" style="text-align:center;padding:40px 20px"><div style="font-size:40px;opacity:.4;margin-bottom:12px">🔍</div><div style="color:#64748b">Application not found.</div></div>';
-  var stages=[{k:'s',l:'Submitted',ic:'📤',sub:'Received'},{k:'fd',l:'Front Desk',ic:'🗂️',sub:'Verification'},{k:'dept',l:'Dept. Review',ic:'🏛️',sub:'Town Planning, Survey, Engineering, Environmental'},{k:'dg',l:'DG Approval',ic:'👔',sub:'Final decision'},{k:'done',l:'Permit Issued',ic:'📜',sub:'QR Code & Number'}];
+  var stages=[{k:'s',l:'Submitted',ic:'📤',sub:'Received'},{k:'fd',l:'Front Desk',ic:'🗂️',sub:'Verification'},{k:'dept',l:'Dept. Review',ic:'🏛️',sub:'Development Control, Monitoring & Compliance, Urban Planning & Research'},{k:'dg',l:'DG Approval',ic:'👔',sub:'Final decision'},{k:'done',l:'Permit Issued',ic:'📜',sub:'QR Code & Number'}];
   function st(k){if(a.status==='approved')return'done';if(k==='s')return'done';if(k==='fd')return a.review.frontdesk==='approved'?'done':'act';if(k==='dept')return(a.status==='dept_review'||a.status==='dg_review')?'act':'pend';if(k==='dg')return a.status==='dg_review'?'act':'pend';return a.status==='approved'?'done':'pend';}
   return '<div class="card"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px"><div><div class="st">'+a.id+'</div><div style="font-size:12px;color:#64748b;margin-top:2px">'+a.type+' — '+a.location+'</div></div>'+bdg(a.status)+'</div><div class="tl">'+stages.map(function(sg){var sv=st(sg.k);return '<div class="tl-it"><div class="tld '+sv+'">'+(sv==='done'?'✓':sv==='act'?'●':'○')+'</div><div class="tlc"><div class="tlttl">'+sg.ic+' '+sg.l+'</div><div class="tlsb">'+sg.sub+'</div>'+(sv==='done'?'<div class="tlt">Completed</div>':sv==='act'?'<div class="tlt" style="color:#2563EB">In Progress</div>':'')+'</div></div>';}).join('')+'</div></div>';}
 function notifsPage(){return '<div>'+NOTIFS.map(function(n){return '<div class="notif '+n.type+'"><div class="nic">'+(n.type==='success'?'✅':n.type==='warning'?'⚠️':'ℹ️')+'</div><div><div class="nttl">'+n.title+'</div><div class="nsb">'+n.sub+'</div><div class="nt">'+n.time+'</div></div></div>';}).join('')+'</div>';}
@@ -533,7 +525,7 @@ function staffAccessPage(){
       var email=entry[0],u=entry[1];
       var acc=STAFF_ACCESS[email]||{locked:false};
       var isLocked=acc.locked;
-      var colorMap={frontdesk:'#2563EB',town_planning:'#7C3AED',survey:'#059669',engineering:'#D97706',environmental:'#0891B2',records:'#DC2626'};
+      var colorMap={frontdesk:'#2563EB',dev_control:'#7C3AED',monitoring:'#059669',urban_planning:'#D97706',records:'#DC2626'};
       var col=colorMap[u.role]||'#64748b';
       return '<div class="staff-row">'
         +'<div class="uav" style="background:'+col+'">'+ini(u.name)+'</div>'
@@ -664,7 +656,7 @@ function allApps(){
 }
 function reportsPage(){
   var total=APPS.length,ok=APPS.filter(function(a){return a.status==='approved';}).length,rej=APPS.filter(function(a){return a.status==='rejected';}).length,pend=total-ok-rej;
-  return '<div class="sgrid"><div class="stat blue"><div class="stic">📊</div><div class="sval">'+total+'</div><div class="slbl">Total Applications</div></div><div class="stat green"><div class="stic">✅</div><div class="sval">'+ok+'</div><div class="slbl">Approved</div></div><div class="stat red"><div class="stic">❌</div><div class="sval">'+rej+'</div><div class="slbl">Rejected</div></div><div class="stat amber"><div class="stic">⏳</div><div class="sval">'+pend+'</div><div class="slbl">In Progress</div></div><div class="stat indigo"><div class="stic">💰</div><div class="sval">'+fmt(totalRev())+'</div><div class="slbl">Revenue Generated</div></div></div><div class="g2"><div class="card"><div class="st" style="margin-bottom:14px">Application Types</div>'+['New Proposal','Renovation','As Built','Remodeling','Regularization'].map(function(t){var c=APPS.filter(function(a){return a.type===t;}).length;return '<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f1f5f9"><span style="font-size:13px">'+t+'</span><div style="display:flex;align-items:center;gap:8px"><div style="width:'+Math.max(c*30,8)+'px;height:8px;background:linear-gradient(90deg,#1B4F8A,#2563EB);border-radius:4px"></div><span style="font-size:12px;font-weight:700">'+c+'</span></div></div>';}).join('')+'</div><div class="card"><div class="st" style="margin-bottom:14px">Department Performance</div>'+['Front Desk','Town Planning','Survey','Engineering','Environmental'].map(function(d){return '<div style="padding:8px 0;border-bottom:1px solid #f1f5f9"><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;color:#64748b">'+d+'</span><span style="font-size:12px;font-weight:700;color:#059669">100%</span></div><div style="height:4px;background:#E2E8F0;border-radius:2px"><div style="width:100%;height:100%;background:#059669;border-radius:2px"></div></div></div>';}).join('')+'</div></div>';
+  return '<div class="sgrid"><div class="stat blue"><div class="stic">📊</div><div class="sval">'+total+'</div><div class="slbl">Total Applications</div></div><div class="stat green"><div class="stic">✅</div><div class="sval">'+ok+'</div><div class="slbl">Approved</div></div><div class="stat red"><div class="stic">❌</div><div class="sval">'+rej+'</div><div class="slbl">Rejected</div></div><div class="stat amber"><div class="stic">⏳</div><div class="sval">'+pend+'</div><div class="slbl">In Progress</div></div><div class="stat indigo"><div class="stic">💰</div><div class="sval">'+fmt(totalRev())+'</div><div class="slbl">Revenue Generated</div></div></div><div class="g2"><div class="card"><div class="st" style="margin-bottom:14px">Application Types</div>'+['New Proposal','Renovation','As Built','Remodeling','Regularization'].map(function(t){var c=APPS.filter(function(a){return a.type===t;}).length;return '<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f1f5f9"><span style="font-size:13px">'+t+'</span><div style="display:flex;align-items:center;gap:8px"><div style="width:'+Math.max(c*30,8)+'px;height:8px;background:linear-gradient(90deg,#1B4F8A,#2563EB);border-radius:4px"></div><span style="font-size:12px;font-weight:700">'+c+'</span></div></div>';}).join('')+'</div><div class="card"><div class="st" style="margin-bottom:14px">Department Performance</div>'+['Front Desk','Development Control','Monitoring & Compliance','Urban Planning & Research'].map(function(d){return '<div style="padding:8px 0;border-bottom:1px solid #f1f5f9"><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;color:#64748b">'+d+'</span><span style="font-size:12px;font-weight:700;color:#059669">100%</span></div><div style="height:4px;background:#E2E8F0;border-radius:2px"><div style="width:100%;height:100%;background:#059669;border-radius:2px"></div></div></div>';}).join('')+'</div></div>';
 }
 
 /* ── MODALS ── */
@@ -694,14 +686,14 @@ function showModal(){
 
 function viewModal(){
   var a=S.selApp;if(!a)return'';
-  var dl={frontdesk:'Front Desk',town_planning:'Town Planning',survey:'Survey',engineering:'Engineering',environmental:'Environmental'};
-  return '<div class="modal"><div class="mhdr"><div class="mttl">Application: '+a.id+'</div><button class="mclose" onclick="closeM()">×</button></div><div class="mbdy"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">'+bdg(a.status)+'<span style="font-size:12px;color:#64748b">'+a.date+'</span></div><div class="rsec"><div class="rttl">Applicant</div><div class="rf"><span class="rfl">Name</span><span class="rfv">'+a.applicant.title+' '+a.applicant.first+' '+a.applicant.middle+' '+a.applicant.surname+'</span></div><div class="rf"><span class="rfl">Phone</span><span class="rfv">'+a.applicant.phone+'</span></div><div class="rf"><span class="rfl">Email</span><span class="rfv">'+a.applicant.email+'</span></div><div class="rf"><span class="rfl">ID</span><span class="rfv">'+a.applicant.id+'</span></div></div><div class="rsec"><div class="rttl">Property</div><div class="rf"><span class="rfl">Type</span><span class="rfv">'+a.type+'</span></div><div class="rf"><span class="rfl">Land Use</span><span class="rfv">'+a.property.landUse+'</span></div><div class="rf"><span class="rfl">Zone</span><span class="rfv">'+a.property.zone+'</span></div><div class="rf"><span class="rfl">Location</span><span class="rfv">'+a.property.streetName+', '+a.property.district+'</span></div><div class="rf"><span class="rfl">Floors</span><span class="rfv">'+a.property.noFloors+'</span></div><div class="rf"><span class="rfl">Est. Cost</span><span class="rfv">'+a.property.estCost+'</span></div></div><div class="rsec"><div class="rttl">Department Reviews</div>'+['frontdesk','town_planning','survey','engineering','environmental'].map(function(d){var sv=a.review[d];var col=sv==='approved'?'#059669':sv==='rejected'?'#DC2626':'#64748b';return '<div class="rf"><span class="rfl">'+dl[d]+'</span><span class="rfv" style="color:'+col+'">'+(sv?sv[0].toUpperCase()+sv.slice(1):'Pending')+'</span></div>';}).join('')+'</div>'+(Object.keys(a.comments).length?'<div class="cmt"><div style="font-size:11px;font-weight:700;color:#92400E;margin-bottom:5px">Comments</div>'+Object.entries(a.comments).map(function(e){return '<div style="margin-bottom:6px"><span style="font-size:11px;font-weight:700;color:#92400E;text-transform:capitalize">'+e[0].replace('_',' ')+':</span><div style="font-size:12px;color:#78350F;margin-top:2px">'+e[1]+'</div></div>';}).join('')+'</div>':'')+'<div class="rsec" style="margin-top:14px"><div class="rttl">Fees</div>'+a.fees.map(function(f){return '<div class="feer"><span>'+f.desc+'</span><span>'+fmt(f.amount)+'</span></div>';}).join('')+'<div class="feer tot"><span>Total</span><span>'+fmt(a.fees.reduce(function(s,f){return s+f.amount;},0))+'</span></div></div></div><div class="mftr"><button class="btn bgh" onclick="closeM()">Close</button></div></div>';
+  var dl={frontdesk:'Front Desk',dev_control:'Development Control',survey:'Survey',urban_planning:'Urban Planning & Research'};
+  return '<div class="modal"><div class="mhdr"><div class="mttl">Application: '+a.id+'</div><button class="mclose" onclick="closeM()">×</button></div><div class="mbdy"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">'+bdg(a.status)+'<span style="font-size:12px;color:#64748b">'+a.date+'</span></div><div class="rsec"><div class="rttl">Applicant</div><div class="rf"><span class="rfl">Name</span><span class="rfv">'+a.applicant.title+' '+a.applicant.first+' '+a.applicant.middle+' '+a.applicant.surname+'</span></div><div class="rf"><span class="rfl">Phone</span><span class="rfv">'+a.applicant.phone+'</span></div><div class="rf"><span class="rfl">Email</span><span class="rfv">'+a.applicant.email+'</span></div><div class="rf"><span class="rfl">ID</span><span class="rfv">'+a.applicant.id+'</span></div></div><div class="rsec"><div class="rttl">Property</div><div class="rf"><span class="rfl">Type</span><span class="rfv">'+a.type+'</span></div><div class="rf"><span class="rfl">Land Use</span><span class="rfv">'+a.property.landUse+'</span></div><div class="rf"><span class="rfl">Zone</span><span class="rfv">'+a.property.zone+'</span></div><div class="rf"><span class="rfl">Location</span><span class="rfv">'+a.property.streetName+', '+a.property.district+'</span></div><div class="rf"><span class="rfl">Floors</span><span class="rfv">'+a.property.noFloors+'</span></div><div class="rf"><span class="rfl">Est. Cost</span><span class="rfv">'+a.property.estCost+'</span></div></div><div class="rsec"><div class="rttl">Department Reviews</div>'+['frontdesk','dev_control','monitoring','urban_planning'].map(function(d){var sv=a.review[d];var col=sv==='approved'?'#059669':sv==='rejected'?'#DC2626':'#64748b';return '<div class="rf"><span class="rfl">'+dl[d]+'</span><span class="rfv" style="color:'+col+'">'+(sv?sv[0].toUpperCase()+sv.slice(1):'Pending')+'</span></div>';}).join('')+'</div>'+(Object.keys(a.comments).length?'<div class="cmt"><div style="font-size:11px;font-weight:700;color:#92400E;margin-bottom:5px">Comments</div>'+Object.entries(a.comments).map(function(e){return '<div style="margin-bottom:6px"><span style="font-size:11px;font-weight:700;color:#92400E;text-transform:capitalize">'+e[0].replace('_',' ')+':</span><div style="font-size:12px;color:#78350F;margin-top:2px">'+e[1]+'</div></div>';}).join('')+'</div>':'')+'<div class="rsec" style="margin-top:14px"><div class="rttl">Fees</div>'+a.fees.map(function(f){return '<div class="feer"><span>'+f.desc+'</span><span>'+fmt(f.amount)+'</span></div>';}).join('')+'<div class="feer tot"><span>Total</span><span>'+fmt(a.fees.reduce(function(s,f){return s+f.amount;},0))+'</span></div></div></div><div class="mftr"><button class="btn bgh" onclick="closeM()">Close</button></div></div>';
 }
 function revModal(){
   var a=S.selApp,role=S.revRole;if(!a)return'';
-  var lb={frontdesk:'Front Desk',town_planning:'Town Planning',survey:'Survey Unit',engineering:'Engineering',environmental:'Environmental',dg:'Director General'};
+  var lb={frontdesk:'Front Desk',dev_control:'Development Control',monitoring:'Monitoring & Compliance',urban_planning:'Urban Planning & Research',dg:'Director General'};
   var isDG=role==='dg';
-  return '<div class="modal"><div class="mhdr"><div><div class="mttl">'+(isDG?'DG Final Review':'Dept. Review')+': '+a.id+'</div><div style="font-size:12px;color:#64748b;margin-top:2px">'+lb[role]+' — '+a.owner+'</div></div><button class="mclose" onclick="closeM()">×</button></div><div class="mbdy"><div class="rsec"><div class="rttl">Summary</div><div class="rf"><span class="rfl">Type</span><span class="rfv">'+a.type+'</span></div><div class="rf"><span class="rfl">Location</span><span class="rfv">'+a.location+'</span></div><div class="rf"><span class="rfl">Zone</span><span class="rfv">'+a.property.zone+'</span></div><div class="rf"><span class="rfl">Floors</span><span class="rfv">'+a.property.noFloors+'</span></div></div>'+(isDG?'<div class="rsec"><div class="rttl">Dept. Sign-offs</div>'+['town_planning','survey','engineering','environmental'].map(function(d){var lb2={town_planning:'Town Planning',survey:'Survey',engineering:'Engineering',environmental:'Environmental'};var sv=a.review[d];return '<div class="rf"><span class="rfl">'+lb2[d]+'</span><span class="rfv" style="color:'+(sv==='approved'?'#059669':'#D97706')+'">'+(sv==='approved'?'Approved':'Pending')+'</span></div>';}).join('')+'</div>':'')+'<div class="fgrp"><label class="flbl">Review Comment</label><textarea class="fctl" id="rcom" rows="3" placeholder="Add your comment...">'+(a.comments[role]||'')+'</textarea></div><div style="font-size:12px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">Decision</div><div style="display:flex;gap:10px">'+(role==='frontdesk'?'<button class="btn bam" onclick="submitRev(\'correction\')">Request Correction</button>':'')+'<button class="btn brd" onclick="submitRev(\'rejected\')">Reject</button><button class="btn bgr" onclick="submitRev(\'approved\')">'+(isDG?'Approve & Issue Permit':'Approve')+'</button></div></div></div>';
+  return '<div class="modal"><div class="mhdr"><div><div class="mttl">'+(isDG?'DG Final Review':'Dept. Review')+': '+a.id+'</div><div style="font-size:12px;color:#64748b;margin-top:2px">'+lb[role]+' — '+a.owner+'</div></div><button class="mclose" onclick="closeM()">×</button></div><div class="mbdy"><div class="rsec"><div class="rttl">Summary</div><div class="rf"><span class="rfl">Type</span><span class="rfv">'+a.type+'</span></div><div class="rf"><span class="rfl">Location</span><span class="rfv">'+a.location+'</span></div><div class="rf"><span class="rfl">Zone</span><span class="rfv">'+a.property.zone+'</span></div><div class="rf"><span class="rfl">Floors</span><span class="rfv">'+a.property.noFloors+'</span></div></div>'+(isDG?'<div class="rsec"><div class="rttl">Dept. Sign-offs</div>'+['dev_control','monitoring','urban_planning'].map(function(d){var lb2={dev_control:'Development Control',survey:'Survey',urban_planning:'Urban Planning & Research'};var sv=a.review[d];return '<div class="rf"><span class="rfl">'+lb2[d]+'</span><span class="rfv" style="color:'+(sv==='approved'?'#059669':'#D97706')+'">'+(sv==='approved'?'Approved':'Pending')+'</span></div>';}).join('')+'</div>':'')+'<div class="fgrp"><label class="flbl">Review Comment</label><textarea class="fctl" id="rcom" rows="3" placeholder="Add your comment...">'+(a.comments[role]||'')+'</textarea></div><div style="font-size:12px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">Decision</div><div style="display:flex;gap:10px">'+(role==='frontdesk'?'<button class="btn bam" onclick="submitRev(\'correction\')">Request Correction</button>':'')+'<button class="btn brd" onclick="submitRev(\'rejected\')">Reject</button><button class="btn bgr" onclick="submitRev(\'approved\')">'+(isDG?'Approve & Issue Permit':'Approve')+'</button></div></div></div>';
 }
 function fixModal(){
   var a=S.selApp;if(!a)return'';
@@ -760,9 +752,9 @@ function attachApp(){
       :action==='rejected'?'Force REJECT application '+id+'? This will close the application regardless of its current stage.'
       :'Reset application '+id+' to submitted status?';
     if(!confirm(confirmMsg))return;
-    if(action==='approved'){a.status='approved';var now=new Date();var exp=new Date(now.getTime()+365*24*3600*1000);a.permit={number:'KBP/KAD/2025/'+a.id.split('-')[2],issued:now.toISOString().slice(0,10),expires:exp.toISOString().slice(0,10)};['frontdesk','town_planning','survey','engineering','environmental','dg'].forEach(function(d){a.review[d]='approved';});a.comments.dg='DG OVERRIDE: Force approved by Director General.';}
+    if(action==='approved'){a.status='approved';var now=new Date();var exp=new Date(now.getTime()+365*24*3600*1000);a.permit={number:'KBP/KAD/2025/'+a.id.split('-')[2],issued:now.toISOString().slice(0,10),expires:exp.toISOString().slice(0,10)};['frontdesk','dev_control','monitoring','urban_planning','dg'].forEach(function(d){a.review[d]='approved';});a.comments.dg='DG OVERRIDE: Force approved by Director General.';}
     else if(action==='rejected'){a.status='rejected';a.comments.dg='DG OVERRIDE: Force rejected by Director General.';}
-    else if(action==='reset'){a.status='submitted';a.permit=null;['frontdesk','town_planning','survey','engineering','environmental','dg'].forEach(function(d){a.review[d]='pending';});}
+    else if(action==='reset'){a.status='submitted';a.permit=null;['frontdesk','dev_control','monitoring','urban_planning','dg'].forEach(function(d){a.review[d]='pending';});}
     alert('Override executed successfully!\nApplication '+id+' is now: '+a.status.toUpperCase());render();
   };
   window.openDGOverrideModal=function(id){S.selApp=APPS.find(function(a){return a.id===id;});S.modal='dgcustom';showModal();};
@@ -774,7 +766,7 @@ function attachApp(){
     if(code!=='DG-2025'){alert('Invalid DG authorization code.\nUse: DG-2025');return;}
     var a=S.selApp;if(!a)return;
     a.status=action;
-    if(action==='approved'){var now=new Date();var exp=new Date(now.getTime()+365*24*3600*1000);a.permit={number:'KBP/KAD/2025/'+a.id.split('-')[2],issued:now.toISOString().slice(0,10),expires:exp.toISOString().slice(0,10)};['frontdesk','town_planning','survey','engineering','environmental','dg'].forEach(function(d){a.review[d]='approved';});}
+    if(action==='approved'){var now=new Date();var exp=new Date(now.getTime()+365*24*3600*1000);a.permit={number:'KBP/KAD/2025/'+a.id.split('-')[2],issued:now.toISOString().slice(0,10),expires:exp.toISOString().slice(0,10)};['frontdesk','dev_control','monitoring','urban_planning','dg'].forEach(function(d){a.review[d]='approved';});}
     a.comments.dg='DG CUSTOM OVERRIDE: '+reason;
     alert('Custom override executed!\nApplication '+a.id+'\nNew Status: '+action.toUpperCase()+'\nLogged with DG credentials.');
     closeM();render();
